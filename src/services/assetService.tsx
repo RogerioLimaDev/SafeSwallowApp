@@ -139,18 +139,10 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  const filenames: Record<CharacterType, string> = {
-    NORMAL: 'normal.png',
-    POSTURE: 'postura.png',
-    CELEBRATION: 'comemora.png',
-    CHECKING: 'checando.png',
-    SWALLOWING: 'engolindo.png',
-    TONGUE: 'lingua.png',
-  };
-
   return {
-    type: 'image',
-    path: `/images/nivel${level}/${filenames[type]}`
+    type: 'animation',
+    // Fallback if not level 1-7
+    path: `/images/nivel${level}/normal.png` 
   };
 };
 
