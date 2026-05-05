@@ -10,3 +10,5 @@ coverage/
 *.mov
 public/videos/
 public/images/nivel*/
+!public/images/nivel1/
+
