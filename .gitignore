@@ -9,4 +9,4 @@ coverage/
 *.mp4
 *.mov
 public/videos/
-public/images/
+public/images/nivel*/
