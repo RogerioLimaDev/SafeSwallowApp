@@ -17,7 +17,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const prefix = videoType === 'FINAL' ? 'Final_0' : 'Comemorando_fase';
   const videoBaseUrl = `/videos/${prefix}${currentLevel}`;
   const videoSrcWebm = `${videoBaseUrl}.webm`;
-  const videoSrcMp4 = `${videoBaseUrl}.mp4`;
 
   useEffect(() => {
     // Reset error when sources change
@@ -107,7 +106,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             }}
           >
             <source src={videoSrcWebm} type="video/webm" />
-            <source src={videoSrcMp4} type="video/mp4" />
           </video>
 
           {/* Success Text Box */}
