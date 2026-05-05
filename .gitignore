@@ -9,12 +9,5 @@ coverage/
 *.mp4
 *.mov
 public/videos/
-public/images/nivel*/
-!public/images/nivel1/
-!public/images/nivel2/
-!public/images/nivel3/
-!public/images/nivel4/
-!public/images/nivel5/
-!public/images/nivel6/
-!public/images/nivel7/
+
 
