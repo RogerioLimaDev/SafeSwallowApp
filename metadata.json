@@ -1,0 +1,7 @@
+{
+  "name": "Safe Swallow - publicar",
+  "description": "Uma jornada lúdica e segura para ajudar crianças a tomarem remédios com a postura correta, usando IA para monitoramento em tempo real.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

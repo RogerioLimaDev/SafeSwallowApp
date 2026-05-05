@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Baruta Black';
+  src: url('/fonts/BarutaBlack.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'All Round Gothic';
+  src: url('/fonts/allroundgothic-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'All Round Gothic Book';
+  src: url('/fonts/allroundgothic-book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "All Round Gothic", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+  --font-display: "All Round Gothic", "Fredoka", sans-serif;
+  --font-baruta: "Baruta Black", sans-serif;
+  --font-gothic: "All Round Gothic", sans-serif;
+  --font-gothic-book: "All Round Gothic Book", sans-serif;
+  
+  --color-brand-orange: #FF6321;
+  --color-brand-pink: #FF4E8D;
+  --color-brand-blue: #4E8DFF;
+  --color-brand-green: #4EFFFF;
+  --color-brand-yellow: #fbc660;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html, body {
+    @apply select-none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  body {
+    @apply font-sans text-gray-800;
+    background: #000;
+    min-height: 100vh;
+  }
+}
+
+.bg-main-gradient {
+  background: url('/images/TelaAbertura.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-clean {
+  background: url('/images/bgLimpo.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-how-it-works {
+  background: url('/images/bgComoFunciona.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-camera-invite {
+  background: url('/images/bgLigarACamera.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-success {
+  background: url('/images/bgTelaFinal.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-with-logo {
+  background: url('/images/BGComLogo.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-halftone {
+  background-image: radial-gradient(#00000015 1px, transparent 0);
+  background-size: 12px 12px;
+}
+
+.btn-3d-yellow {
+  @apply relative bg-brand-yellow text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+         transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none;
+  box-shadow: 2px 3px 0px #dfa525;
+  letter-spacing: 0.05em;
+}
+
+.btn-3d-pink {
+  @apply relative bg-brand-pink text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+         transition-all duration-100 active:translate-y-1;
+  letter-spacing: 0.05em;
+}
+
+.btn-3d-blue {
+  @apply relative bg-brand-blue text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+         transition-all duration-100 active:translate-y-1;
+  letter-spacing: 0.05em;
+}
+
+.btn-3d-green {
+  @apply relative bg-brand-green text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+         transition-all duration-100 active:translate-y-1;
+  letter-spacing: 0.05em;
+}
+
+.btn-3d-light-blue {
+  @apply relative bg-[#93ddff] text-white font-baruta font-bold rounded-2xl p-5 
+         transition-all duration-100 active:translate-y-1;
+  letter-spacing: 0.05em;
+}
+
+.bg-black {
+  background-color: #000000;
+}
+
+.bg-mission-gradient {
+  background: linear-gradient(180deg, #FFB7B7 0%, #B7E4FF 100%);
+}
