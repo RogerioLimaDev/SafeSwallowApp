@@ -154,10 +154,10 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
 
       <button
         onClick={onFinish}
-        className="absolute top-6 right-6 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-[240] backdrop-blur-md border border-white/20 transition-all active:scale-90"
+        className="absolute top-6 right-6 bg-black/40 hover:bg-black/60 text-white p-1.5 rounded-full z-[240] backdrop-blur-md border border-white/20 transition-all active:scale-90"
         title="Pular"
       >
-        <X className="w-6 h-6" />
+        <X className="w-3 h-3" />
       </button>
     </motion.div>
   );
