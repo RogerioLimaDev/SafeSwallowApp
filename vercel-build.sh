@@ -1,15 +1,12 @@
 #!/bin/bash
+# Vercel custom build script - apenas copia dist/ existente (sem rodar build)
+
 set -e
 
-echo "🔍 Verificando Node.js versão:"
-node --version
-npm --version
+echo "📋 Copiando dist/ para output..."
+mkdir -p /vercel/output
+cp -r /vercel/path0/dist/* /vercel/output/
 
-echo "🧱 Instalando dependências..."
-npm install
-
-echo "🔨 Rodando build..."
-npm run build
-
-echo "📦 Arquivos gerados no dist/:"
-ls -la dist/
+echo "✅ Done!"
+echo "Output:"
+ls -la /vercel/output/
