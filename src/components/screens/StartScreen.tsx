@@ -66,12 +66,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
         />
       </div>
 
-      {/* GIF Test */}
+      {/* GIF Test - HD */}
       <div className="mb-8 p-4 border-2 border-green-500 rounded-lg bg-green-50">
-        <p className="text-sm text-green-700 mb-2">GIF Animado</p>
+        <p className="text-sm text-green-700 mb-2">GIF HD (800x800)</p>
         <img 
-          src="/sprites/sprite_postura.gif" 
-          alt="Teste GIF" 
+          src="/sprites/sprite_postura_hd.gif" 
+          alt="Teste GIF HD" 
           className="w-[100px] h-[100px]"
         />
       </div>
