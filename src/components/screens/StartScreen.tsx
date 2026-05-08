@@ -1,6 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { MissionStep } from '../../types';
+
+// Sprite Animator Component
+const SpriteAnimator: React.FC<{
+  src: string;
+  frameCount: number;
+  fps: number;
+  className?: string;
+  alt?: string;
+}> = ({ src, frameCount, fps, className = '', alt = 'Sprite' }) => {
+  const [frame, setFrame] = useState(0);
+  const frameWidth = 100;
+  const frameTime = 1000 / fps;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrame((prev) => (prev + 1) % frameCount);
+    }, frameTime);
+    return () => clearInterval(interval);
+  }, [frameCount, frameTime]);
+
+  const bgPosition = -(frame * frameWidth);
+  const spriteWidth = frameCount * frameWidth;
+  
+  return (
+    <div 
+      className={className}
+      style={{
+        width: `${frameWidth}px`,
+        height: `${frameWidth}px`,
+        overflow: 'hidden',
+        backgroundColor: 'transparent',
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          width: `${spriteWidth}px`,
+          height: `${frameWidth}px`,
+          imageRendering: 'pixelated',
+          objectFit: 'contain',
+          backgroundColor: 'transparent',
+          transform: `translateX(${bgPosition}px)`,
+        }}
+      />
+    </div>
+  );
+};
 
 interface StartScreenProps {
   onStart: (step: MissionStep) => void;
@@ -15,6 +63,18 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
+      {/* Sprite Sheet Test */}
+      <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
+        <p className="text-sm text-blue-700 mb-2">Sprite Sheet Test (PNG com transparência)</p>
+        <SpriteAnimator 
+          src="/sprites/sprite_postura_teste.png"
+          frameCount={32}
+          fps={8}
+          className="w-[100px] h-[100px]"
+          alt="Teste sprite"
+        />
+      </div>
+
       <motion.button 
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95, y: 2 }}
