@@ -8,7 +8,7 @@ interface StartScreenProps {
 }
 
 // Vídeo de referência para todos os formatos
-const VIDEO_BASE = '/videos/Vermelho_Comemorando';
+const VIDEO_BASE = '/videos/postura';
 
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   // Sprite sheet de teste - nível 1 postura
