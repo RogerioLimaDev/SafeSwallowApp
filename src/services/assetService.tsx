@@ -41,7 +41,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       // Sprite sheet para nível 1 (8fps, 32 frames)
       return {
         type: 'sprite',
-        path: '/sprites/nivel1_sprite/sprite_postura.webp',
+        path: '/sprites/nivel1_sprite/sprite_postura.png',
         frameCount: 32,
         fps: 8
       };
