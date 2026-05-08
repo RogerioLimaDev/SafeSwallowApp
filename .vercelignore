@@ -1,11 +1,7 @@
 server.ts
-# Arquivos fonte TypeScript (não remover)
-# !src/**/*.ts
-# !src/**/*.tsx
 node_modules
 .git
 .gitignore
 .env*
 AGENTS.md
 README.md
-public
