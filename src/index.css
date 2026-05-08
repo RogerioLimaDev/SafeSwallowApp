@@ -54,9 +54,11 @@
 }
 
 .bg-main-gradient {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   background: url('/images/TelaAbertura.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
+  color: white;
 }
 
 .bg-clean {
