@@ -9,140 +9,151 @@ export type CharacterType =
   | 'TONGUE';
 
 interface AssetConfig {
-  type: 'image' | 'animation' | 'component';
+  type: 'image' | 'animation' | 'component' | 'sprite';
   path: string;
   component?: React.ReactNode;
+  frameCount?: number;
+  fps?: number;
 }
 
 /**
  * Centralized service to manage character assets across different levels.
- * This structure allows easy swapping of static images for animations (GIF, Lottie, etc.)
- * without changing the layout logic.
+ * Uses sprite sheets for better iOS compatibility (transparency support).
  */
 export const getCharacterAsset = (level: number, type: CharacterType): AssetConfig => {
-  // Use animations for Level 1
+  // Mapeamento de tipos para nomes de arquivos de sprite
+  const spriteFiles: Record<CharacterType, string> = {
+    NORMAL: 'postura',
+    POSTURE: 'postura',
+    CELEBRATION: 'palmas',
+    CHECKING: 'checando',
+    SWALLOWING: 'bebendo',
+    TONGUE: 'língua',
+  };
+
+  // Level 1
   if (level === 1) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'postura.webm',
-      POSTURE: 'postura.webm',
-      CELEBRATION: 'palmas.webm',
-      CHECKING: 'checando.webm',
-      SWALLOWING: 'bebendo.webm',
-      TONGUE: 'língua.webm',
-    };
-
+    const spriteName = spriteFiles[type];
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteName}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 2
+  // Level 2
   if (level === 2) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Laranja1_postura.webm',
-      POSTURE: 'Laranja1_postura.webm',
-      CELEBRATION: 'Laranja1_Comemora.webm',
-      CHECKING: 'Laranja1_Checando.webm',
-      SWALLOWING: 'Laranja1_bebendo.webm',
-      TONGUE: 'Laranja1_lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'Laranja1_postura',
+      POSTURE: 'Laranja1_postura',
+      CELEBRATION: 'Laranja1_Comemora',
+      CHECKING: 'Laranja1_Checando',
+      SWALLOWING: 'Laranja1_bebendo',
+      TONGUE: 'Laranja1_lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 3
+  // Level 3
   if (level === 3) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Roxo_postura.webm',
-      POSTURE: 'Roxo_postura.webm',
-      CELEBRATION: 'Roxo_comemorando.webm',
-      CHECKING: 'Roxo_checando.webm',
-      SWALLOWING: 'Roxo_agua.webm',
-      TONGUE: 'Roxo_lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'Roxo_postura',
+      POSTURE: 'Roxo_postura',
+      CELEBRATION: 'Roxo_comemorando',
+      CHECKING: 'Roxo_checando',
+      SWALLOWING: 'Roxo_agua',
+      TONGUE: 'Roxo_lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 4
+  // Level 4
   if (level === 4) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Azul_Postura.webm',
-      POSTURE: 'Azul_Postura.webm',
-      CELEBRATION: 'Azul_Comemora.webm',
-      CHECKING: 'Azul_Checando.webm',
-      SWALLOWING: 'Azul_agua.webm',
-      TONGUE: 'Azul_lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'Azul_Postura',
+      POSTURE: 'Azul_Postura',
+      CELEBRATION: 'Azul_Comemora',
+      CHECKING: 'Azul_Checando',
+      SWALLOWING: 'Azul_agua_',
+      TONGUE: 'Azul_lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 5
+  // Level 5
   if (level === 5) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Laranja2_postura.webm',
-      POSTURE: 'Laranja2_postura.webm',
-      CELEBRATION: 'Laranja2_palmas.webm',
-      CHECKING: 'Laranja2_checando.webm',
-      SWALLOWING: 'Laranja2_agua.webm',
-      TONGUE: 'Laranja2_Lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'Laranja2_postura',
+      POSTURE: 'Laranja2_postura',
+      CELEBRATION: 'Laranja2_palmas',
+      CHECKING: 'Laranja2_checando',
+      SWALLOWING: 'Laranja2_agua',
+      TONGUE: 'Laranja2_Lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 6
+  // Level 6
   if (level === 6) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Vermelho_postura.webm',
-      POSTURE: 'Vermelho_postura.webm',
-      CELEBRATION: 'Vermelho_Comemorando.webm',
-      CHECKING: 'Vermelho_Checando.webm',
-      SWALLOWING: 'Vermelho_agua.webm',
-      TONGUE: 'Vermelho_Lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'Vermelho_postura',
+      POSTURE: 'Vermelho_postura',
+      CELEBRATION: 'Vermelho_Comemorando',
+      CHECKING: 'Vermelho_Checando',
+      SWALLOWING: 'Vermelho_agua',
+      TONGUE: 'Vermelho_Lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
-  // Use animations for Level 7
+  // Level 7
   if (level === 7) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'AzulEBranco_postura.webm',
-      POSTURE: 'AzulEBranco_postura.webm',
-      CELEBRATION: 'AzulEBranco_comemorando.webm',
-      CHECKING: 'AzulEBranco_checando.webm',
-      SWALLOWING: 'AzulEBranco_agua.webm',
-      TONGUE: 'AzulEBranco_Lingua.webm',
+    const spriteMap: Record<CharacterType, string> = {
+      NORMAL: 'AzulEBranco_postura',
+      POSTURE: 'AzulEBranco_postura',
+      CELEBRATION: 'AzulEBranco_comemorando',
+      CHECKING: 'AzulEBranco_checando',
+      SWALLOWING: 'AzulEBranco_agua',
+      TONGUE: 'AzulEBranco_Lingua',
     };
-
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/nivel${level}/${spriteMap[type]}_spritesheet.webp`,
+      frameCount: 61,
+      fps: 12,
     };
   }
 
+  // Fallback
   return {
     type: 'animation',
-    // Fallback if not level 1-7
-    path: `/images/nivel${level}/normal.png` 
+    path: '/images/nivel1/postura.webm'
   };
 };
 
@@ -174,9 +185,55 @@ export const darkenColor = (hex: string, percent: number): string => {
   return '#' + (0x1000000 + (R < 255 ? R < 0 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 0 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 0 ? 0 : B : 255)).toString(16).slice(1);
 };
 
+// Sprite animation constants
+const SPRITE_COLS = 8; // 8 columns in sprite sheet
+const SPRITE_SIZE = 150; // 150x150 pixels per frame
+
+/**
+ * Component to render character animations using sprite sheets.
+ * Uses CSS animation for smooth playback on all devices including iOS.
+ */
+export const SpriteAnimator: React.FC<{
+  src: string;
+  frameCount: number;
+  fps: number;
+  className?: string;
+  alt?: string;
+}> = ({ src, frameCount, fps, className, alt = "Character" }) => {
+  const duration = frameCount / fps;
+  const rows = Math.ceil(frameCount / SPRITE_COLS);
+  const totalWidth = SPRITE_SIZE * frameCount;
+  
+  return (
+    <div 
+      className={className}
+      style={{
+        width: SPRITE_SIZE,
+        height: SPRITE_SIZE,
+        backgroundImage: `url(${src})`,
+        backgroundSize: `${SPRITE_SIZE * SPRITE_COLS}px ${SPRITE_SIZE * rows}px`,
+        backgroundPosition: '0 0',
+        animation: `spriteAnimation ${duration}s steps(${frameCount}) infinite`,
+      }}
+      aria-label={alt}
+    >
+      <style>{`
+        @keyframes spriteAnimation {
+          from {
+            background-position: 0 0;
+          }
+          to {
+            background-position: -${totalWidth}px 0;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
 /**
  * Component to render the character based on its asset configuration.
- * If we switch to Lottie or Video, we just update this component.
+ * Supports video, sprite sheet, and component types.
  */
 export const CharacterRenderer: React.FC<{ 
   config: AssetConfig; 
@@ -187,8 +244,19 @@ export const CharacterRenderer: React.FC<{
     return <div className={className}>{config.component}</div>;
   }
 
+  if (config.type === 'sprite') {
+    return (
+      <SpriteAnimator 
+        src={config.path}
+        frameCount={config.frameCount || 61}
+        fps={config.fps || 12}
+        className={className}
+        alt={alt}
+      />
+    );
+  }
+
   if (config.type === 'animation') {
-    // Remove a extensão do caminho base
     const basePath = config.path.replace(/\.(webm|mov)$/, '');
     
     return (
@@ -207,7 +275,6 @@ export const CharacterRenderer: React.FC<{
           video.play().catch(err => console.error("Video autoplay failed:", err));
         }}
       >
-        {/* WebM first (Android/Desktop), then MOV fallback (iOS) */}
         <source src={`${basePath}.webm`} type="video/webm" />
         <source src={`${basePath}.mov`} type="video/quicktime" />
       </video>
