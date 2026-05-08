@@ -95,7 +95,7 @@
 }
 
 .bg-with-logo {
-  background: url('/images/BGComLogo.jpg') no-repeat center center;
+  background: url('/images/bgCaixas.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
 }

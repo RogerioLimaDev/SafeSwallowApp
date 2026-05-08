@@ -28,7 +28,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       CELEBRATION: 'palmas.webm',
       CHECKING: 'checando.webm',
       SWALLOWING: 'bebendo.webm',
-      TONGUE: 'lingua.webm',
+      TONGUE: 'língua.webm',
     };
 
     return {
