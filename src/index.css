@@ -1,14 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Baruta Black';
-  src: url('/fonts/BarutaBlack.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* Fontes válidas (removido Baruta Black por estar corrompido) */
 @font-face {
   font-family: 'All Round Gothic';
   src: url('/fonts/allroundgothic-medium.otf') format('opentype');
@@ -26,10 +19,10 @@
 }
 
 @theme {
-  --font-sans: "All Round Gothic", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "All Round Gothic Book", "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-outfit: "Outfit", sans-serif;
   --font-display: "All Round Gothic", "Fredoka", sans-serif;
-  --font-baruta: "Baruta Black", sans-serif;
+  --font-baruta: "All Round Gothic", sans-serif;  /* substituído por OTF */
   --font-gothic: "All Round Gothic", sans-serif;
   --font-gothic-book: "All Round Gothic Book", sans-serif;
   
