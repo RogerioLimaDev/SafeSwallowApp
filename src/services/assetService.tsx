@@ -188,42 +188,35 @@ export const CharacterRenderer: React.FC<{
   }
 
   if (config.type === 'animation') {
-    // If it's a mov or webm, use video tag
-    if (config.path.endsWith('.webm')) {
-      return (
-        <video 
-          key={config.path}
-          src={config.path.replace('.webm', '.mov')}
-          className={className} 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          aria-label={alt}
-          style={{ objectFit: 'contain', backgroundColor: 'transparent' }}
-          onError={(e) => console.error("Video error on path:", config.path, (e.currentTarget as any).error)}
-          onCanPlay={(e) => {
-            const video = e.currentTarget;
-            video.play().catch(err => console.error("Video autoplay failed:", err));
-          }}
-        />
-      );
-    }
+    // Remove a extensão do caminho base
+    const basePath = config.path.replace(/\.(webm|mov)$/, '');
     
-    // For WebP or GIF animations, use img tag
     return (
-      <img 
-        src={config.path.replace('.webm', '.mov')} 
+      <video 
+        key={config.path}
         className={className} 
-        alt={alt} 
-        referrerPolicy="no-referrer" 
-      />
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        aria-label={alt}
+        style={{ objectFit: 'contain', backgroundColor: 'transparent' }}
+        onError={(e) => console.error("Video error on path:", config.path, (e.currentTarget as any).error)}
+        onCanPlay={(e) => {
+          const video = e.currentTarget;
+          video.play().catch(err => console.error("Video autoplay failed:", err));
+        }}
+      >
+        {/* WebM first (Android/Desktop), then MOV fallback (iOS) */}
+        <source src={`${basePath}.webm`} type="video/webm" />
+        <source src={`${basePath}.mov`} type="video/quicktime" />
+      </video>
     );
   }
 
   return (
     <img 
-      src={config.path.replace('.webm', '.mov')} 
+      src={config.path} 
       className={className} 
       alt={alt} 
       referrerPolicy="no-referrer" 

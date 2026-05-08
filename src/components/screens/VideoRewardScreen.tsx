@@ -16,7 +16,9 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   
   const prefix = videoType === 'FINAL' ? 'Final_0' : 'Comemorando_fase';
   const videoBaseUrl = `/videos/${prefix}${currentLevel}`;
+  
   const videoSrcWebm = `${videoBaseUrl}.webm`;
+  const videoSrcMov = `${videoBaseUrl}.mov`;
 
   useEffect(() => {
     // Reset error when sources change
@@ -73,7 +75,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
       {error ? (
         <div className="text-white text-center p-6 z-[220] flex flex-col items-center gap-4">
           <p className="font-baruta text-xl uppercase italic">Erro ao carregar recompensa</p>
-          <p className="text-[10px] text-white/30 font-mono tracking-tighter">Integridade violada: {videoSrcWebm}</p>
+          <p className="text-[10px] text-white/30 font-mono tracking-tighter">Tente usar outro navegador</p>
           <button 
             onClick={onFinish}
             className="mt-4 px-8 py-2 border border-white/20 hover:bg-white/10 text-white/60 font-baruta text-sm !rounded-[16px] transition-all"
@@ -105,7 +107,9 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
               }
             }}
           >
+            {/* WebM first (Android/Desktop), then MOV fallback (iOS) */}
             <source src={videoSrcWebm} type="video/webm" />
+            <source src={videoSrcMov} type="video/quicktime" />
           </video>
 
           {/* Success Text Box */}
