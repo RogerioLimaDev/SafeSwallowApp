@@ -56,13 +56,23 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
     >
       {/* Sprite Sheet Test */}
       <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
-        <p className="text-sm text-blue-700 mb-2">Sprite Sheet Test (PNG com transparência)</p>
+        <p className="text-sm text-blue-700 mb-2">Sprite Sheet PNG</p>
         <SpriteAnimator 
           src="/sprites/sprite_postura_teste.png"
           frameCount={32}
           fps={8}
           className="w-[100px] h-[100px]"
           alt="Teste sprite"
+        />
+      </div>
+
+      {/* GIF Test */}
+      <div className="mb-8 p-4 border-2 border-green-500 rounded-lg bg-green-50">
+        <p className="text-sm text-green-700 mb-2">GIF Animado</p>
+        <img 
+          src="/sprites/sprite_postura.gif" 
+          alt="Teste GIF" 
+          className="w-[100px] h-[100px]"
         />
       </div>
 
