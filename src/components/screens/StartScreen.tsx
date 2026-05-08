@@ -22,31 +22,22 @@ const SpriteAnimator: React.FC<{
   }, [frameCount, frameTime]);
 
   const bgPosition = -(frame * frameWidth);
-  const spriteWidth = frameCount * frameWidth;
-  
+
   return (
     <div 
       className={className}
       style={{
         width: `${frameWidth}px`,
         height: `${frameWidth}px`,
-        overflow: 'hidden',
-        backgroundColor: 'transparent',
+        backgroundImage: `url(${src})`,
+        backgroundSize: `${frameCount * frameWidth}px ${frameWidth}px`,
+        backgroundPosition: `${bgPosition}px 0`,
+        backgroundRepeat: 'no-repeat',
+        imageRendering: 'pixelated',
       }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: `${spriteWidth}px`,
-          height: `${frameWidth}px`,
-          imageRendering: 'pixelated',
-          objectFit: 'contain',
-          backgroundColor: 'transparent',
-          transform: `translateX(${bgPosition}px)`,
-        }}
-      />
-    </div>
+      role="img"
+      aria-label={alt}
+    />
   );
 };
 
