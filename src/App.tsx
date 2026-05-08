@@ -52,28 +52,50 @@ export default function App() {
   }, [levelStats]);
 
   // --- Preload Assets ---
+  // Preload inteligente - carrega apenas a imagem da tela atual
   useEffect(() => {
-    const imagesToPreload = [
-      '/images/Caixas/Caixa1.png',
-      '/images/Caixas/Caixa2.png',
-      '/images/Caixas/Caixa3.png',
-      '/images/Caixas/Caixa4.png',
-      '/images/Caixas/Caixa5.png',
-      '/images/Caixas/Caixa6.png',
-      '/images/Caixas/Caixa7.png',
-      '/images/BGComLogo_v2.jpg',
-      '/images/TelaAbertura_v2.webp',
-      '/images/bgCaixas.webp',
-      '/images/bgComoFunciona_v2.webp',
-      '/images/bgLigarACamera_v2.webp',
-      '/images/bgTelaFinal_v2.webp'
-    ];
+    const getBackgroundImage = () => {
+      switch (currentStep) {
+        case 'START':
+          return '/images/TelaAbertura_v2.webp';
+        case 'HOW_IT_WORKS':
+          return '/images/bgComoFunciona_v2.webp';
+        case 'CANDY_BOX_SELECT':
+          return '/images/bgCaixas.webp';
+        case 'CAMERA_INVITE':
+          return '/images/bgLigarACamera_v2.webp';
+        case 'MID_MISSION_REWARD':
+        case 'VIDEO_REWARD':
+        case 'SUCCESS':
+          return '/images/bgTelaFinal_v2.webp';
+        default:
+          return null;
+      }
+    };
 
-    imagesToPreload.forEach(src => {
+    const getNextScreenImage = () => {
+      switch (currentStep) {
+        case 'START':
+          return '/images/bgCaixas.webp';
+        case 'HOW_IT_WORKS':
+          return '/images/bgLigarACamera_v2.webp';
+        default:
+          return null;
+      }
+    };
+
+    const bgImage = getBackgroundImage();
+    const nextImage = getNextScreenImage();
+
+    if (bgImage) {
       const img = new Image();
-      img.src = src;
-    });
-  }, []);
+      img.src = bgImage;
+    }
+    if (nextImage) {
+      const img = new Image();
+      img.src = nextImage;
+    }
+  }, [currentStep]);
 
   useEffect(() => {
     console.log("Current Unlocked Levels:", unlockedLevels);
