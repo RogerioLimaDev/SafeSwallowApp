@@ -1,30 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Fontes do Google Fonts (evita problemas de arquivos corrompidos) */
-@font-face {
-  font-family: 'All Round Gothic';
-  src: url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'All Round Gothic Book';
-  src: url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400&display=swap') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* Fontes do Google Fonts - com fallback para system fonts se falharem */
 
 @theme {
-  --font-sans: "All Round Gothic Book", "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-outfit: "Outfit", sans-serif;
-  --font-display: "All Round Gothic", "Fredoka", sans-serif;
-  --font-baruta: "Fredoka", sans-serif;  /* substituído por fonte web */
-  --font-gothic: "All Round Gothic", sans-serif;
-  --font-gothic-book: "All Round Gothic Book", sans-serif;
+  --font-sans: "Fredoka", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: "Outfit", system-ui, sans-serif;
+  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-baruta: "Fredoka", system-ui, sans-serif;
+  --font-gothic: "Fredoka", system-ui, sans-serif;
+  --font-gothic-book: "Fredoka", system-ui, sans-serif;
 
   --color-brand-orange: #FF6321;
   --color-brand-pink: #FF4E8D;
@@ -48,7 +33,7 @@
 
   body {
     @apply font-sans text-gray-800;
-    background: #000;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     min-height: 100vh;
   }
 }
