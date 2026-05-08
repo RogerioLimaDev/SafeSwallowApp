@@ -1,7 +1,7 @@
 server.ts
-*.ts
-*.tsx
-*.js
+# Arquivos fonte TypeScript (não remover)
+# !src/**/*.ts
+# !src/**/*.tsx
 node_modules
 .git
 .gitignore
