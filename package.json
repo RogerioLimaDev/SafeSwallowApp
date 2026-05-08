@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "echo 'Build local apenas - Vercel serves dist/'",
+    "preview": "echo 'Preview local apenas'",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "start": "tsx server.ts"
