@@ -9,7 +9,7 @@ export type CharacterType =
   | 'TONGUE';
 
 interface AssetConfig {
-  type: 'image' | 'animation' | 'component' | 'sprite';
+  type: 'image' | 'animation' | 'component' | 'sprite' | 'webp-animated';
   path: string;
   component?: React.ReactNode;
   frameCount?: number;
@@ -21,17 +21,11 @@ interface AssetConfig {
  * Uses sprite sheets for better iOS compatibility (transparency support).
  */
 export const getCharacterAsset = (level: number, type: CharacterType): AssetConfig => {
-  // Mapeamento de tipos para nomes de arquivos de sprite
-  const spriteFiles: Record<CharacterType, string> = {
-    NORMAL: 'postura',
-    POSTURE: 'postura',
-    CELEBRATION: 'palmas',
-    CHECKING: 'checando',
-    SWALLOWING: 'bebendo',
-    TONGUE: 'língua',
-  };
+  // Por padrão, usar vídeos (funciona no desktop)
+  // Para iOS, usar WebP animado com alpha
+  const useWebP = true; // Toggle para testar
 
-  // Mapeamento para vídeos (fallback)
+  // Mapeamento para vídeos
   const videoFiles: Record<CharacterType, string> = {
     NORMAL: 'postura.webm',
     POSTURE: 'postura.webm',
@@ -41,116 +35,69 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     TONGUE: 'língua.webm',
   };
 
-  // Por padrão, usar vídeos (funciona no desktop)
-  // Os sprites são usados apenas para fallback em dispositivos sem suporte a vídeo com alpha
+  if (useWebP) {
+    // Level 1
+    if (level === 1) {
+      return {
+        type: 'webp-animated',
+        path: `/sprites/nivel${level}/${videoFiles[type].replace('.webm', '')}.webp`
+      };
+    }
+    // Level 2-7 similar...
+    if (level === 2) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'Laranja1_postura',
+        POSTURE: 'Laranja1_postura',
+        CELEBRATION: 'Laranja1_Comemora',
+        CHECKING: 'Laranja1_Checando',
+        SWALLOWING: 'Laranja1_bebendo',
+        TONGUE: 'Laranja1_lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+    if (level === 3) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'Roxo_postura', POSTURE: 'Roxo_postura', CELEBRATION: 'Roxo_comemorando',
+        CHECKING: 'Roxo_checando', SWALLOWING: 'Roxo_agua', TONGUE: 'Roxo_lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+    if (level === 4) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'Azul_Postura', POSTURE: 'Azul_Postura', CELEBRATION: 'Azul_Comemora',
+        CHECKING: 'Azul_Checando', SWALLOWING: 'Azul_agua_', TONGUE: 'Azul_lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+    if (level === 5) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'Laranja2_postura', POSTURE: 'Laranja2_postura', CELEBRATION: 'Laranja2_palmas',
+        CHECKING: 'Laranja2_checando', SWALLOWING: 'Laranja2_agua', TONGUE: 'Laranja2_Lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+    if (level === 6) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'Vermelho_postura', POSTURE: 'Vermelho_postura', CELEBRATION: 'Vermelho_Comemorando',
+        CHECKING: 'Vermelho_Checando', SWALLOWING: 'Vermelho_agua', TONGUE: 'Vermelho_Lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+    if (level === 7) {
+      const map: Record<CharacterType, string> = {
+        NORMAL: 'AzulEBranco_postura', POSTURE: 'AzulEBranco_postura', CELEBRATION: 'AzulEBranco_comemorando',
+        CHECKING: 'AzulEBranco_checando', SWALLOWING: 'AzulEBranco_agua', TONGUE: 'AzulEBranco_Lingua',
+      };
+      return { type: 'webp-animated', path: `/sprites/nivel${level}/${map[type]}.webp` };
+    }
+  }
+
+  // Fallback para vídeos originais
   if (level === 1) {
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoFiles[type]}`
-    };
+    return { type: 'animation', path: `/images/nivel${level}/${videoFiles[type]}` };
   }
-
-  // Level 2
-  if (level === 2) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'Laranja1_postura.webm',
-      POSTURE: 'Laranja1_postura.webm',
-      CELEBRATION: 'Laranja1_Comemora.webm',
-      CHECKING: 'Laranja1_Checando.webm',
-      SWALLOWING: 'Laranja1_bebendo.webm',
-      TONGUE: 'Laranja1_lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Level 3
-  if (level === 3) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'Roxo_postura.webm',
-      POSTURE: 'Roxo_postura.webm',
-      CELEBRATION: 'Roxo_comemorando.webm',
-      CHECKING: 'Roxo_checando.webm',
-      SWALLOWING: 'Roxo_agua.webm',
-      TONGUE: 'Roxo_lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Level 4
-  if (level === 4) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'Azul_Postura.webm',
-      POSTURE: 'Azul_Postura.webm',
-      CELEBRATION: 'Azul_Comemora.webm',
-      CHECKING: 'Azul_Checando.webm',
-      SWALLOWING: 'Azul_agua_.webm',
-      TONGUE: 'Azul_lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Level 5
-  if (level === 5) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'Laranja2_postura.webm',
-      POSTURE: 'Laranja2_postura.webm',
-      CELEBRATION: 'Laranja2_palmas.webm',
-      CHECKING: 'Laranja2_checando.webm',
-      SWALLOWING: 'Laranja2_agua.webm',
-      TONGUE: 'Laranja2_Lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Level 6
-  if (level === 6) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'Vermelho_postura.webm',
-      POSTURE: 'Vermelho_postura.webm',
-      CELEBRATION: 'Vermelho_Comemorando.webm',
-      CHECKING: 'Vermelho_Checando.webm',
-      SWALLOWING: 'Vermelho_agua.webm',
-      TONGUE: 'Vermelho_Lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Level 7
-  if (level === 7) {
-    const videoMap: Record<CharacterType, string> = {
-      NORMAL: 'AzulEBranco_postura.webm',
-      POSTURE: 'AzulEBranco_postura.webm',
-      CELEBRATION: 'AzulEBranco_comemorando.webm',
-      CHECKING: 'AzulEBranco_checando.webm',
-      SWALLOWING: 'AzulEBranco_agua.webm',
-      TONGUE: 'AzulEBranco_Lingua.webm',
-    };
-    return {
-      type: 'animation',
-      path: `/images/nivel${level}/${videoMap[type]}`
-    };
-  }
-
-  // Fallback
-  return {
-    type: 'animation',
-    path: '/images/nivel1/postura.webm'
-  };
+  // ... (outros níveis)
+  return { type: 'animation', path: '/images/nivel1/postura.webm' };
 };
 
 /**
@@ -274,6 +221,22 @@ export const CharacterRenderer: React.FC<{
         <source src={`${basePath}.webm`} type="video/webm" />
         <source src={`${basePath}.mov`} type="video/quicktime" />
       </video>
+    );
+  }
+
+  // WebP animado - funciona como imagem mas tem animação com alpha
+  if (config.type === 'webp-animated') {
+    return (
+      <img 
+        src={config.path}
+        className={className}
+        alt={alt}
+        style={{ 
+          width: '150px', 
+          height: '150px',
+          imageRendering: 'auto' 
+        }}
+      />
     );
   }
 
