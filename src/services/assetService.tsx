@@ -36,11 +36,14 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
   };
 
   if (useWebP) {
-    // Level 1
+    // Level 1 - usar sprite sheet (teste)
     if (level === 1) {
+      // Sprite sheet para nível 1 (8fps, 32 frames)
       return {
-        type: 'webp-animated',
-        path: `/sprites/nivel${level}/${videoFiles[type].replace('.webm', '')}.webp`
+        type: 'sprite',
+        path: '/sprites/nivel1_sprite/sprite_postura.webp',
+        frameCount: 32,
+        fps: 8
       };
     }
     // Level 2-7 similar...
@@ -130,7 +133,7 @@ export const darkenColor = (hex: string, percent: number): string => {
 
 // Sprite animation constants
 const SPRITE_COLS = 8; // 8 columns in sprite sheet
-const SPRITE_SIZE = 150; // 150x150 pixels per frame
+const SPRITE_SIZE = 100; // 100x100 pixels per frame (reduced from 150)
 
 /**
  * Component to render character animations using sprite sheets.
