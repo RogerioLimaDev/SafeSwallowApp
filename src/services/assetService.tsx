@@ -188,12 +188,12 @@ export const CharacterRenderer: React.FC<{
   }
 
   if (config.type === 'animation') {
-    // If it's a webm, use video tag
+    // If it's a mov or webm, use video tag
     if (config.path.endsWith('.webm')) {
       return (
         <video 
           key={config.path}
-          src={config.path}
+          src={config.path.replace('.webm', '.mov')}
           className={className} 
           autoPlay 
           loop 
@@ -213,7 +213,7 @@ export const CharacterRenderer: React.FC<{
     // For WebP or GIF animations, use img tag
     return (
       <img 
-        src={config.path} 
+        src={config.path.replace('.webm', '.mov')} 
         className={className} 
         alt={alt} 
         referrerPolicy="no-referrer" 
@@ -223,7 +223,7 @@ export const CharacterRenderer: React.FC<{
 
   return (
     <img 
-      src={config.path} 
+      src={config.path.replace('.webm', '.mov')} 
       className={className} 
       alt={alt} 
       referrerPolicy="no-referrer" 
