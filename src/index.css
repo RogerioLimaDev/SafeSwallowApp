@@ -61,32 +61,32 @@
 }
 
 .bg-main-gradient {
-  background: url('/images/TelaAbertura.jpg') no-repeat center center;
+  background: url('/images/TelaAbertura_v2.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
   color: white;
 }
 
 .bg-clean {
-  background: url('/images/bgLimpo.jpg') no-repeat center center;
+  background: url('/images/bgLimpo_v2.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-how-it-works {
-  background: url('/images/bgComoFunciona.jpg') no-repeat center center;
+  background: url('/images/bgComoFunciona_v2.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-camera-invite {
-  background: url('/images/bgLigarACamera.jpg') no-repeat center center;
+  background: url('/images/bgLigarACamera_v2.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-success {
-  background: url('/images/bgTelaFinal.jpg') no-repeat center center;
+  background: url('/images/bgTelaFinal_v2.jpg') no-repeat center center;
   background-size: cover;
   position: relative;
 }

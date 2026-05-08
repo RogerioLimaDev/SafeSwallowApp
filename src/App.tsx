@@ -61,11 +61,11 @@ export default function App() {
       '/images/Caixas/Caixa5.png',
       '/images/Caixas/Caixa6.png',
       '/images/Caixas/Caixa7.png',
-      '/images/BGComLogo.jpg',
-      '/images/TelaAbertura.jpg',
-      '/images/bgComoFunciona.jpg',
-      '/images/bgLigarACamera.jpg',
-      '/images/bgTelaFinal.jpg'
+      '/images/BGComLogo_v2.jpg',
+      '/images/TelaAbertura_v2.jpg',
+      '/images/bgComoFunciona_v2.jpg',
+      '/images/bgLigarACamera_v2.jpg',
+      '/images/bgTelaFinal_v2.jpg'
     ];
 
     imagesToPreload.forEach(src => {
