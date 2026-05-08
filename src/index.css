@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Google Fonts como fallback */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
 /* Fontes locais - Baruta e All Round Gothic */
 @font-face {
   font-family: 'Baruta';
@@ -26,12 +29,12 @@
 }
 
 @theme {
-  --font-sans: "Baruta", "AllRoundGothic", ui-sans-serif, system-ui, sans-serif;
-  --font-outfit: "AllRoundGothic", system-ui, sans-serif;
-  --font-display: "Baruta", ui-sans-serif, system-ui, sans-serif;
-  --font-baruta: "Baruta", system-ui, sans-serif;
-  --font-gothic: "AllRoundGothic", system-ui, sans-serif;
-  --font-gothic-book: "AllRoundGothic", system-ui, sans-serif;
+  --font-sans: "Baruta", "AllRoundGothic", "Fredoka", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: "AllRoundGothic", "Outfit", system-ui, sans-serif;
+  --font-display: "Baruta", "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-baruta: "Baruta", "Fredoka", system-ui, sans-serif;
+  --font-gothic: "AllRoundGothic", "Outfit", system-ui, sans-serif;
+  --font-gothic-book: "AllRoundGothic", "Outfit", system-ui, sans-serif;
 
   --color-brand-orange: #FF6321;
   --color-brand-pink: #FF4E8D;
