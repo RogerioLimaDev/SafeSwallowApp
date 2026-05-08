@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh",
-  "framework": "vite",
   "outputDirectory": "dist",
   "rewrites": [
     {
