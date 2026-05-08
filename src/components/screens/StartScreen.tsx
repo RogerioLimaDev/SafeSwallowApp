@@ -7,6 +7,9 @@ interface StartScreenProps {
   onStart: (step: MissionStep) => void;
 }
 
+// Vídeo de referência para todos os formatos
+const VIDEO_BASE = '/videos/Vermelho_Comemorando';
+
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   // Sprite sheet de teste - nível 1 postura
   const spriteConfig = getCharacterAsset(1, 'POSTURE');
@@ -20,15 +23,15 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
       style={{ backgroundColor: '#ffffff' }}
     >
-      {/* Área de teste dos 3 formatos */}
+      {/* Área de teste dos 4 formatos */}
       <div className="mb-8 w-full max-w-md">
         <p className="text-sm text-gray-500 mb-4">Comparação de formatos (fundo deve ser transparente)</p>
         
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {/* 1. Sprite Sheet PNG */}
           <div className="p-2 border-2 border-gray-300 rounded-lg bg-gray-50">
             <p className="text-xs text-gray-500 mb-1">Sprite Sheet</p>
-            <div className="w-[100px] h-[100px] mx-auto bg-blue-100 rounded">
+            <div className="w-[80px] h-[80px] mx-auto bg-blue-100 rounded flex items-center justify-center">
               <CharacterRenderer config={spriteConfig} className="w-full h-full" alt="Sprite teste" />
             </div>
           </div>
@@ -36,7 +39,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
           {/* 2. WebP Animado */}
           <div className="p-2 border-2 border-gray-300 rounded-lg bg-gray-50">
             <p className="text-xs text-gray-500 mb-1">WebP Animado</p>
-            <div className="w-[100px] h-[100px] mx-auto bg-blue-100 rounded overflow-hidden">
+            <div className="w-[80px] h-[80px] mx-auto bg-blue-100 rounded flex items-center justify-center overflow-hidden">
               <img 
                 src="/sprites/nivel1/postura.webp"
                 alt="WebP animado"
@@ -48,16 +51,15 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
           {/* 3. Video WebM */}
           <div className="p-2 border-2 border-gray-300 rounded-lg bg-gray-50">
             <p className="text-xs text-gray-500 mb-1">WebM</p>
-            <div className="w-[100px] h-[100px] mx-auto bg-blue-100 rounded overflow-hidden">
+            <div className="w-[80px] h-[80px] mx-auto bg-blue-100 rounded flex items-center justify-center overflow-hidden">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 className="w-full h-full object-contain"
-                style={{ backgroundColor: 'transparent' }}
               >
-                <source src="/videos/Comemorando_fase1.webm" type="video/webm" />
+                <source src={`${VIDEO_BASE}.webm`} type="video/webm" />
               </video>
             </div>
           </div>
@@ -65,16 +67,15 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
           {/* 4. Video MOV */}
           <div className="p-2 border-2 border-gray-300 rounded-lg bg-gray-50">
             <p className="text-xs text-gray-500 mb-1">MOV</p>
-            <div className="w-[100px] h-[100px] mx-auto bg-blue-100 rounded overflow-hidden">
+            <div className="w-[80px] h-[80px] mx-auto bg-blue-100 rounded flex items-center justify-center overflow-hidden">
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 className="w-full h-full object-contain"
-                style={{ backgroundColor: 'transparent' }}
               >
-                <source src="/videos/Comemorando_fase1.mov" type="video/quicktime" />
+                <source src={`${VIDEO_BASE}.mov`} type="video/quicktime" />
               </video>
             </div>
           </div>
