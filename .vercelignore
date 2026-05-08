@@ -1,0 +1,11 @@
+server.ts
+*.ts
+*.tsx
+*.js
+node_modules
+.git
+.gitignore
+.env*
+AGENTS.md
+README.md
+public
