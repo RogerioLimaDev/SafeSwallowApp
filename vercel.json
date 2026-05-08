@@ -1,13 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh",
-  "framework": "vite",
-  "buildCommand": "npm install && npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "outputDirectory": "dist",
-  "env": {
-    "GEMINI_API_KEY": ""
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    }
   },
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/(.*)",
