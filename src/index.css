@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Fontes válidas (removido Baruta Black por estar corrompido) */
+/* Fontes do Google Fonts (evita problemas de arquivos corrompidos) */
 @font-face {
   font-family: 'All Round Gothic';
-  src: url('/fonts/allroundgothic-medium.otf') format('opentype');
+  src: url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'All Round Gothic Book';
-  src: url('/fonts/allroundgothic-book.otf') format('opentype');
+  src: url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400&display=swap') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -22,10 +22,10 @@
   --font-sans: "All Round Gothic Book", "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-outfit: "Outfit", sans-serif;
   --font-display: "All Round Gothic", "Fredoka", sans-serif;
-  --font-baruta: "All Round Gothic", sans-serif;  /* substituído por OTF */
+  --font-baruta: "Fredoka", sans-serif;  /* substituído por fonte web */
   --font-gothic: "All Round Gothic", sans-serif;
   --font-gothic-book: "All Round Gothic Book", sans-serif;
-  
+
   --color-brand-orange: #FF6321;
   --color-brand-pink: #FF4E8D;
   --color-brand-blue: #4E8DFF;
@@ -37,7 +37,7 @@
   * {
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   html, body {
     @apply select-none;
     -webkit-user-select: none;
@@ -95,32 +95,32 @@
 }
 
 .btn-3d-yellow {
-  @apply relative bg-brand-yellow text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+  @apply relative bg-brand-yellow text-white font-baruta font-bold rounded-[40px] px-12 py-4
          transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none;
   box-shadow: 2px 3px 0px #dfa525;
   letter-spacing: 0.05em;
 }
 
 .btn-3d-pink {
-  @apply relative bg-brand-pink text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+  @apply relative bg-brand-pink text-white font-baruta font-bold rounded-[40px] px-12 py-4
          transition-all duration-100 active:translate-y-1;
   letter-spacing: 0.05em;
 }
 
 .btn-3d-blue {
-  @apply relative bg-brand-blue text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+  @apply relative bg-brand-blue text-white font-baruta font-bold rounded-[40px] px-12 py-4
          transition-all duration-100 active:translate-y-1;
   letter-spacing: 0.05em;
 }
 
 .btn-3d-green {
-  @apply relative bg-brand-green text-white font-baruta font-bold rounded-[40px] px-12 py-4 
+  @apply relative bg-brand-green text-white font-baruta font-bold rounded-[40px] px-12 py-4
          transition-all duration-100 active:translate-y-1;
   letter-spacing: 0.05em;
 }
 
 .btn-3d-light-blue {
-  @apply relative bg-[#93ddff] text-white font-baruta font-bold rounded-2xl p-5 
+  @apply relative bg-[#93ddff] text-white font-baruta font-bold rounded-2xl p-5
          transition-all duration-100 active:translate-y-1;
   letter-spacing: 0.05em;
 }
