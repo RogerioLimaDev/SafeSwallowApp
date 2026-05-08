@@ -1,11 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh",
-  "buildCommand": "bash vercel-build.sh",
-  "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "outputDirectory": "dist"
 }
