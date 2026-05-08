@@ -6,6 +6,12 @@ coverage/
 *.log
 .env*
 !.env.example
-*.mov
+
+# Vídeos permitidos
+!public/**/*.mov
+!public/**/*.webm
+!public/**/*.mp4
+!public/**/*.avi
+!public/**/*.mkv
 
 
