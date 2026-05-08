@@ -1,11 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh",
-  "build": {
-    "env": {
-      "NODE_OPTIONS": "--max-old-space-size=4096"
-    }
-  },
+  "buildCommand": "npm ci && npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm ci",
   "outputDirectory": "dist",
+  "framework": null,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/node" }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
