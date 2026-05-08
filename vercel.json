@@ -6,7 +6,7 @@
   "installCommand": "npm install",
   "outputDirectory": "dist",
   "env": {
-    "GEMINI_API_KEY": "@gemini_api_key"
+    "GEMINI_API_KEY": ""
   },
   "rewrites": [
     {
