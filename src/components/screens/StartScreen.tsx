@@ -10,18 +10,26 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const toggleFullscreen = async () => {
-    alert('Botão clicado!');
     try {
-      if (!document.fullscreenElement) {
-        await document.documentElement.requestFullscreen();
+      const elem = document.documentElement;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        // Try standard API first, then WebKit for older browsers
+        if (elem.requestFullscreen) {
+          await elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          await elem.webkitRequestFullscreen();
+        }
         setIsFullscreen(true);
       } else {
-        await document.exitFullscreen();
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          await document.webkitExitFullscreen();
+        }
         setIsFullscreen(false);
       }
     } catch (err) {
-      console.log('Fullscreen not supported:', err);
-      alert('Fullscreen não suportado: ' + err);
+      console.log('Fullscreen error:', err);
     }
   };
 
