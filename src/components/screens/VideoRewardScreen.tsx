@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Loader2 } from 'lucide-react';
-import { CharacterRenderer, getCharacterAsset } from '../../services/assetService';
 
 interface VideoRewardScreenProps {
   currentLevel: number;
@@ -14,7 +13,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetadataLoaded, setIsMetadataLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [useFallback, setUseFallback] = useState(false);
   
   const prefix = videoType === 'FINAL' ? 'Final_0' : 'Comemorando_fase';
   const videoBaseUrl = `/videos/${prefix}${currentLevel}`;
@@ -23,12 +21,26 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const videoSrcMov = `${videoBaseUrl}.mov`;
 
   useEffect(() => {
-    // Reset error when sources change
     setError(false);
     setIsMetadataLoaded(false);
     setIsPlaying(false);
-    setUseFallback(false);
   }, [currentLevel, videoType]);
+
+  // Auto-play attempt when metadata is loaded
+  useEffect(() => {
+    if (isMetadataLoaded && !isPlaying && videoRef.current && !error) {
+      const playVideo = async () => {
+        try {
+          videoRef.current.muted = true;
+          await videoRef.current.play();
+          setIsPlaying(true);
+        } catch (err) {
+          console.log("Autoplay blocked, waiting for user interaction");
+        }
+      };
+      playVideo();
+    }
+  }, [isMetadataLoaded, error]);
 
   const togglePlay = async () => {
     if (videoRef.current) {
@@ -37,27 +49,10 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         await videoRef.current.play();
         setIsPlaying(true);
       } catch (err) {
-        console.error("Play gesture failed", err);
+        console.error("Play failed", err);
       }
     }
   };
-
-  useEffect(() => {
-    // Try to auto-play muted on mount
-    const timer = setTimeout(() => {
-      if (videoRef.current && !isPlaying) {
-        videoRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch((err) => {
-          console.log("Autoplay failed:", err);
-          // Try with unmuted if muted fails
-          videoRef.current.muted = false;
-          videoRef.current.play().catch(e => console.log("Unmuted autoplay also failed:", e));
-        });
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [currentLevel, videoType]);
 
   return (
     <motion.div
@@ -78,37 +73,14 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         </div>
       )}
 
-      {(error || useFallback) ? (
-        // Sprite animation fallback when video fails
-        <div className="relative w-full h-full flex flex-col items-center justify-center z-[205]">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="w-64 h-64 sm:w-80 sm:h-80"
-          >
-            <CharacterRenderer 
-              config={getCharacterAsset(currentLevel, 'CELEBRATION')} 
-              className="w-full h-full"
-              alt="Character celebrating"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="absolute top-[8%] left-1/2 -translate-x-1/2 z-[210] pointer-events-none"
-          >
-            <div className="bg-[#fcc96a] px-8 py-2 rounded-[10px] shadow-lg flex items-center justify-center min-w-[220px]">
-              <span className="text-white font-baruta text-3xl sm:text-4xl tracking-widest leading-none mt-1 whitespace-nowrap">
-                MUITO BEM!
-              </span>
-            </div>
-          </motion.div>
+      {error ? (
+        <div className="text-white text-center p-6 z-[220] flex flex-col items-center gap-4">
+          <p className="font-baruta text-xl uppercase italic">Erro ao carregar recompensa</p>
           <button 
             onClick={onFinish}
-            className="absolute bottom-8 px-8 py-3 bg-brand-green hover:bg-brand-green/80 text-white font-baruta text-lg !rounded-[16px] transition-all active:scale-95"
+            className="mt-4 px-8 py-2 border border-white/20 hover:bg-white/10 text-white/60 font-baruta text-sm !rounded-[16px] transition-all"
           >
-            CONTINUAR
+            PULAR VÍDEO
           </button>
         </div>
       ) : (
@@ -129,10 +101,8 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             onEnded={onFinish}
             preload="auto"
             onError={() => {
-              // The error event on the video element is fired if all sources fail
               if (!isMetadataLoaded) {
-                console.log("Video failed to load, using sprite fallback");
-                setUseFallback(true);
+                setError(true);
               }
             }}
           >
@@ -143,7 +113,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
 
           {/* Success Text Box */}
           <AnimatePresence>
-            {isMetadataLoaded && isPlaying && (
+            {isPlaying && (
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -161,7 +131,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         </div>
       )}
 
-      {/* Manual Action Overlay */}
+      {/* Manual Action Overlay - only show when video is loaded but not playing */}
       <AnimatePresence>
         {!isPlaying && isMetadataLoaded && !error && (
           <motion.div
