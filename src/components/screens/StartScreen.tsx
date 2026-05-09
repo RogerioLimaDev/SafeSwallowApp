@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MissionStep } from '../../types';
-import { Maximize2, Minimize2 } from 'lucide-react';
 
 interface StartScreenProps {
   onStart: (step: MissionStep) => void;
@@ -32,17 +31,12 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Fullscreen button */}
+      {/* Fullscreen button - text based */}
       <button
         onClick={toggleFullscreen}
-        className="absolute top-6 right-6 p-2 bg-black/30 rounded-full z-50"
-        title={isFullscreen ? "Sair da tela cheia" : "Tela cheia"}
+        className="absolute top-6 right-6 px-3 py-1 bg-black/30 rounded-full z-50 text-white text-sm"
       >
-        {isFullscreen ? (
-          <Minimize2 className="w-6 h-6 text-white" />
-        ) : (
-          <Maximize2 className="w-6 h-6 text-white" />
-        )}
+        {isFullscreen ? "✕" : "⛶"}
       </button>
 
       <motion.button 
