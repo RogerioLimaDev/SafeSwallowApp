@@ -82,20 +82,28 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use animations for Level 3
+  // Use sprite sheets for Level 3 (Roxo)
   if (level === 3) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Roxo_postura.webm',
-      POSTURE: 'Roxo_postura.webm',
-      CELEBRATION: 'Roxo_comemorando.webm',
-      CHECKING: 'Roxo_checando.webm',
-      SWALLOWING: 'Roxo_agua.webm',
-      TONGUE: 'Roxo_lingua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_roxo_postura.png',
+      POSTURE: 'sprite_roxo_postura.png',
+      CELEBRATION: 'sprite_roxo_comemora.png',
+      CHECKING: 'sprite_roxo_checando.png',
+      SWALLOWING: 'sprite_roxo_agua.png',
+      TONGUE: 'sprite_roxo_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 40,
+        fps: 8,
+        frameWidth: 134,
+        frameHeight: 134,
+      }
     };
   }
 
