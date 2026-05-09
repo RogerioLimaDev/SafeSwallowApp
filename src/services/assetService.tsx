@@ -57,20 +57,28 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use animations for Level 2
+  // Use sprite sheets for Level 2 (Laranja1)
   if (level === 2) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Laranja1_postura.webm',
-      POSTURE: 'Laranja1_postura.webm',
-      CELEBRATION: 'Laranja1_Comemora.webm',
-      CHECKING: 'Laranja1_Checando.webm',
-      SWALLOWING: 'Laranja1_bebendo.webm',
-      TONGUE: 'Laranja1_lingua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_laranja1_postura.png',
+      POSTURE: 'sprite_laranja1_postura.png',
+      CELEBRATION: 'sprite_laranja1_comemora.png',
+      CHECKING: 'sprite_laranja1_checando.png',
+      SWALLOWING: 'sprite_laranja1_agua.png',
+      TONGUE: 'sprite_laranja1_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 41,
+        fps: 8,
+        frameWidth: 134,
+        frameHeight: 134,
+      }
     };
   }
 
