@@ -76,7 +76,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
         </div>
       </motion.div>
 
-      <div className="absolute right-6 w-full max-w-[180px]" style={{ bottom: 'max(5rem, env(safe-area-inset-bottom, 5rem))' }}>
+      <div className="absolute right-6 w-full max-w-[180px]" style={{ bottom: 'max(6rem, env(safe-area-inset-bottom, 6rem))' }}>
         <button 
           onClick={onReset}
           className="relative w-full text-white font-baruta font-bold text-lg py-3 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
