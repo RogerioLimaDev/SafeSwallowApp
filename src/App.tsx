@@ -2,6 +2,45 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 
+// Error Boundary Component
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex items-center justify-center h-screen bg-[#1a1a2e] p-8">
+          <div className="text-center text-white">
+            <h1 className="text-xl font-bold mb-4">Algo deu errado</h1>
+            <p className="text-sm opacity-70 mb-4">{this.state.error?.message}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-brand-yellow text-black rounded-lg"
+            >
+              Recarregar
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // --- Components ---
 import { StartScreen } from './components/screens/StartScreen';
 import { HowItWorksScreen } from './components/screens/HowItWorksScreen';
@@ -285,6 +324,7 @@ export default function App() {
   };
 
   return (
+    <ErrorBoundary>
     <div className={`fixed inset-0 overflow-hidden font-sans ${
       currentStep === 'START' ? 'bg-main-gradient' : 
       currentStep === 'HOW_IT_WORKS' ? 'bg-how-it-works' : 
@@ -397,5 +437,6 @@ export default function App() {
         )}
       </div>
     </div>
+    </ErrorBoundary>
   );
 }
