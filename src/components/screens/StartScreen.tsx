@@ -26,8 +26,10 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex flex-col items-center justify-end p-8 text-center h-full pb-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
+      className="flex flex-col items-center p-8 text-center h-full"
+      style={{ paddingBottom: 'max(2.5rem, env(safe-area-inset-bottom))' }}
     >
+      <div className="flex-1" />
       <motion.button 
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95, y: 2 }}
