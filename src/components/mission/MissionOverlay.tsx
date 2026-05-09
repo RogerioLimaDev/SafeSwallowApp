@@ -193,7 +193,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="w-full h-full flex items-end justify-center"
+              className="w-full h-full flex items-end justify-center pb-2.5"
             >
               <CharacterRenderer 
                 config={getCharacterConfig()} 
