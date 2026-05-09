@@ -37,12 +37,22 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
 
   body {
     @apply font-sans text-gray-800;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     min-height: 100vh;
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
   }
 }
 
