@@ -38,18 +38,34 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   };
 
   useEffect(() => {
-    // Try to auto-play muted on mount
-    const timer = setTimeout(() => {
-      if (videoRef.current && !isPlaying && isMetadataLoaded) {
-        videoRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch((err) => {
-          console.log("Initial autoplay attempt failed, waiting for user", err);
-        });
+    // Try to auto-play muted on mount - more aggressive approach
+    const tryAutoplay = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+        videoRef.current.play()
+          .then(() => {
+            console.log("Autoplay succeeded");
+            setIsPlaying(true);
+          })
+          .catch((err) => {
+            console.log("Autoplay failed:", err.message);
+          });
       }
-    }, 500);
+    };
+
+    // Try immediately
+    tryAutoplay();
+    
+    // Also try after a short delay
+    const timer = setTimeout(tryAutoplay, 1000);
     return () => clearTimeout(timer);
-  }, [isPlaying, isMetadataLoaded]);
+  }, [currentLevel, videoType]);
+
+  // Track playing state from video events
+  const handlePlay = () => {
+    console.log("Video play event fired");
+    setIsPlaying(true);
+  };
 
   return (
     <motion.div
@@ -100,7 +116,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
                 videoRef.current.play().catch(() => {});
               }
             }}
-            onPlay={() => setIsPlaying(true)}
+            onPlay={handlePlay}
             onPause={() => setIsPlaying(false)}
             onEnded={onFinish}
             preload="auto"
