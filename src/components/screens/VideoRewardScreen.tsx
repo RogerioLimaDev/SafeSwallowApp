@@ -95,6 +95,12 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
               console.log("Video metadata loaded");
               setIsMetadataLoaded(true);
             }}
+            onCanPlay={() => {
+              // Force play on canplay - more reliable than metadata for autoplay
+              if (videoRef.current && !isPlaying) {
+                videoRef.current.play().catch(() => {});
+              }
+            }}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onEnded={onFinish}
