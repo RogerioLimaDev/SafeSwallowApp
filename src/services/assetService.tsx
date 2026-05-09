@@ -259,7 +259,7 @@ export const CharacterRenderer: React.FC<{
 
     return (
       <div 
-        className={className}
+        className={`${className || ''} sprite-anim`}
         style={{
           width: `${frameWidth}px`,
           height: `${frameHeight}px`,
@@ -267,18 +267,14 @@ export const CharacterRenderer: React.FC<{
           backgroundImage: `url(${config.path})`,
           backgroundSize: `${spriteWidth}px ${frameHeight}px`,
           backgroundRepeat: 'no-repeat',
-          animation: `spriteAnim ${duration}s steps(${frameCount}) infinite`,
+          backgroundPosition: '0 0',
+          animationDuration: `${duration}s`,
+          animationIterationCount: 'infinite',
+          animationTimingFunction: `steps(${frameCount})`,
         }}
         role="img"
         aria-label={alt}
-      >
-        <style>{`
-          @keyframes spriteAnim {
-            from { background-position: 0 0; }
-            to { background-position: -${spriteWidth}px 0; }
-          }
-        `}</style>
-      </div>
+      />
     );
   }
 
