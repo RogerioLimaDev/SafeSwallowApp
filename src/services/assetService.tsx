@@ -311,8 +311,8 @@ export const CharacterRenderer: React.FC<{
           video.play().catch(err => console.error("Video autoplay failed:", err));
         }}
       >
-        <source src={`${basePath}.webm`} type="video/webm" />
         <source src={`${basePath}.mp4`} type="video/mp4" />
+        <source src={`${basePath}.webm`} type="video/webm" />
       </video>
     );
   }

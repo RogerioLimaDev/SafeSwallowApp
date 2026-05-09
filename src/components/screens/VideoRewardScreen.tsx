@@ -106,8 +106,8 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
               }
             }}
           >
-            <source src={videoSrcWebm} type="video/webm" />
             <source src={videoSrcMp4} type="video/mp4" />
+            <source src={videoSrcWebm} type="video/webm" />
           </video>
 
           {/* Success Text Box */}
