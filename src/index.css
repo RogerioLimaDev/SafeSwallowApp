@@ -13,10 +13,10 @@
 }
 
 @theme {
-  --font-sans: "Baruta", "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Fredoka", ui-sans-serif, system-ui, sans-serif;
   --font-outfit: "Fredoka", system-ui, sans-serif;
-  --font-display: "Baruta", "Fredoka", ui-sans-serif, system-ui, sans-serif;
-  --font-baruta: "Baruta", "Fredoka", system-ui, sans-serif;
+  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-baruta: "Fredoka", system-ui, sans-serif;
 
   --color-brand-orange: #FF6321;
   --color-brand-pink: #FF4E8D;
