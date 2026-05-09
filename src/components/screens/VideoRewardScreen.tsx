@@ -42,16 +42,19 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   useEffect(() => {
     // Try to auto-play muted on mount
     const timer = setTimeout(() => {
-      if (videoRef.current && !isPlaying && isMetadataLoaded) {
+      if (videoRef.current && !isPlaying) {
         videoRef.current.play().then(() => {
           setIsPlaying(true);
         }).catch((err) => {
-          console.log("Initial autoplay attempt failed, waiting for user", err);
+          console.log("Autoplay failed:", err);
+          // Try with unmuted if muted fails
+          videoRef.current.muted = false;
+          videoRef.current.play().catch(e => console.log("Unmuted autoplay also failed:", e));
         });
       }
-    }, 500);
+    }, 1000);
     return () => clearTimeout(timer);
-  }, [isPlaying, isMetadataLoaded]);
+  }, [currentLevel, videoType]);
 
   return (
     <motion.div
