@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MissionStep } from '../../types';
 
@@ -8,13 +8,11 @@ interface StartScreenProps {
 
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showFullscreenBtn, setShowFullscreenBtn] = useState(true);
-
-  useEffect(() => {
-    // Hide fullscreen button on Firefox (doesn't support fullscreen properly on iOS)
-    const isFirefox = /Firefox/i.test(navigator.userAgent);
-    setShowFullscreenBtn(!isFirefox);
-  }, []);
+  
+  // Check if browser supports fullscreen properly
+  const isFirefox = typeof navigator !== 'undefined' && /Firefox/i.test(navigator.userAgent);
+  const isFirefoxIOS = typeof navigator !== 'undefined' && /FxiOS/i.test(navigator.userAgent);
+  const showFullscreenBtn = !(isFirefox || isFirefoxIOS);
 
   const toggleFullscreen = async () => {
     try {
