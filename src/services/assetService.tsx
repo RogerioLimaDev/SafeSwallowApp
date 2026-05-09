@@ -157,20 +157,28 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use animations for Level 6
+  // Use sprite sheets for Level 6 (Vermelho)
   if (level === 6) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Vermelho_postura.webm',
-      POSTURE: 'Vermelho_postura.webm',
-      CELEBRATION: 'Vermelho_Comemorando.webm',
-      CHECKING: 'Vermelho_Checando.webm',
-      SWALLOWING: 'Vermelho_agua.webm',
-      TONGUE: 'Vermelho_Lingua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_vermelho_postura.png',
+      POSTURE: 'sprite_vermelho_postura.png',
+      CELEBRATION: 'sprite_vermelho_comemora.png',
+      CHECKING: 'sprite_vermelho_checando.png',
+      SWALLOWING: 'sprite_vermelho_agua.png',
+      TONGUE: 'sprite_vermelho_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 40,
+        fps: 8,
+        frameWidth: 134,
+        frameHeight: 134,
+      }
     };
   }
 
