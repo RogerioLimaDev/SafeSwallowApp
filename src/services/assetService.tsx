@@ -182,20 +182,28 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use animations for Level 7
+  // Use sprite sheets for Level 7 (AzulEBranco)
   if (level === 7) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'AzulEBranco_postura.webm',
-      POSTURE: 'AzulEBranco_postura.webm',
-      CELEBRATION: 'AzulEBranco_comemorando.webm',
-      CHECKING: 'AzulEBranco_checando.webm',
-      SWALLOWING: 'AzulEBranco_agua.webm',
-      TONGUE: 'AzulEBranco_Lingua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_azulebranco_postura.png',
+      POSTURE: 'sprite_azulebranco_postura.png',
+      CELEBRATION: 'sprite_azulebranco_comemora.png',
+      CHECKING: 'sprite_azulebranco_checando.png',
+      SWALLOWING: 'sprite_azulebranco_agua.png',
+      TONGUE: 'sprite_azulebranco_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 40,
+        fps: 8,
+        frameWidth: 134,
+        frameHeight: 134,
+      }
     };
   }
 
