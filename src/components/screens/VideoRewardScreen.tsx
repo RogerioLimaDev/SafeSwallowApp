@@ -36,37 +36,46 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
     setIsPlaying(false);
   }, [currentLevel, videoType]);
 
-  // Auto-play attempt - force play on mount with delay, don't rely solely on metadata
+  // Auto-play attempt - wait for metadata first, then play
   useEffect(() => {
     if (!videoRef.current || error) return;
-    
-    const attemptPlay = async () => {
-      try {
-        videoRef.current.muted = true;
-        await videoRef.current.play();
-        setIsPlaying(true);
-        setIsMetadataLoaded(true);
-      } catch (err) {
-        console.log("Autoplay blocked, will retry after delay");
-        // Retry after delay
-        setTimeout(async () => {
-          try {
-            videoRef.current.muted = true;
-            await videoRef.current.play();
-            setIsPlaying(true);
-            setIsMetadataLoaded(true);
-          } catch (e) {
-            console.log("Retry failed, waiting for user");
-            // Show overlay if autoplay fails
-            setIsMetadataLoaded(true);
-          }
-        }, 1500);
-      }
+
+    const handleCanPlay = () => {
+      console.log("Video can play now");
+      videoRef.current.muted = true;
+      videoRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          setIsMetadataLoaded(true);
+        })
+        .catch(err => {
+          console.log("Autoplay still blocked after canplay");
+          // Give up and show overlay
+          setIsMetadataLoaded(true);
+        });
     };
-    
-    // Start attempt shortly after mount
-    const timer = setTimeout(attemptPlay, 500);
-    return () => clearTimeout(timer);
+
+    const video = videoRef.current;
+    video.addEventListener('canplay', handleCanPlay);
+
+    // Fallback: if canplay doesn't fire in 3s, try anyway
+    const fallbackTimer = setTimeout(() => {
+      console.log("Fallback: trying play after timeout");
+      video.muted = true;
+      video.play()
+        .then(() => {
+          setIsPlaying(true);
+          setIsMetadataLoaded(true);
+        })
+        .catch(() => {
+          setIsMetadataLoaded(true);
+        });
+    }, 3000);
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      clearTimeout(fallbackTimer);
+    };
   }, [currentLevel, videoType, error]);
 
   const togglePlay = async () => {
@@ -119,6 +128,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             playsInline
             autoPlay
             muted
+            onCanPlay={() => console.log("Video canplay event fired")}
             onPlay={() => {
               setIsPlaying(true);
               setIsMetadataLoaded(true);
