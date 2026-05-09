@@ -27,7 +27,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="flex flex-col items-center p-8 text-center h-full"
-      style={{ paddingBottom: 'max(2.5rem, env(safe-area-inset-bottom))' }}
+      style={{ paddingBottom: 'max(3rem, env(safe-area-inset-bottom, 3rem))' }}
     >
       <div className="flex-1" />
       <motion.button 

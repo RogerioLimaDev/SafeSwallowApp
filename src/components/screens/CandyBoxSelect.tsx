@@ -52,7 +52,7 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between px-4 py-8 pb-[22px] pb-[max(1.375rem,env(safe-area-inset-bottom))]"
+      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between px-4 py-8 pb-[22px] pb-[max(1.375rem,env(safe-area-inset-bottom,1.375rem))]"
     >
       {/* Top spacer for logo in background */}
       <div className="h-[15%]" />
