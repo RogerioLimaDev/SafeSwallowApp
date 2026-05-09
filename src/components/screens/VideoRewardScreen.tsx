@@ -112,6 +112,11 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             onLoadedMetadata={() => {
               console.log("Video metadata loaded");
               setIsMetadataLoaded(true);
+              // Try to autoplay on metadata load - iOS sometimes blocks earlier attempts
+              if (videoRef.current) {
+                videoRef.current.muted = true;
+                videoRef.current.play().catch(() => {});
+              }
             }}
             onCanPlay={() => {
               // Force play on canplay - more reliable than metadata for autoplay
