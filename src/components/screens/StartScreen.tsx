@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
 import { MissionStep } from '../../types';
 
@@ -7,33 +7,16 @@ interface StartScreenProps {
 }
 
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  
-  // Check if browser supports fullscreen properly
-  const isFirefox = typeof navigator !== 'undefined' && /Firefox/i.test(navigator.userAgent);
-  const isFirefoxIOS = typeof navigator !== 'undefined' && /FxiOS/i.test(navigator.userAgent);
-  const showFullscreenBtn = !(isFirefox || isFirefoxIOS);
-
-  const toggleFullscreen = async () => {
+  const tryFullscreen = async () => {
     try {
       const elem = document.documentElement;
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        if (elem.requestFullscreen) {
-          await elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          await elem.webkitRequestFullscreen();
-        }
-        setIsFullscreen(true);
-      } else {
-        if (document.exitFullscreen) {
-          await document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          await document.webkitExitFullscreen();
-        }
-        setIsFullscreen(false);
+      if (elem.requestFullscreen) {
+        await elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        await elem.webkitRequestFullscreen();
       }
-    } catch (err) {
-      console.log('Fullscreen error:', err);
+    } catch {
+      // Silently fail - fullscreen not supported
     }
   };
 
@@ -45,23 +28,16 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Fullscreen button - only show on non-Firefox browsers */}
-      {showFullscreenBtn && (
-        <button
-          onClick={toggleFullscreen}
-          className="absolute top-6 right-6 px-3 py-1 bg-black/30 rounded-full z-50 text-white text-sm"
-        >
-          {isFullscreen ? "✕" : "⛶"}
-        </button>
-      )}
-
       <motion.button 
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95, y: 2 }}
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
-        onClick={() => onStart('HOW_IT_WORKS')}
+        onClick={() => {
+          tryFullscreen();
+          onStart('HOW_IT_WORKS');
+        }}
         className="btn-3d-yellow text-xl !rounded-[14px] !px-6 !py-3"
       >
         JOGAR
