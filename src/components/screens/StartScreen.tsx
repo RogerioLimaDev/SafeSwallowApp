@@ -55,43 +55,15 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Sprite Sheet Test - Sem animação para verificar transparência */}
+      {/* Sprite Sheet Horizontal - Novo */}
       <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
-        <p className="text-sm text-blue-700 mb-2">Sprite Sheet PNG - Frame 1 (sem animação)</p>
-        <div 
-          className="w-[100px] h-[100px]"
-          style={{
-            backgroundImage: 'url(/sprites/sprite_postura_teste.png)',
-            backgroundSize: '800px 400px',
-            backgroundPosition: '0 0',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-      </div>
-
-      {/* Frame 2 para comparação */}
-      <div className="mb-8 p-4 border-2 border-purple-500 rounded-lg bg-purple-50">
-        <p className="text-sm text-purple-700 mb-2">Sprite Sheet PNG - Frame 2</p>
-        <div 
-          className="w-[100px] h-[100px]"
-          style={{
-            backgroundImage: 'url(/sprites/sprite_postura_teste.png)',
-            backgroundSize: '800px 400px',
-            backgroundPosition: '-100px 0',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-      </div>
-
-      {/* Sprite Sheet Test - Animado */}
-      <div className="mb-8 p-4 border-2 border-green-500 rounded-lg bg-green-50">
-        <p className="text-sm text-green-700 mb-2">Sprite Sheet PNG - Animado</p>
+        <p className="text-sm text-blue-700 mb-2">Sprite Sheet Horizontal - Animado</p>
         <SpriteAnimator 
-          src="/sprites/sprite_postura_teste.png"
+          src="/sprites/sprite_postura_horizontal.png"
           frameCount={32}
           fps={8}
           className="w-[100px] h-[100px]"
-          alt="Teste sprite"
+          alt="Teste sprite horizontal"
         />
       </div>
 
