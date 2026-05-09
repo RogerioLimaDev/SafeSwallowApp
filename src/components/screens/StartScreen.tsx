@@ -56,9 +56,23 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Sprite Sheet Test - Apenas este funciona com transparência */}
+      {/* Sprite Sheet Test - Sem animação para verificar transparência */}
       <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
-        <p className="text-sm text-blue-700 mb-2">Sprite Sheet PNG (funciona com transparência)</p>
+        <p className="text-sm text-blue-700 mb-2">Sprite Sheet PNG - Frame 1 (sem animação)</p>
+        <div 
+          className="w-[100px] h-[100px]"
+          style={{
+            backgroundImage: 'url(/sprites/sprite_postura_teste.png)',
+            backgroundSize: '3200px 400px',
+            backgroundPosition: '0 0',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+      </div>
+
+      {/* Sprite Sheet Test - Animado */}
+      <div className="mb-8 p-4 border-2 border-green-500 rounded-lg bg-green-50">
+        <p className="text-sm text-green-700 mb-2">Sprite Sheet PNG - Animado</p>
         <SpriteAnimator 
           src="/sprites/sprite_postura_teste.png"
           frameCount={32}
