@@ -107,20 +107,28 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use animations for Level 4
+  // Use sprite sheets for Level 4 (Azul)
   if (level === 4) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'Azul_Postura.webm',
-      POSTURE: 'Azul_Postura.webm',
-      CELEBRATION: 'Azul_Comemora.webm',
-      CHECKING: 'Azul_Checando.webm',
-      SWALLOWING: 'Azul_agua.webm',
-      TONGUE: 'Azul_lingua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_azul_postura.png',
+      POSTURE: 'sprite_azul_postura.png',
+      CELEBRATION: 'sprite_azul_comemora.png',
+      CHECKING: 'sprite_azul_checando.png',
+      SWALLOWING: 'sprite_azul_agua.png',
+      TONGUE: 'sprite_azul_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 40,
+        fps: 8,
+        frameWidth: 134,
+        frameHeight: 134,
+      }
     };
   }
 
