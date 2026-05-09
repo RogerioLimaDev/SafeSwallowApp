@@ -8,10 +8,22 @@ export type CharacterType =
   | 'SWALLOWING'
   | 'TONGUE';
 
+export type AssetMediaType = 'image' | 'animation' | 'sprite' | 'component';
+
+export interface SpriteConfig {
+  type: 'sprite';
+  path: string;
+  frameCount: number;
+  fps: number;
+  frameWidth: number;
+  frameHeight: number;
+}
+
 interface AssetConfig {
-  type: 'image' | 'animation' | 'component';
+  type: AssetMediaType;
   path: string;
   component?: React.ReactNode;
+  spriteConfig?: SpriteConfig;
 }
 
 /**
@@ -20,20 +32,28 @@ interface AssetConfig {
  * without changing the layout logic.
  */
 export const getCharacterAsset = (level: number, type: CharacterType): AssetConfig => {
-  // Use animations for Level 1
+  // Use sprite sheets for Level 1 (Amarelo) - iOS compatible with CSS animation
   if (level === 1) {
-    const webFiles: Record<CharacterType, string> = {
-      NORMAL: 'postura.webm',
-      POSTURE: 'postura.webm',
-      CELEBRATION: 'palmas.webm',
-      CHECKING: 'checando.webm',
-      SWALLOWING: 'bebendo.webm',
-      TONGUE: 'língua.webm',
+    const spriteFiles: Record<CharacterType, string> = {
+      NORMAL: 'sprite_amarelo_postura.png',
+      POSTURE: 'sprite_amarelo_postura.png',
+      CELEBRATION: 'sprite_amarelo_comemora.png',
+      CHECKING: 'sprite_amarelo_checando.png',
+      SWALLOWING: 'sprite_amarelo_agua.png',
+      TONGUE: 'sprite_amarelo_lingua.png',
     };
 
     return {
-      type: 'animation',
-      path: `/images/nivel${level}/${webFiles[type]}`
+      type: 'sprite',
+      path: `/sprites/${spriteFiles[type]}`,
+      spriteConfig: {
+        type: 'sprite',
+        path: `/sprites/${spriteFiles[type]}`,
+        frameCount: 41,
+        fps: 8,
+        frameWidth: 267,
+        frameHeight: 267,
+      }
     };
   }
 
@@ -183,6 +203,37 @@ export const CharacterRenderer: React.FC<{
   className?: string;
   alt?: string;
 }> = ({ config, className, alt = "Character" }) => {
+  // Handle sprite sheet animations (CSS animation - iOS compatible)
+  if (config.type === 'sprite' && config.spriteConfig) {
+    const { frameCount, fps, frameWidth, frameHeight } = config.spriteConfig;
+    const spriteWidth = frameCount * frameWidth;
+    const duration = frameCount / fps;
+
+    return (
+      <div 
+        className={className}
+        style={{
+          width: `${frameWidth}px`,
+          height: `${frameHeight}px`,
+          overflow: 'hidden',
+          backgroundImage: `url(${config.path})`,
+          backgroundSize: `${spriteWidth}px ${frameHeight}px`,
+          backgroundRepeat: 'no-repeat',
+          animation: `spriteAnim ${duration}s steps(${frameCount}) infinite`,
+        }}
+        role="img"
+        aria-label={alt}
+      >
+        <style>{`
+          @keyframes spriteAnim {
+            from { background-position: 0 0; }
+            to { background-position: -${spriteWidth}px 0; }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   if (config.type === 'component' && config.component) {
     return <div className={className}>{config.component}</div>;
   }
