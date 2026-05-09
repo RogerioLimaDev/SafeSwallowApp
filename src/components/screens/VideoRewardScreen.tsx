@@ -19,6 +19,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   
   const videoSrcWebm = `${videoBaseUrl}.webm`;
   const videoSrcMov = `${videoBaseUrl}.mov`;
+  const videoSrcMp4 = `${videoBaseUrl}.mp4`;
 
   useEffect(() => {
     setError(false);
@@ -106,9 +107,9 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
               }
             }}
           >
-            {/* WebM first (Android/Desktop), then MOV fallback (iOS) */}
             <source src={videoSrcWebm} type="video/webm" />
             <source src={videoSrcMov} type="video/quicktime" />
+            <source src={videoSrcMp4} type="video/mp4" />
           </video>
 
           {/* Success Text Box */}
