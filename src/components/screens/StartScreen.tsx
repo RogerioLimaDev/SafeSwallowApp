@@ -88,6 +88,20 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
         />
       </div>
 
+      {/* MOV HEVC Test */}
+      <div className="mb-8 p-4 border-2 border-red-500 rounded-lg bg-red-50">
+        <p className="text-sm text-red-700 mb-2">MOV HEVC (teste)</p>
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="w-[100px] h-[100px]"
+        >
+          <source src="/sprites/postura_alpha.mov" type="video/quicktime" />
+        </video>
+      </div>
+
       {/* APNG Test */}
       <div className="mb-8 p-4 border-2 border-orange-500 rounded-lg bg-orange-50">
         <p className="text-sm text-orange-700 mb-2">APNG (PNG Animado)</p>
