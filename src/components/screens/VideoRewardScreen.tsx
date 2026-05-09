@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Loader2 } from 'lucide-react';
+import { CharacterRenderer, getCharacterAsset } from '../../services/assetService';
 
 interface VideoRewardScreenProps {
   currentLevel: number;
@@ -13,6 +14,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetadataLoaded, setIsMetadataLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
   
   const prefix = videoType === 'FINAL' ? 'Final_0' : 'Comemorando_fase';
   const videoBaseUrl = `/videos/${prefix}${currentLevel}`;
@@ -25,6 +27,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
     setError(false);
     setIsMetadataLoaded(false);
     setIsPlaying(false);
+    setUseFallback(false);
   }, [currentLevel, videoType]);
 
   const togglePlay = async () => {
@@ -75,15 +78,37 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         </div>
       )}
 
-      {error ? (
-        <div className="text-white text-center p-6 z-[220] flex flex-col items-center gap-4">
-          <p className="font-baruta text-xl uppercase italic">Erro ao carregar recompensa</p>
-          <p className="text-[10px] text-white/30 font-mono tracking-tighter">Tente usar outro navegador</p>
+      {(error || useFallback) ? (
+        // Sprite animation fallback when video fails
+        <div className="relative w-full h-full flex flex-col items-center justify-center z-[205]">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="w-64 h-64 sm:w-80 sm:h-80"
+          >
+            <CharacterRenderer 
+              config={getCharacterAsset(currentLevel, 'CELEBRATION')} 
+              className="w-full h-full"
+              alt="Character celebrating"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="absolute top-[8%] left-1/2 -translate-x-1/2 z-[210] pointer-events-none"
+          >
+            <div className="bg-[#fcc96a] px-8 py-2 rounded-[10px] shadow-lg flex items-center justify-center min-w-[220px]">
+              <span className="text-white font-baruta text-3xl sm:text-4xl tracking-widest leading-none mt-1 whitespace-nowrap">
+                MUITO BEM!
+              </span>
+            </div>
+          </motion.div>
           <button 
             onClick={onFinish}
-            className="mt-4 px-8 py-2 border border-white/20 hover:bg-white/10 text-white/60 font-baruta text-sm !rounded-[16px] transition-all"
+            className="absolute bottom-8 px-8 py-3 bg-brand-green hover:bg-brand-green/80 text-white font-baruta text-lg !rounded-[16px] transition-all active:scale-95"
           >
-            PULAR VÍDEO
+            CONTINUAR
           </button>
         </div>
       ) : (
@@ -106,7 +131,8 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             onError={() => {
               // The error event on the video element is fired if all sources fail
               if (!isMetadataLoaded) {
-                setError(true);
+                console.log("Video failed to load, using sprite fallback");
+                setUseFallback(true);
               }
             }}
           >
