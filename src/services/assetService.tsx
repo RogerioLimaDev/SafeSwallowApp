@@ -51,8 +51,8 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 41,
         fps: 8,
-        frameWidth: 267,
-        frameHeight: 267,
+        frameWidth: 134,
+        frameHeight: 134,
       }
     };
   }
