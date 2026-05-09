@@ -19,6 +19,16 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   
   const videoSrcWebm = `${videoBaseUrl}.webm`;
   const videoSrcMp4 = `${videoBaseUrl}.mp4`;
+  
+  // For MID videos: mp4 first (iOS). For FINAL: webm only (no mp4 available)
+  const sources = videoType === 'MID' ? (
+    <>
+      <source src={videoSrcMp4} type="video/mp4" />
+      <source src={videoSrcWebm} type="video/webm" />
+    </>
+  ) : (
+    <source src={videoSrcWebm} type="video/webm" />
+  );
 
   useEffect(() => {
     setError(false);
@@ -26,21 +36,38 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
     setIsPlaying(false);
   }, [currentLevel, videoType]);
 
-  // Auto-play attempt when metadata is loaded
+  // Auto-play attempt - force play on mount with delay, don't rely solely on metadata
   useEffect(() => {
-    if (isMetadataLoaded && !isPlaying && videoRef.current && !error) {
-      const playVideo = async () => {
-        try {
-          videoRef.current.muted = true;
-          await videoRef.current.play();
-          setIsPlaying(true);
-        } catch (err) {
-          console.log("Autoplay blocked, waiting for user interaction");
-        }
-      };
-      playVideo();
-    }
-  }, [isMetadataLoaded, error]);
+    if (!videoRef.current || error) return;
+    
+    const attemptPlay = async () => {
+      try {
+        videoRef.current.muted = true;
+        await videoRef.current.play();
+        setIsPlaying(true);
+        setIsMetadataLoaded(true);
+      } catch (err) {
+        console.log("Autoplay blocked, will retry after delay");
+        // Retry after delay
+        setTimeout(async () => {
+          try {
+            videoRef.current.muted = true;
+            await videoRef.current.play();
+            setIsPlaying(true);
+            setIsMetadataLoaded(true);
+          } catch (e) {
+            console.log("Retry failed, waiting for user");
+            // Show overlay if autoplay fails
+            setIsMetadataLoaded(true);
+          }
+        }, 1500);
+      }
+    };
+    
+    // Start attempt shortly after mount
+    const timer = setTimeout(attemptPlay, 500);
+    return () => clearTimeout(timer);
+  }, [currentLevel, videoType, error]);
 
   const togglePlay = async () => {
     if (videoRef.current) {
@@ -92,22 +119,14 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             playsInline
             autoPlay
             muted
-            onLoadedMetadata={() => {
-              console.log("Video metadata loaded");
+            onPlay={() => {
+              setIsPlaying(true);
               setIsMetadataLoaded(true);
             }}
-            onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onEnded={onFinish}
-            preload="auto"
-            onError={() => {
-              if (!isMetadataLoaded) {
-                setError(true);
-              }
-            }}
           >
-            <source src={videoSrcMp4} type="video/mp4" />
-            <source src={videoSrcWebm} type="video/webm" />
+            {sources}
           </video>
 
           {/* Success Text Box */}
