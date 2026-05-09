@@ -11,21 +11,20 @@ const SpriteAnimator: React.FC<{
   alt?: string;
 }> = ({ src, frameCount, fps, className = '', alt = 'Sprite' }) => {
   const frameWidth = 100;
+  const frameHeight = 100;
+  const spriteWidth = frameCount * frameWidth;
+  const spriteHeight = frameHeight;
   const duration = frameCount / fps;
-  const keyframes = Array.from({ length: frameCount }, (_, i) => {
-    const percent = (i / frameCount) * 100;
-    const position = -(i * frameWidth);
-    return `${percent}% { background-position: ${position}px 0; }`;
-  }).join('\n');
 
   return (
     <div 
       className={className}
       style={{
         width: `${frameWidth}px`,
-        height: `${frameWidth}px`,
+        height: `${frameHeight}px`,
+        overflow: 'hidden',
         backgroundImage: `url(${src})`,
-        backgroundSize: `${frameCount * frameWidth}px ${frameWidth}px`,
+        backgroundSize: `${spriteWidth}px ${spriteHeight}px`,
         backgroundRepeat: 'no-repeat',
         imageRendering: 'pixelated',
         animation: `spriteAnim ${duration}s steps(${frameCount}) infinite`,
@@ -36,7 +35,7 @@ const SpriteAnimator: React.FC<{
       <style>{`
         @keyframes spriteAnim {
           from { background-position: 0 0; }
-          to { background-position: -${frameCount * frameWidth}px 0; }
+          to { background-position: -${spriteWidth}px 0; }
         }
       `}</style>
     </div>
@@ -63,8 +62,22 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
           className="w-[100px] h-[100px]"
           style={{
             backgroundImage: 'url(/sprites/sprite_postura_teste.png)',
-            backgroundSize: '3200px 400px',
+            backgroundSize: '800px 400px',
             backgroundPosition: '0 0',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+      </div>
+
+      {/* Frame 2 para comparação */}
+      <div className="mb-8 p-4 border-2 border-purple-500 rounded-lg bg-purple-50">
+        <p className="text-sm text-purple-700 mb-2">Sprite Sheet PNG - Frame 2</p>
+        <div 
+          className="w-[100px] h-[100px]"
+          style={{
+            backgroundImage: 'url(/sprites/sprite_postura_teste.png)',
+            backgroundSize: '800px 400px',
+            backgroundPosition: '-100px 0',
             backgroundRepeat: 'no-repeat',
           }}
         />
