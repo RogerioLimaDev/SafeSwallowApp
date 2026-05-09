@@ -20,11 +20,11 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const videoSrcWebm = `${videoBaseUrl}.webm`;
   const videoSrcMp4 = `${videoBaseUrl}.mp4`;
   
-  // For MID videos: mp4 first (iOS). For FINAL: webm only (no mp4 available)
+  // For MID videos: webm first, mp4 as fallback. For FINAL: webm only (no mp4 available)
   const sources = videoType === 'MID' ? (
     <>
-      <source src={videoSrcMp4} type="video/mp4" />
       <source src={videoSrcWebm} type="video/webm" />
+      <source src={videoSrcMp4} type="video/mp4" />
     </>
   ) : (
     <source src={videoSrcWebm} type="video/webm" />
