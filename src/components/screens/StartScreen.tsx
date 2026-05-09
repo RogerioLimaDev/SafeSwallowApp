@@ -55,15 +55,15 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Sprite Sheet Horizontal - Novo */}
+      {/* Sprite Sheet PNG com Alpha Real - Nova sequência */}
       <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
-        <p className="text-sm text-blue-700 mb-2">Sprite Sheet Horizontal - Animado</p>
+        <p className="text-sm text-blue-700 mb-2">Sprite Sheet - Alpha Real (PNG sequence)</p>
         <SpriteAnimator 
-          src="/sprites/sprite_postura_horizontal.png"
-          frameCount={32}
+          src="/sprites/sprite_lingua_alpha.png"
+          frameCount={41}
           fps={8}
           className="w-[100px] h-[100px]"
-          alt="Teste sprite horizontal"
+          alt="Teste sprite alpha real"
         />
       </div>
 
