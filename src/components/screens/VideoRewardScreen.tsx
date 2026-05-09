@@ -18,7 +18,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   const videoBaseUrl = `/videos/${prefix}${currentLevel}`;
   
   const videoSrcWebm = `${videoBaseUrl}.webm`;
-  const videoSrcMov = `${videoBaseUrl}.mov`;
   const videoSrcMp4 = `${videoBaseUrl}.mp4`;
 
   useEffect(() => {
@@ -108,7 +107,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
             }}
           >
             <source src={videoSrcWebm} type="video/webm" />
-            <source src={videoSrcMov} type="video/quicktime" />
             <source src={videoSrcMp4} type="video/mp4" />
           </video>
 

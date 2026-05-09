@@ -293,7 +293,7 @@ export const CharacterRenderer: React.FC<{
 
   if (config.type === 'animation') {
     // Remove a extensão do caminho base
-    const basePath = config.path.replace(/\.(webm|mov)$/, '');
+    const basePath = config.path.replace(/\.(webm|mp4|mov)$/, '');
     
     return (
       <video 
@@ -311,9 +311,8 @@ export const CharacterRenderer: React.FC<{
           video.play().catch(err => console.error("Video autoplay failed:", err));
         }}
       >
-        {/* WebM first (Android/Desktop), then MOV fallback (iOS) */}
         <source src={`${basePath}.webm`} type="video/webm" />
-        <source src={`${basePath}.mov`} type="video/quicktime" />
+        <source src={`${basePath}.mp4`} type="video/mp4" />
       </video>
     );
   }
