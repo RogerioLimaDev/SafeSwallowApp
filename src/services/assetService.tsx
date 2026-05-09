@@ -57,153 +57,105 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
     };
   }
 
-  // Use sprite sheets for Level 2 (Laranja1)
+  // Use animations for Level 2
   if (level === 2) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_laranja1_postura.png',
-      POSTURE: 'sprite_laranja1_postura.png',
-      CELEBRATION: 'sprite_laranja1_comemora.png',
-      CHECKING: 'sprite_laranja1_checando.png',
-      SWALLOWING: 'sprite_laranja1_agua.png',
-      TONGUE: 'sprite_laranja1_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'Laranja1_postura.webm',
+      POSTURE: 'Laranja1_postura.webm',
+      CELEBRATION: 'Laranja1_Comemora.webm',
+      CHECKING: 'Laranja1_Checando.webm',
+      SWALLOWING: 'Laranja1_bebendo.webm',
+      TONGUE: 'Laranja1_lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
-  // Use sprite sheets for Level 3 (Roxo)
+  // Use animations for Level 3
   if (level === 3) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_roxo_postura.png',
-      POSTURE: 'sprite_roxo_postura.png',
-      CELEBRATION: 'sprite_roxo_comemora.png',
-      CHECKING: 'sprite_roxo_checando.png',
-      SWALLOWING: 'sprite_roxo_agua.png',
-      TONGUE: 'sprite_roxo_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'Roxo_postura.webm',
+      POSTURE: 'Roxo_postura.webm',
+      CELEBRATION: 'Roxo_comemorando.webm',
+      CHECKING: 'Roxo_checando.webm',
+      SWALLOWING: 'Roxo_agua.webm',
+      TONGUE: 'Roxo_lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
-  // Use sprite sheets for Level 4 (Azul)
+  // Use animations for Level 4
   if (level === 4) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_azul_postura.png',
-      POSTURE: 'sprite_azul_postura.png',
-      CELEBRATION: 'sprite_azul_comemora.png',
-      CHECKING: 'sprite_azul_checando.png',
-      SWALLOWING: 'sprite_azul_agua.png',
-      TONGUE: 'sprite_azul_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'Azul_Postura.webm',
+      POSTURE: 'Azul_Postura.webm',
+      CELEBRATION: 'Azul_Comemora.webm',
+      CHECKING: 'Azul_Checando.webm',
+      SWALLOWING: 'Azul_agua.webm',
+      TONGUE: 'Azul_lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
-  // Use sprite sheets for Level 5 (Laranja2)
+  // Use animations for Level 5
   if (level === 5) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_laranja2_postura.png',
-      POSTURE: 'sprite_laranja2_postura.png',
-      CELEBRATION: 'sprite_laranja2_comemora.png',
-      CHECKING: 'sprite_laranja2_checando.png',
-      SWALLOWING: 'sprite_laranja2_agua.png',
-      TONGUE: 'sprite_laranja2_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'Laranja2_postura.webm',
+      POSTURE: 'Laranja2_postura.webm',
+      CELEBRATION: 'Laranja2_palmas.webm',
+      CHECKING: 'Laranja2_checando.webm',
+      SWALLOWING: 'Laranja2_agua.webm',
+      TONGUE: 'Laranja2_Lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
-  // Use sprite sheets for Level 6 (Vermelho)
+  // Use animations for Level 6
   if (level === 6) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_vermelho_postura.png',
-      POSTURE: 'sprite_vermelho_postura.png',
-      CELEBRATION: 'sprite_vermelho_comemora.png',
-      CHECKING: 'sprite_vermelho_checando.png',
-      SWALLOWING: 'sprite_vermelho_agua.png',
-      TONGUE: 'sprite_vermelho_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'Vermelho_postura.webm',
+      POSTURE: 'Vermelho_postura.webm',
+      CELEBRATION: 'Vermelho_Comemorando.webm',
+      CHECKING: 'Vermelho_Checando.webm',
+      SWALLOWING: 'Vermelho_agua.webm',
+      TONGUE: 'Vermelho_Lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
-  // Use sprite sheets for Level 7 (AzulEBranco)
+  // Use animations for Level 7
   if (level === 7) {
-    const spriteFiles: Record<CharacterType, string> = {
-      NORMAL: 'sprite_azulebranco_postura.png',
-      POSTURE: 'sprite_azulebranco_postura.png',
-      CELEBRATION: 'sprite_azulebranco_comemora.png',
-      CHECKING: 'sprite_azulebranco_checando.png',
-      SWALLOWING: 'sprite_azulebranco_agua.png',
-      TONGUE: 'sprite_azulebranco_lingua.png',
+    const webFiles: Record<CharacterType, string> = {
+      NORMAL: 'AzulEBranco_postura.webm',
+      POSTURE: 'AzulEBranco_postura.webm',
+      CELEBRATION: 'AzulEBranco_comemorando.webm',
+      CHECKING: 'AzulEBranco_checando.webm',
+      SWALLOWING: 'AzulEBranco_agua.webm',
+      TONGUE: 'AzulEBranco_Lingua.webm',
     };
 
     return {
-      type: 'sprite',
-      path: `/sprites/${spriteFiles[type]}`,
-      spriteConfig: {
-        type: 'sprite',
-        path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 41,
-        fps: 8,
-        frameWidth: 134,
-        frameHeight: 134,
-      }
+      type: 'animation',
+      path: `/images/nivel${level}/${webFiles[type]}`
     };
   }
 
