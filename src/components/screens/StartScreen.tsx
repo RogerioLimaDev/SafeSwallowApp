@@ -10,8 +10,8 @@ const SpriteAnimator: React.FC<{
   className?: string;
   alt?: string;
 }> = ({ src, frameCount, fps, className = '', alt = 'Sprite' }) => {
-  const frameWidth = 100;
-  const frameHeight = 100;
+  const frameWidth = 267; // Tamanho original do frame
+  const frameHeight = 267;
   const spriteWidth = frameCount * frameWidth;
   const spriteHeight = frameHeight;
   const duration = frameCount / fps;
@@ -26,7 +26,6 @@ const SpriteAnimator: React.FC<{
         backgroundImage: `url(${src})`,
         backgroundSize: `${spriteWidth}px ${spriteHeight}px`,
         backgroundRepeat: 'no-repeat',
-        imageRendering: 'pixelated',
         animation: `spriteAnim ${duration}s steps(${frameCount}) infinite`,
       }}
       role="img"
@@ -55,17 +54,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-end p-8 text-center h-full pb-10"
     >
-      {/* Sprite Sheet PNG com Alpha Real - Nova sequência */}
-      <div className="mb-8 p-4 border-2 border-blue-500 rounded-lg bg-blue-50">
-        <p className="text-sm text-blue-700 mb-2">Sprite Sheet - Alpha Real (PNG sequence)</p>
-        <SpriteAnimator 
-          src="/sprites/sprite_lingua_alpha.png"
-          frameCount={41}
-          fps={8}
-          className="w-[100px] h-[100px]"
-          alt="Teste sprite alpha real"
-        />
-      </div>
+      {/* Sprite Sheet PNG com Alpha Real - Teste em tamanho real */}
+      <SpriteAnimator 
+        src="/sprites/sprite_lingua_alpha.png"
+        frameCount={41}
+        fps={8}
+        className="w-full h-auto"
+        alt="Teste sprite alpha real"
+      />
 
       <motion.button 
         whileHover={{ scale: 1.05, y: -2 }}
