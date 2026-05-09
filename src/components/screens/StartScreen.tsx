@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
 import { MissionStep } from '../../types';
 
-// Sprite Animator Component
+// Sprite Animator Component - CSS Animation
 const SpriteAnimator: React.FC<{
   src: string;
   frameCount: number;
@@ -10,18 +10,13 @@ const SpriteAnimator: React.FC<{
   className?: string;
   alt?: string;
 }> = ({ src, frameCount, fps, className = '', alt = 'Sprite' }) => {
-  const [frame, setFrame] = useState(0);
   const frameWidth = 100;
-  const frameTime = 1000 / fps;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFrame((prev) => (prev + 1) % frameCount);
-    }, frameTime);
-    return () => clearInterval(interval);
-  }, [frameCount, frameTime]);
-
-  const bgPosition = -(frame * frameWidth);
+  const duration = frameCount / fps;
+  const keyframes = Array.from({ length: frameCount }, (_, i) => {
+    const percent = (i / frameCount) * 100;
+    const position = -(i * frameWidth);
+    return `${percent}% { background-position: ${position}px 0; }`;
+  }).join('\n');
 
   return (
     <div 
@@ -31,13 +26,20 @@ const SpriteAnimator: React.FC<{
         height: `${frameWidth}px`,
         backgroundImage: `url(${src})`,
         backgroundSize: `${frameCount * frameWidth}px ${frameWidth}px`,
-        backgroundPosition: `${bgPosition}px 0`,
         backgroundRepeat: 'no-repeat',
         imageRendering: 'pixelated',
+        animation: `spriteAnim ${duration}s steps(${frameCount}) infinite`,
       }}
       role="img"
       aria-label={alt}
-    />
+    >
+      <style>{`
+        @keyframes spriteAnim {
+          from { background-position: 0 0; }
+          to { background-position: -${frameCount * frameWidth}px 0; }
+        }
+      `}</style>
+    </div>
   );
 };
 
