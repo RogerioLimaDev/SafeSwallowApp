@@ -98,11 +98,11 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
           </button>
         </div>
       ) : (
-        <div className="relative w-full h-full flex items-center justify-center z-[205]">
+        <div className="absolute inset-0 z-[205]">
           <video
             key={`${videoType}-${currentLevel}`}
             ref={videoRef}
-            className={`w-full h-full object-contain transition-opacity duration-300 ${isMetadataLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-full object-cover transition-opacity duration-300 ${isMetadataLoaded ? 'opacity-100' : 'opacity-0'}`}
             playsInline
             autoPlay
             muted
