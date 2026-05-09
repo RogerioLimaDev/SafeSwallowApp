@@ -45,12 +45,10 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         videoRef.current.play()
           .then(() => {
             console.log("Autoplay succeeded");
-            alert("Autoplay succeeded!");
             setIsPlaying(true);
           })
           .catch((err) => {
             console.log("Autoplay failed:", err.message);
-            alert("Autoplay failed: " + err.message);
           });
       }
     };
@@ -66,7 +64,6 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   // Track playing state from video events
   const handlePlay = () => {
     console.log("Video play event fired");
-    alert("Video play event fired!");
     setIsPlaying(true);
   };
 
