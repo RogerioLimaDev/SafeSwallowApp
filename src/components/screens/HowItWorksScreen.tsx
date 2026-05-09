@@ -14,7 +14,7 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between p-6 sm:p-8 pb-10"
+      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between p-6 sm:p-8 pb-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
     >
       <div className="max-w-xl w-full flex flex-col items-start pt-2">
         <h2 className="font-baruta text-2xl sm:text-3xl mb-4 text-white text-left w-full leading-tight">
