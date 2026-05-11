@@ -78,25 +78,25 @@
 }
 
 .bg-how-it-works {
-  background: url('/images/bgComoFunciona_v2.webp') no-repeat center center;
+  background: url('/images/fundoComoFunciona_novo.webp') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-camera-invite {
-  background: url('/images/bgLigarACamera_v2.webp') no-repeat center center;
+  background: url('/images/fundoCamera_novo.webp') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-success {
-  background: url('/images/bgTelaFinal_v2.webp') no-repeat center center;
+  background: url('/images/fundoFinal_novo.webp') no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .bg-with-logo {
-  background: url('/images/bgCaixas.jpg') no-repeat center center;
+  background: url('/images/fundoCaixas_novo.webp') no-repeat center center;
   background-size: cover;
   position: relative;
 }
