@@ -298,21 +298,6 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
 
       {/* Action Buttons / Status */}
       <div className="absolute bottom-8 right-8 pointer-events-auto flex flex-col gap-2 items-end">
-        {/* Debug Skip Button (Visible when error occurs or for testing) */}
-        {!isIntroActive && !isCelebrating && (
-          <button 
-            onClick={() => {
-              if (currentStep === 'POSTURE') onStepAdvance('WATER');
-              else if (currentStep === 'WATER') onVerifyWater(true);
-              else if (currentStep === 'TONGUE') onVerifyTongue(true);
-              else if (currentStep === 'SWALLOW') onSuccess();
-            }}
-            className="bg-black/20 hover:bg-black/40 text-white/50 hover:text-white text-[8px] px-2 py-1 rounded uppercase tracking-widest transition-colors"
-          >
-            Pular (Debug)
-          </button>
-        )}
-
         {currentStep === 'WATER' && !isIntroActive && !isCelebrating && (
           <button 
             onClick={() => onVerifyWater(false)}
