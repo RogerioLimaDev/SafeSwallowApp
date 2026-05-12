@@ -6,7 +6,7 @@ interface StartScreenProps {
   onStart: (step: MissionStep) => void;
 }
 
-const CORRECT_PASSWORD = '1234'; // Você pode alterar a senha aqui
+const CORRECT_PASSWORD = import.meta.env.VITE_PASSWORD || 'InovaHC26';
 
 export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   const [password, setPassword] = useState('');
