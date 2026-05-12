@@ -144,3 +144,13 @@
 .bg-mission-gradient {
   background: linear-gradient(180deg, #FFB7B7 0%, #B7E4FF 100%);
 }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
