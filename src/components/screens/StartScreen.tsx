@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MissionStep } from '../../types';
 
@@ -12,6 +12,16 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   const [password, setPassword] = useState('');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Check if password was already validated on mount
+  useEffect(() => {
+    const isPasswordValidated = localStorage.getItem('safe_swallow_password_validated');
+    if (isPasswordValidated === 'true') {
+      setIsConfirmed(true);
+    }
+    setIsLoading(false);
+  }, []);
 
   const tryFullscreen = async () => {
     try {
@@ -29,11 +39,17 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
   const handleConfirm = () => {
     if (password === CORRECT_PASSWORD) {
       setIsConfirmed(true);
+      localStorage.setItem('safe_swallow_password_validated', 'true');
     } else {
       setError(true);
       setTimeout(() => setError(false), 2000);
     }
   };
+
+  // Don't render until we check localStorage
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <motion.div 
