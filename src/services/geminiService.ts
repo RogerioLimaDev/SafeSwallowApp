@@ -5,9 +5,9 @@ import { GoogleGenAI } from "@google/genai";
 let aiInstance: GoogleGenAI | null = null;
 const getAI = (): GoogleGenAI => {
   if (!aiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) {
-      console.error("GEMINI_API_KEY is missing in process.env");
+      console.error("VITE_GEMINI_API_KEY is missing in import.meta.env");
       throw new Error("API Key do Gemini não encontrada na configuração.");
     }
     aiInstance = new GoogleGenAI({ apiKey });
