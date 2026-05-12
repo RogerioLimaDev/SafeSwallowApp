@@ -45,7 +45,7 @@ export const verifyWaterWithGemini = async (imageData: string) => {
     const ai = getAI();
     
     const result = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.5-flash",
       contents: [
         {
           role: "user",
@@ -81,7 +81,7 @@ export const verifyTongueWithGemini = async (imageData: string) => {
     const ai = getAI();
     
     const result = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.5-flash",
       contents: [
         {
           role: "user",
