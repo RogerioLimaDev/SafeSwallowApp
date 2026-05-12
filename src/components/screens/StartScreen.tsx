@@ -68,7 +68,9 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                 ${error ? 'border-red-500 animate-shake' : 'border-white/30'}
                 focus:border-brand-yellow outline-none
                 transition-colors text-black
+                font-body
               `}
+              style={{ fontWeight: 400 }}
               onKeyDown={(e) => e.key === 'Enter' && handleConfirm()}
             />
             <motion.button 
