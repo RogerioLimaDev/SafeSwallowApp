@@ -79,7 +79,7 @@ export default function App() {
   const [waterProgress, setWaterProgress] = useState(0);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [countdown, setCountdown] = useState<number | null>(null);
-  const [unlockedLevels, setUnlockedLevels] = useState<number>(7);
+  const [unlockedLevels, setUnlockedLevels] = useState<number>(1);
   const [currentLevel, setCurrentLevel] = useState<number>(1);
   const [levelStats, setLevelStats] = useState<Record<number, number>>(() => {
     const saved = localStorage.getItem('safe_swallow_stats');
