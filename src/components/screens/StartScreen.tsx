@@ -60,8 +60,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
               <motion.span
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-white text-sm font-body"
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}
+                className="text-sm font-body"
+                style={{ color: '#8B0000' }}
               >
                 senha errada. Tente novamente
               </motion.span>
