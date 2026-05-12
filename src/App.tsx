@@ -226,8 +226,19 @@ export default function App() {
 
     setIsVerifyingWater(true);
     try {
-      // AI DISABLED TEMPORARILY AS REQUESTED BY USER
-      const success = true; 
+      // Capture frame from video
+      const videoElement = document.querySelector('video');
+      const videoRef = { current: videoElement };
+      const imageData = captureFrame(videoRef as any);
+      
+      let success = false;
+      
+      if (!skipAI && imageData) {
+        success = await verifyWaterWithGemini(imageData);
+      } else {
+        // Skip AI verification
+        success = true;
+      }
       
       if (success) {
         setWaterProgress(prev => {
@@ -271,8 +282,19 @@ export default function App() {
 
     setIsVerifyingTongue(true);
     try {
-      // AI DISABLED TEMPORARILY AS REQUESTED BY USER
-      const success = true;
+      // Capture frame from video
+      const videoElement = document.querySelector('video');
+      const videoRef = { current: videoElement };
+      const imageData = captureFrame(videoRef as any);
+      
+      let success = false;
+      
+      if (!skipAI && imageData) {
+        success = await verifyTongueWithGemini(imageData);
+      } else {
+        // Skip AI verification
+        success = true;
+      }
 
       if (success) {
         setIsCelebrating(true);
