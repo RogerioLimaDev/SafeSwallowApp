@@ -31,7 +31,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
       setIsConfirmed(true);
     } else {
       setError(true);
-      setTimeout(() => setError(false), 500);
+      setTimeout(() => setError(false), 2000);
     }
   };
 
