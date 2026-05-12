@@ -60,13 +60,14 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Senha"
+              placeholder="digite sua senha"
+              placeholderTextColor="#cccccc"
               className={`
                 !rounded-[14px] !px-6 !py-3 text-center text-lg
                 bg-white/90 backdrop-blur-sm border-2
                 ${error ? 'border-red-500 animate-shake' : 'border-white/30'}
                 focus:border-brand-yellow outline-none
-                transition-colors
+                transition-colors text-black
               `}
               onKeyDown={(e) => e.key === 'Enter' && handleConfirm()}
             />
@@ -74,9 +75,10 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleConfirm}
-              className="btn-3d-yellow text-xl !rounded-[14px] !px-6 !py-3"
+              className="text-xl !rounded-[14px] !px-6 !py-3 font-baruta font-bold transition-all duration-100 active:translate-y-[2px]"
+              style={{ backgroundColor: '#e79295', color: 'white', boxShadow: '2px 3px 0px #c46c73' }}
             >
-              Confirmar
+              Entrar
             </motion.button>
           </motion.div>
         )}
