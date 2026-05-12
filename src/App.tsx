@@ -263,6 +263,9 @@ export default function App() {
           }
           return next;
         });
+      } else {
+        // Gemini returned NO - show feedback to try again
+        showNotification("Não detectei o copo na boca.\nTente novamente!", "error");
       }
     } catch (error: any) {
       showNotification(`Erro: ${error.message || "Falha na verificação."}`, "error");
@@ -308,6 +311,9 @@ export default function App() {
           setIsCelebrating(false);
           setCurrentStep('SWALLOW');
         }, 3000);
+      } else {
+        // Gemini returned NO - show feedback to try again
+        showNotification("Não detectei o comprimido na boca.\nTente novamente!", "error");
       }
     } catch (error) {
       showNotification("Erro ao verificar língua.", "error");
