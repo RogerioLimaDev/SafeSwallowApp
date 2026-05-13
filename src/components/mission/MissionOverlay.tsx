@@ -341,8 +341,14 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
           </button>
         )}
         {currentStep === 'SWALLOW' && (
-          <div className="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-            <p className="text-white font-baruta text-[10px] tracking-widest uppercase">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+            <p 
+              className="font-baruta text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg"
+              style={{ 
+                color: metrics.headAngle > 18 ? '#4CAF50' : '#FFB84D',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)'
+              }}
+            >
               {stepConfig.status}
             </p>
           </div>
