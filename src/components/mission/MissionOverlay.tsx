@@ -341,16 +341,15 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
           </button>
         )}
         {currentStep === 'SWALLOW' && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-            <p 
-              className="font-baruta text-4xl sm:text-5xl md:text-6xl font-bold"
-              style={{ 
-                color: '#FFFFFF'
-              }}
-            >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="absolute inset-0 z-30 flex items-center justify-center px-10 pointer-events-none"
+          >
+            <p className="text-white font-baruta text-4xl sm:text-5xl md:text-6xl font-bold text-center uppercase">
               {stepConfig.status}
             </p>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
