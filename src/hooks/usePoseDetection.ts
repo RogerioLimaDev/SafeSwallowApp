@@ -186,9 +186,11 @@ export const usePoseDetection = ({
             setPostureTimer(0);
           }
 
-          if (currentStepRef.current === 'POSTURE') {
+          if (currentStepRef.current === 'POSTURE' || currentStepRef.current === 'SWALLOW') {
             drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {
-              color: isStraight ? '#4CAF50' : '#FFB84D',
+              color: currentStepRef.current === 'SWALLOW' 
+                ? (currentHeadAngle > 18 ? '#4CAF50' : '#FFB84D')
+                : (isStraight ? '#4CAF50' : '#FFB84D'),
               lineWidth: 8
             });
             drawLandmarks(canvasCtx, results.poseLandmarks, {
