@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap');
 
 /* Fonte local - Baruta */
 @font-face {
@@ -14,16 +14,17 @@
 
 @theme {
   --font-sans: "Baruta", "Fredoka", ui-sans-serif, system-ui, sans-serif;
-  --font-outfit: "Fredoka", system-ui, sans-serif;
+  --font-outfit: "Nunito", system-ui, sans-serif;
   --font-display: "Baruta", "Fredoka", ui-sans-serif, system-ui, sans-serif;
   --font-baruta: "Baruta", "Fredoka", system-ui, sans-serif;
-  --font-body: "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --font-nunito: "Nunito", system-ui, sans-serif;
 
   --color-brand-orange: #FF6321;
   --color-brand-pink: #FF4E8D;
   --color-brand-blue: #4E8DFF;
   --color-brand-green: #4EFFFF;
-  --color-brand-yellow: #fbc660;
+  --color-brand-yellow: #ffa341;
 }
 
 @layer base {

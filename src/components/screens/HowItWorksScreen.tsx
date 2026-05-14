@@ -23,7 +23,7 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
           <span className="block">comprimidos</span>
         </h2>
         
-        <div className="text-[#482323] text-sm sm:text-base font-body leading-snug text-left max-w-[95%]">
+        <div className="text-[#482323] text-sm sm:text-base font-nunito leading-snug text-left max-w-[95%]">
           <p>
             Este jogo ajuda crianças a aprender, com segurança, a engolir comprimidos. 
             O treino utiliza placebos de tamanhos progressivos, acompanhando o aumento da confiança a cada etapa.
