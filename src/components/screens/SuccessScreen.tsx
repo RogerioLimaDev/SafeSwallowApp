@@ -67,10 +67,10 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
         />
         
         <div className="relative z-10 w-full text-left pl-4 pr-0">
-          <h3 className="font-outfit font-bold text-[24px] sm:text-[29px] text-white leading-tight mb-4">
+          <h3 className="font-nunito font-semibold text-[26px] sm:text-[32px] text-white leading-tight mb-4">
             {title}
           </h3>
-          <p className="font-outfit font-bold text-[18px] sm:text-[22px] text-white leading-tight">
+          <p className="font-nunito font-semibold text-[20px] sm:text-[24px] text-white leading-tight">
             {message}
           </p>
         </div>
@@ -81,7 +81,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
           onClick={onReset}
           className="relative w-full text-white font-baruta font-bold text-lg py-3 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
           style={{ 
-            backgroundColor: '#fbc660',
+            backgroundColor: '#ffa341',
             boxShadow: '2px 3px 0px #dfa525'
           }}
         >

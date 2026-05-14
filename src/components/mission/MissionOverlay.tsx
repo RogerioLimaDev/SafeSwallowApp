@@ -271,7 +271,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
                 }}
               />
               <div className="relative z-10 flex items-center justify-center">
-                <span className="font-nunito text-white text-xs sm:text-base font-bold text-left leading-tight">
+                <span className="font-nunito text-white text-sm sm:text-lg font-semibold text-left leading-tight">
                   {isCelebrating ? "Muito bem!!!" : stepConfig.instruction}
                 </span>
               </div>

@@ -219,7 +219,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
  */
 export const getLevelColor = (level: number): string => {
   const colors: Record<number, string> = {
-    1: '#fbc660',
+    1: '#ffa341',
     2: '#ff9241',
     3: '#b155b8',
     4: '#669fc2',
@@ -227,7 +227,7 @@ export const getLevelColor = (level: number): string => {
     6: '#d7475d',
     7: '#669fc2',
   };
-  return colors[level] || '#fbc660';
+  return colors[level] || '#ffa341';
 };
 
 /**
