@@ -1,6 +1,11 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
+
+// Audio for background music
+const bgMusic = new Audio('/musica_fundo.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
@@ -139,6 +144,18 @@ export default function App() {
   useEffect(() => {
     console.log("Current Unlocked Levels:", unlockedLevels);
   }, [unlockedLevels]);
+
+  // --- Background Music Control ---
+  const [musicPlaying, setMusicPlaying] = useState(false);
+
+  useEffect(() => {
+    // Start music when user advances from START screen
+    if (currentStep !== 'START' && !musicPlaying) {
+      bgMusic.play().then(() => {
+        setMusicPlaying(true);
+      }).catch(e => console.log('Autoplay prevented:', e));
+    }
+  }, [currentStep, musicPlaying]);
 
   // --- Callbacks for Hook ---
   const handleStepAdvance = useCallback((nextStep: MissionStep) => {
