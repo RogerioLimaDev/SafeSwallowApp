@@ -4,11 +4,12 @@ import { MissionStep } from '../../types';
 
 interface StartScreenProps {
   onStart: (step: MissionStep) => void;
+  playSound?: () => void;
 }
 
 const CORRECT_PASSWORD = import.meta.env.VITE_PASSWORD || 'InovaHC26';
 
-export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
+export const StartScreen: React.FC<StartScreenProps> = ({ onStart, playSound }) => {
   const [password, setPassword] = useState('');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [error, setError] = useState(false);
@@ -121,7 +122,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            onClick={() => {
+            onPointerDown={() => {
+              playSound?.();
               tryFullscreen();
               onStart('HOW_IT_WORKS');
             }}

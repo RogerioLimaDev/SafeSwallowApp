@@ -415,7 +415,7 @@ export default function App() {
       {/* Main Content Layer */}
       <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
-          {currentStep === 'START' && <StartScreen onStart={(step) => { playButtonClick(); setCurrentStep(step); }} />}
+          {currentStep === 'START' && <StartScreen onStart={setCurrentStep} playSound={playButtonClick} />}
           {currentStep === 'HOW_IT_WORKS' && <HowItWorksScreen onNext={(step) => { playButtonClick(); setCurrentStep(step); }} />}
           {currentStep === 'CANDY_BOX_SELECT' && (
             <CandyBoxSelect 
