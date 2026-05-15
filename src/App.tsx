@@ -8,10 +8,10 @@ bgMusic.loop = true;
 bgMusic.volume = 0.5;
 
 // Sound effects - preloaded
-const buttonClickAudio = new Audio('/AUDIO fx_ButtonClick.mp3');
+const buttonClickAudio = new Audio('/AUDIO fx_ClickOK.mp3');
 buttonClickAudio.volume = 0.7;
 
-const failureAudio = new Audio('/AUDIO fx_Falilure.mp3');
+const failureAudio = new Audio('/AUDIO fx_OhOh_OK.mp3');
 failureAudio.volume = 0.7;
 
 const celebrationAudio = new Audio('/AUDIO fx_celebration_Ok.mp3');
