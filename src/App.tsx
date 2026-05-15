@@ -7,23 +7,30 @@ const bgMusic = new Audio('/musica_fundo.mp3');
 bgMusic.loop = true;
 bgMusic.volume = 0.5;
 
-// Sound effects
+// Sound effects - preloaded
+const buttonClickAudio = new Audio('/AUDIO fx_ButtonClick.mp3');
+buttonClickAudio.volume = 0.7;
+
+const failureAudio = new Audio('/AUDIO fx_Falilure.mp3');
+failureAudio.volume = 0.7;
+
+const celebrationAudio = new Audio('/AUDIO fx_celebration_Ok.mp3');
+celebrationAudio.volume = 0.8;
+
+// Sound effect functions - reuse preloaded audio
 const playButtonClick = () => {
-  const audio = new Audio('/AUDIO fx_ButtonClick.mp3');
-  audio.volume = 0.7;
-  audio.play().catch(() => {});
+  buttonClickAudio.currentTime = 0;
+  buttonClickAudio.play().catch(() => {});
 };
 
 const playFailure = () => {
-  const audio = new Audio('/AUDIO fx_Falilure.mp3');
-  audio.volume = 0.7;
-  audio.play().catch(() => {});
+  failureAudio.currentTime = 0;
+  failureAudio.play().catch(() => {});
 };
 
 const playCelebration = () => {
-  const audio = new Audio('/AUDIO fx_celebration_Ok.mp3');
-  audio.volume = 0.8;
-  audio.play().catch(() => {});
+  celebrationAudio.currentTime = 0;
+  celebrationAudio.play().catch(() => {});
 };
 
 // Error Boundary Component
