@@ -6,9 +6,10 @@ interface VideoRewardScreenProps {
   currentLevel: number;
   onFinish: () => void;
   videoType?: 'MID' | 'FINAL';
+  playSound?: () => void;
 }
 
-export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLevel, onFinish, videoType = 'MID' }) => {
+export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLevel, onFinish, videoType = 'MID', playSound }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetadataLoaded, setIsMetadataLoaded] = useState(false);
@@ -23,6 +24,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
     setError(false);
     setIsMetadataLoaded(false);
     setIsPlaying(false);
+    soundPlayedRef.current = false;
   }, [currentLevel, videoType]);
 
   const togglePlay = async () => {
@@ -31,6 +33,7 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
         videoRef.current.muted = false;
         await videoRef.current.play();
         setIsPlaying(true);
+        playSound?.();
       } catch (err) {
         console.error("Play gesture failed", err);
       }
@@ -62,9 +65,15 @@ export const VideoRewardScreen: React.FC<VideoRewardScreenProps> = ({ currentLev
   }, [currentLevel, videoType]);
 
   // Track playing state from video events
+  const soundPlayedRef = useRef(false);
+  
   const handlePlay = () => {
     console.log("Video play event fired");
     setIsPlaying(true);
+    if (!soundPlayedRef.current) {
+      soundPlayedRef.current = true;
+      playSound?.();
+    }
   };
 
   return (

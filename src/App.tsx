@@ -17,6 +17,9 @@ failureAudio.volume = 0.7;
 const celebrationAudio = new Audio('/AUDIO fx_celebration_Ok.mp3');
 celebrationAudio.volume = 0.8;
 
+const videoCelebrationAudio = new Audio('/AUDIO fx_VideoCelebration.mp3');
+videoCelebrationAudio.volume = 0.8;
+
 // Sound effect functions - reuse preloaded audio
 const playButtonClick = () => {
   buttonClickAudio.currentTime = 0;
@@ -31,6 +34,11 @@ const playFailure = () => {
 const playCelebration = () => {
   celebrationAudio.currentTime = 0;
   celebrationAudio.play().catch(() => {});
+};
+
+const playVideoCelebration = () => {
+  videoCelebrationAudio.currentTime = 0;
+  videoCelebrationAudio.play().catch(() => {});
 };
 
 // Error Boundary Component
@@ -439,6 +447,7 @@ export default function App() {
             <VideoRewardScreen 
               currentLevel={currentLevel} 
               videoType="MID"
+              playSound={playVideoCelebration}
               onFinish={() => {
                 setCurrentStep('TONGUE');
               }} 
@@ -448,6 +457,7 @@ export default function App() {
             <VideoRewardScreen 
               currentLevel={currentLevel} 
               videoType="FINAL"
+              playSound={playVideoCelebration}
               onFinish={() => {
                 setLevelStats(prev => ({
                   ...prev,
