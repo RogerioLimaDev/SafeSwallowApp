@@ -509,6 +509,7 @@ export default function App() {
               onVerifyTongue={handleVerifyTongue}
               onSuccess={handleSuccess}
               onStepAdvance={handleStepAdvance}
+              playSound={playButtonClick}
             />
 
             <HelpModal show={showHelp} onClose={() => setShowHelp(false)} />

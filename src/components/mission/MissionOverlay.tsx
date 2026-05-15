@@ -19,25 +19,27 @@ interface MissionOverlayProps {
   onVerifyTongue: (skipAI?: boolean) => void;
   onSuccess: () => void;
   onStepAdvance: (step: MissionStep) => void;
+  playSound?: () => void;
 }
 
 const OVERLAY_BORDER_RADIUS = '8px';
 
 export const MissionOverlay: React.FC<MissionOverlayProps> = ({
-  currentStep,
-  currentLevel,
-  metrics,
-  postureTimer,
-  waterProgress,
-  headTiltTimer,
-  isVerifyingWater,
-  isVerifyingTongue,
-  isCelebrating,
-  countdown,
-  onVerifyWater,
-  onVerifyTongue,
-  onSuccess,
-  onStepAdvance
+    currentStep,
+    currentLevel,
+    metrics,
+    postureTimer,
+    waterProgress,
+    headTiltTimer,
+    isVerifyingWater,
+    isVerifyingTongue,
+    isCelebrating,
+    countdown,
+    onVerifyWater,
+    onVerifyTongue,
+    onSuccess,
+    onStepAdvance,
+    playSound
 }) => {
   // Use a ref to track the current step and avoid unnecessary effect triggers
   // and a synchronous state update to prevent flickering
@@ -300,6 +302,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
       <div className="absolute bottom-8 right-8 pointer-events-auto flex flex-col gap-2 items-end">
         {currentStep === 'WATER' && !isIntroActive && !isCelebrating && (
           <button 
+            onPointerDown={() => playSound?.()}
             onClick={() => onVerifyWater(false)}
             disabled={isVerifyingWater || countdown !== null}
             className="relative text-white font-baruta font-bold rounded-[40px] px-6 py-3 text-sm flex items-center gap-2 min-w-[160px] justify-center transition-all duration-100 active:translate-y-1"
@@ -321,6 +324,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
         )}
         {currentStep === 'TONGUE' && !isIntroActive && !isCelebrating && (
           <button 
+            onPointerDown={() => playSound?.()}
             onClick={() => onVerifyTongue(false)}
             disabled={isVerifyingTongue || countdown !== null}
             className="relative text-white font-baruta font-bold rounded-[40px] px-6 py-3 text-sm flex items-center gap-2 min-w-[160px] justify-center transition-all duration-100 active:translate-y-1"
