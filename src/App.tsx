@@ -7,6 +7,25 @@ const bgMusic = new Audio('/musica_fundo.mp3');
 bgMusic.loop = true;
 bgMusic.volume = 0.5;
 
+// Sound effects
+const playButtonClick = () => {
+  const audio = new Audio('/AUDIO fx_ButtonClick.mp3');
+  audio.volume = 0.7;
+  audio.play().catch(() => {});
+};
+
+const playFailure = () => {
+  const audio = new Audio('/AUDIO fx_Falilure.mp3');
+  audio.volume = 0.7;
+  audio.play().catch(() => {});
+};
+
+const playCelebration = () => {
+  const audio = new Audio('/AUDIO fx_celebration_Ok.mp3');
+  audio.volume = 0.8;
+  audio.play().catch(() => {});
+};
+
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -163,6 +182,7 @@ export default function App() {
 
     if (currentStep === 'POSTURE' && nextStep === 'WATER') {
       setIsCelebrating(true);
+      playCelebration(); // Sound effect
       
       // Trigger celebration confetti
       const duration = 3 * 1000;
@@ -262,6 +282,7 @@ export default function App() {
           const next = prev + 1;
           if (next >= 1) {
             showNotification("Bebeu direitinho!\nPrimeira etapa, completa!", "success");
+            playCelebration(); // Sound effect
             
             // Wait 1 second to show the full glass before celebrating
             setTimeout(() => {
@@ -282,9 +303,11 @@ export default function App() {
         });
       } else {
         // Gemini returned NO - show feedback to try again
+        playFailure(); // Sound effect
         showNotification("Não detectei o copo na boca.\nTente novamente!", "error");
       }
     } catch (error: any) {
+      playFailure(); // Sound effect
       showNotification(`Erro: ${error.message || "Falha na verificação."}`, "error");
     } finally {
       setIsVerifyingWater(false);
@@ -318,6 +341,7 @@ export default function App() {
 
       if (success) {
         setIsCelebrating(true);
+        playCelebration(); // Sound effect
         showNotification("Comprimido na posição! Agora vamos engolir!", "success");
         
         // Trigger celebration burst
@@ -330,9 +354,11 @@ export default function App() {
         }, 3000);
       } else {
         // Gemini returned NO - show feedback to try again
+        playFailure(); // Sound effect
         showNotification("Não detectei o comprimido na boca.\nTente novamente!", "error");
       }
     } catch (error) {
+      playFailure(); // Sound effect
       showNotification("Erro ao verificar língua.", "error");
     } finally {
       setIsVerifyingTongue(false);
@@ -382,12 +408,12 @@ export default function App() {
       {/* Main Content Layer */}
       <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
-          {currentStep === 'START' && <StartScreen onStart={setCurrentStep} />}
-          {currentStep === 'HOW_IT_WORKS' && <HowItWorksScreen onNext={setCurrentStep} />}
+          {currentStep === 'START' && <StartScreen onStart={(step) => { playButtonClick(); setCurrentStep(step); }} />}
+          {currentStep === 'HOW_IT_WORKS' && <HowItWorksScreen onNext={(step) => { playButtonClick(); setCurrentStep(step); }} />}
           {currentStep === 'CANDY_BOX_SELECT' && (
             <CandyBoxSelect 
               setPillSize={setPillSize} 
-              onNext={setCurrentStep} 
+              onNext={(step) => { playButtonClick(); setCurrentStep(step); }} 
               unlockedLevels={unlockedLevels}
               onSelectLevel={setCurrentLevel}
             />
@@ -396,6 +422,7 @@ export default function App() {
             <CameraInviteScreen 
               currentLevel={currentLevel}
               onNext={() => {
+                playButtonClick();
                 setIsCameraActive(true);
                 setCurrentStep('POSTURE');
               }} 
@@ -420,6 +447,7 @@ export default function App() {
                   [currentLevel]: (prev[currentLevel] || 0) + 1
                 }));
                 setCurrentStep('SUCCESS');
+                playCelebration(); // Sound effect
                 confetti({
                   particleCount: 200,
                   spread: 120,

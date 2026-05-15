@@ -14,3 +14,9 @@ export interface NotificationType {
   message: string;
   type: 'error' | 'info' | 'success';
 }
+
+export interface SoundEffects {
+  playButtonClick: () => void;
+  playFailure: () => void;
+  playCelebration: () => void;
+}
