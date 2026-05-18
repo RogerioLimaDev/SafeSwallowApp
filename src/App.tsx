@@ -413,9 +413,13 @@ export default function App() {
     setIsCameraActive(false);
   };
 
+  // Telas que mostram background e logotipo
+  const staticScreens = ['START', 'HOW_IT_WORKS', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'MID_MISSION_REWARD', 'VIDEO_REWARD', 'SUCCESS'];
+  const showBackground = staticScreens.includes(currentStep);
+
   return (
     <ErrorBoundary>
-    <AppLayout>
+    <AppLayout showBackground={showBackground}>
     <div className="flex-1 flex flex-col">
       {/* Main Content Layer */}
       <div className="relative z-10 w-full h-full flex flex-col">
