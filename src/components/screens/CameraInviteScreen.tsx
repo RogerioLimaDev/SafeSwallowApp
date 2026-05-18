@@ -80,6 +80,16 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
           <span>CÂMERA!</span>
         </button>
       </div>
+
+      {/* Personagem - canto inferior direito */}
+      <div className="absolute right-0 px-4 sm:px-8" style={{ bottom: '2.5rem' }}>
+        <img 
+          src="/images/responsivo/TelaCamera/PersonagemTelaCamera.png" 
+          alt="Personagem"
+          className="h-auto w-auto object-contain"
+          style={{ width: 'auto', maxWidth: 'min(40vw, 200px)', maxHeight: '20vh' }}
+        />
+      </div>
     </motion.div>
   );
 };
