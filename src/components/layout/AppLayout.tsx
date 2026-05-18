@@ -5,6 +5,8 @@ interface LayoutProps {
 }
 
 export function AppLayout({ children }: LayoutProps) {
+  // Margem do logo = 50% da distância do botão à margem inferior (~6rem = 96px, 50% = 48px = pt-12)
+  // Logo ampliado em 30%
   return (
     <div className="fixed inset-0 flex flex-col">
       {/* Fundo/base - ocupa toda a tela */}
@@ -19,11 +21,11 @@ export function AppLayout({ children }: LayoutProps) {
       />
 
       {/* Logotipo - parte superior */}
-      <div className="relative z-10 w-full flex justify-center pt-4 sm:pt-6 px-4">
+      <div className="relative z-10 w-full flex justify-center pt-10 sm:pt-12 px-4">
         <img 
           src="/images/responsivo/ElementosComuns/logotipo.png" 
           alt="SafeSwallow"
-          className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+          className="h-20 sm:h-24 md:h-28 w-auto object-contain"
         />
       </div>
 
