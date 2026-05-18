@@ -77,6 +77,16 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
         </div>
       </div>
 
+      {/* Personagem - centralizado abaixo do grid */}
+      <div className="absolute left-0 right-0 flex justify-center" style={{ bottom: '2.5rem' }}>
+        <img 
+          src="/images/responsivo/TelaCaixas/PersonagemTelaCaixas.png" 
+          alt="Personagem"
+          className="h-auto w-auto object-contain"
+          style={{ width: 'auto', maxWidth: 'min(50vw, 250px)', maxHeight: '20vh' }}
+        />
+      </div>
+
       {/* Bottom spacer - increased to prevent collision with character */}
       <div className="h-[25%]" />
     </motion.div>
