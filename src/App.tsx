@@ -81,7 +81,7 @@ class ErrorBoundary extends React.Component<
 }
 
 // --- Components ---
-// import UnsupportedDeviceScreen from './components/screens/UnsupportedDeviceScreen';
+import UnsupportedDeviceScreen from './components/screens/UnsupportedDeviceScreen';
 import { AppLayout } from './components/layout/AppLayout';
 import { StartScreen } from './components/screens/StartScreen';
 import { HowItWorksScreen } from './components/screens/HowItWorksScreen';
@@ -287,9 +287,8 @@ export default function App() {
       
       let success = false;
       
-      if (/* !skipAI && */ imageData) {
-        // success = await verifyWaterWithGemini(imageData);
-        success = true; // Gemini desabilitado
+      if (!skipAI && imageData) {
+        success = await verifyWaterWithGemini(imageData);
       } else {
         // Skip AI verification
         success = true;
@@ -350,9 +349,8 @@ export default function App() {
       
       let success = false;
       
-      if (/* !skipAI && */ imageData) {
-        // success = await verifyTongueWithGemini(imageData);
-        success = true; // Gemini desabilitado
+      if (!skipAI && imageData) {
+        success = await verifyTongueWithGemini(imageData);
       } else {
         // Skip AI verification
         success = true;
@@ -420,6 +418,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
+    <UnsupportedDeviceScreen />
     <AppLayout showBackground={showBackground} logoPosition={logoPosition}>
     <div className="flex-1 flex flex-col">
       {/* Main Content Layer */}
