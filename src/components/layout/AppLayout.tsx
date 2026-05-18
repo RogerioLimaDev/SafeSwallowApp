@@ -25,7 +25,7 @@ export function AppLayout({ children }: LayoutProps) {
         <img 
           src="/images/responsivo/ElementosComuns/logotipo.png" 
           alt="SafeSwallow"
-          className="h-20 sm:h-24 md:h-28 w-auto object-contain"
+          className="h-24 sm:h-28 md:h-32 w-auto object-contain"
         />
       </div>
 
