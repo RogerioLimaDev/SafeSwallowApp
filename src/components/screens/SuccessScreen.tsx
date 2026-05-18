@@ -88,6 +88,16 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
           <span>FINALIZAR</span>
         </button>
       </div>
+
+      {/* Personagem - canto inferior esquerdo */}
+      <div className="absolute left-0 px-4 sm:px-8" style={{ bottom: '2.5rem' }}>
+        <img 
+          src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
+          alt="Personagem"
+          className="h-auto w-auto object-contain"
+          style={{ width: 'auto', maxWidth: 'min(40vw, 200px)', maxHeight: '20vh' }}
+        />
+      </div>
     </motion.div>
   );
 };
