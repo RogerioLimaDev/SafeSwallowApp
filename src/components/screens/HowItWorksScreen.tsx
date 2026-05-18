@@ -40,12 +40,13 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
           </p>
         </div>
 
-        {/* Gráfico de pills - mesma largura do texto */}
+        {/* Gráfico de pills - mesma largura do texto, responsivo */}
         <div className="mt-4 w-full max-w-[95%]">
           <img 
             src="/images/responsivo/TelaComoFunciona/GraficoPilulas.png" 
             alt="Gráfico de tamanhos de pílulas"
-            className="w-full max-w-[400px] h-auto"
+            className="w-full h-auto"
+            style={{ maxWidth: 'min(95vw, 450px)' }}
           />
         </div>
       </div>
