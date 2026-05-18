@@ -56,12 +56,12 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
       {/* Container com personagem e botão */}
       <div className="w-full">
         {/* Personagem - alinhado à base da tela */}
-        <div className="absolute bottom-6 left-4 sm:left-8">
+        <div className="absolute left-0 right-0 px-4 sm:px-8" style={{ bottom: '1.5rem' }}>
           <img 
             src="/images/responsivo/TelaComoFunciona/perosnagemComoFunciona.png" 
             alt="Personagem"
             className="h-auto max-h-[220px] w-auto object-contain"
-            style={{ width: 'auto', maxWidth: '40vw' }}
+            style={{ width: 'auto', maxWidth: 'min(40vw, 200px)' }}
           />
         </div>
 
