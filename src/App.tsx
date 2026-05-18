@@ -81,7 +81,8 @@ class ErrorBoundary extends React.Component<
 }
 
 // --- Components ---
-import UnsupportedDeviceScreen from './components/screens/UnsupportedDeviceScreen';
+// import UnsupportedDeviceScreen from './components/screens/UnsupportedDeviceScreen';
+import { AppLayout } from './components/layout/AppLayout';
 import { StartScreen } from './components/screens/StartScreen';
 import { HowItWorksScreen } from './components/screens/HowItWorksScreen';
 import { CandyBoxSelect } from './components/screens/CandyBoxSelect';
@@ -286,8 +287,9 @@ export default function App() {
       
       let success = false;
       
-      if (!skipAI && imageData) {
-        success = await verifyWaterWithGemini(imageData);
+      if (/* !skipAI && */ imageData) {
+        // success = await verifyWaterWithGemini(imageData);
+        success = true; // Gemini desabilitado
       } else {
         // Skip AI verification
         success = true;
@@ -348,8 +350,9 @@ export default function App() {
       
       let success = false;
       
-      if (!skipAI && imageData) {
-        success = await verifyTongueWithGemini(imageData);
+      if (/* !skipAI && */ imageData) {
+        // success = await verifyTongueWithGemini(imageData);
+        success = true; // Gemini desabilitado
       } else {
         // Skip AI verification
         success = true;
@@ -412,18 +415,10 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-    <UnsupportedDeviceScreen />
-    <div className={`fixed inset-0 overflow-hidden font-sans ${
-      currentStep === 'START' ? 'bg-main-gradient' : 
-      currentStep === 'HOW_IT_WORKS' ? 'bg-how-it-works' : 
-      currentStep === 'CANDY_BOX_SELECT' ? 'bg-with-logo' :
-      currentStep === 'CAMERA_INVITE' ? 'bg-camera-invite' :
-      currentStep === 'MID_MISSION_REWARD' || currentStep === 'VIDEO_REWARD' ? 'bg-black' :
-      currentStep === 'SUCCESS' ? 'bg-success' :
-      isCameraActive ? 'bg-transparent' : 'bg-black'
-    }`}>
+    <AppLayout>
+    <div className="flex-1 flex flex-col">
       {/* Main Content Layer */}
-      <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full h-full flex flex-col">
         <AnimatePresence mode="wait">
           {currentStep === 'START' && <StartScreen onStart={setCurrentStep} playSound={playButtonClick} />}
           {currentStep === 'HOW_IT_WORKS' && <HowItWorksScreen onNext={(step) => { playButtonClick(); setCurrentStep(step); }} />}
@@ -530,6 +525,7 @@ export default function App() {
         )}
       </div>
     </div>
+    </AppLayout>
     </ErrorBoundary>
   );
 }
