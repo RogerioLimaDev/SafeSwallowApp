@@ -18,7 +18,7 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
       style={{ paddingBottom: 'max(6rem, env(safe-area-inset-bottom, 6rem))' }}
     >
       {/* Container principal com texto e gráfico */}
-      <div className="flex flex-col items-start pt-2 max-w-[60%]">
+      <div className="flex flex-col items-start pt-2 max-w-full">
         <h2 className="font-baruta text-2xl sm:text-3xl mb-4 text-white text-left w-full leading-tight">
           <span className="block whitespace-nowrap">Aprendendo a engolir</span>
           <span className="block">comprimidos</span>
@@ -40,12 +40,12 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
           </p>
         </div>
 
-        {/* Gráfico de pills - abaixo do texto */}
-        <div className="mt-4 w-full">
+        {/* Gráfico de pills - mesma largura do texto */}
+        <div className="mt-4 w-full max-w-[95%]">
           <img 
             src="/images/responsivo/TelaComoFunciona/GraficoPilulas.png" 
             alt="Gráfico de tamanhos de pílulas"
-            className="w-full max-w-[200px] h-auto"
+            className="w-full max-w-[400px] h-auto"
           />
         </div>
       </div>
