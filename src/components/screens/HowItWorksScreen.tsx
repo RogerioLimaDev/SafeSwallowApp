@@ -46,7 +46,7 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
             src="/images/responsivo/TelaComoFunciona/GraficoPilulas.png" 
             alt="Gráfico de tamanhos de pílulas"
             className="w-full h-auto"
-            style={{ maxWidth: 'min(95vw, 450px)' }}
+            style={{ maxWidth: 'min(95vw, 800px)' }}
           />
         </div>
       </div>
