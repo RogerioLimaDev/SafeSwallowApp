@@ -17,7 +17,8 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
       className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col p-6 sm:p-8"
       style={{ paddingBottom: 'max(6rem, env(safe-area-inset-bottom, 6rem))' }}
     >
-      <div className="max-w-xl w-full flex flex-col items-start pt-2">
+      {/* Container principal com texto e gráfico */}
+      <div className="flex flex-col items-start pt-2 max-w-[60%]">
         <h2 className="font-baruta text-2xl sm:text-3xl mb-4 text-white text-left w-full leading-tight">
           <span className="block whitespace-nowrap">Aprendendo a engolir</span>
           <span className="block">comprimidos</span>
@@ -38,17 +39,39 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
             Com o apoio de um adulto, a maioria consegue adquirir essa habilidade com sucesso.
           </p>
         </div>
+
+        {/* Gráfico de pills - abaixo do texto */}
+        <div className="mt-4 w-full">
+          <img 
+            src="/images/responsivo/TelaComoFunciona/GraficoPilulas.png" 
+            alt="Gráfico de tamanhos de pílulas"
+            className="w-full max-w-[200px] h-auto"
+          />
+        </div>
       </div>
 
       <div className="flex-1" />
 
-      <div className="max-w-xl w-full flex justify-end pr-2 sm:pr-4">
-        <button 
-          onClick={() => onNext('CANDY_BOX_SELECT')}
-          className="btn-3d-yellow w-full max-w-[120px] sm:max-w-[160px] text-lg sm:text-xl !py-2 flex items-center justify-center !rounded-[12px]"
-        >
-          INICIAR
-        </button>
+      {/* Container com personagem e botão */}
+      <div className="flex items-end justify-between w-full">
+        {/* Personagem - lado esquerdo, na altura do botão */}
+        <div className="w-[35%] flex items-end">
+          <img 
+            src="/images/responsivo/TelaComoFunciona/perosnagemComoFunciona.png" 
+            alt="Personagem"
+            className="w-full h-auto max-h-[180px] object-contain"
+          />
+        </div>
+
+        {/* Botão - lado direito */}
+        <div className="w-[50%] flex justify-end pr-2 sm:pr-4">
+          <button 
+            onClick={() => onNext('CANDY_BOX_SELECT')}
+            className="btn-3d-yellow w-full max-w-[120px] sm:max-w-[160px] text-lg sm:text-xl !py-2 flex items-center justify-center !rounded-[12px]"
+          >
+            INICIAR
+          </button>
+        </div>
       </div>
     </motion.div>
   );
