@@ -53,18 +53,18 @@ export const HowItWorksScreen: React.FC<HowItWorksScreenProps> = ({ onNext }) =>
       <div className="flex-1" />
 
       {/* Container com personagem e botão */}
-      <div className="flex items-end justify-between w-full">
-        {/* Personagem - lado esquerdo, na altura do botão */}
-        <div className="w-[35%] flex items-end">
+      <div className="flex items-end justify-between w-full gap-4">
+        {/* Personagem - centralizado com o botão, 30% maior */}
+        <div className="flex-1 flex justify-start">
           <img 
             src="/images/responsivo/TelaComoFunciona/perosnagemComoFunciona.png" 
             alt="Personagem"
-            className="w-full h-auto max-h-[180px] object-contain"
+            className="w-full h-auto max-h-[220px] object-contain"
           />
         </div>
 
         {/* Botão - lado direito */}
-        <div className="w-[50%] flex justify-end pr-2 sm:pr-4">
+        <div className="flex-1 flex justify-end pr-2 sm:pr-4">
           <button 
             onClick={() => onNext('CANDY_BOX_SELECT')}
             className="btn-3d-yellow w-full max-w-[120px] sm:max-w-[160px] text-lg sm:text-xl !py-2 flex items-center justify-center !rounded-[12px]"
