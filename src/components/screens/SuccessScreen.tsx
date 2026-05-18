@@ -90,7 +90,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
       </div>
 
       {/* Personagem - canto inferior esquerdo */}
-      <div className="absolute left-0 px-4 sm:px-8 z-20" style={{ bottom: '2.5rem' }}>
+      <div className="absolute left-0 px-4 sm:px-8 z-50" style={{ bottom: '2.5rem' }}>
         <img 
           src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
           alt="Personagem"
