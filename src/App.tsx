@@ -414,7 +414,7 @@ export default function App() {
   };
 
   // Telas que mostram background e logotipo
-  const staticScreens = ['START', 'HOW_IT_WORKS', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'MID_MISSION_REWARD', 'VIDEO_REWARD', 'SUCCESS'];
+  const staticScreens = ['START', 'HOW_IT_WORKS', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'SUCCESS'];
   const showBackground = staticScreens.includes(currentStep);
 
   return (
