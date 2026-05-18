@@ -81,6 +81,7 @@ class ErrorBoundary extends React.Component<
 }
 
 // --- Components ---
+import UnsupportedDeviceScreen from './components/screens/UnsupportedDeviceScreen';
 import { StartScreen } from './components/screens/StartScreen';
 import { HowItWorksScreen } from './components/screens/HowItWorksScreen';
 import { CandyBoxSelect } from './components/screens/CandyBoxSelect';
@@ -411,6 +412,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
+    <UnsupportedDeviceScreen />
     <div className={`fixed inset-0 overflow-hidden font-sans ${
       currentStep === 'START' ? 'bg-main-gradient' : 
       currentStep === 'HOW_IT_WORKS' ? 'bg-how-it-works' : 
