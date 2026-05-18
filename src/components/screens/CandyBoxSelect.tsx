@@ -83,7 +83,7 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
           src="/images/responsivo/TelaCaixas/PersonagemTelaCaixas.png" 
           alt="Personagem"
           className="h-auto w-auto object-contain"
-          style={{ width: 'auto', maxWidth: 'min(50vw, 250px)', maxHeight: '20vh', marginLeft: '5%' }}
+          style={{ width: 'auto', maxWidth: 'min(50vw, 250px)', maxHeight: '20vh', marginLeft: '10%' }}
         />
       </div>
 
