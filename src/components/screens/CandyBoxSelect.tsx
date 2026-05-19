@@ -54,8 +54,8 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
       exit={{ opacity: 0 }}
       className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between px-4 py-8 pb-[max(4rem,env(safe-area-inset-bottom,4rem))]"
     >
-      {/* Top spacer for logo in background */}
-      <div className="h-[15%]" />
+      {/* Top spacer - same distance as logo from top margin */}
+      <div className="h-10 sm:h-12" />
 
       {/* Middle: Grid of Boxes - further reduced vertical size to bring rows closer */}
       <div className="relative w-full max-w-5xl flex-grow flex items-center justify-center px-4">
@@ -87,8 +87,8 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
         />
       </div>
 
-      {/* Bottom spacer - increased to prevent collision with character */}
-      <div className="h-[25%]" />
+      {/* Bottom spacer - reduced to give more space to character */}
+      <div className="h-16 sm:h-20" />
     </motion.div>
   );
 };
