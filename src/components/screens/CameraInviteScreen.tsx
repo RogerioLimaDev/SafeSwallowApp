@@ -40,12 +40,11 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
     >
       {/* Speech Bubble */}
       <div 
-        className="relative rounded-[40px] px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 sm:gap-6 translate-y-[-30px] sm:translate-y-[-40px]"
+        className="relative rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8 translate-y-[-40px]"
         style={{ 
           backgroundColor: PURPLE_COLOR,
-          width: 'min(480px, 90vw)',
-          height: 'auto',
-          minHeight: 'min(300px, 70vw)'
+          width: 'min(480px, 85vw)',
+          height: 'min(432px, 76.5vw)'
         }}
       >
         {/* Bubble Tail - Sharp triangle pointing towards character */}
@@ -57,8 +56,8 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
           }}
         />
         
-        <div className="relative z-10 w-full text-left pl-2 pr-0">
-          <p className="font-nunito font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-tight">
+        <div className="relative z-10 w-full text-left pl-4 pr-0">
+          <p className="font-nunito font-semibold text-[20px] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
             Pronto para começar?<br />
             Ative a câmera do seu<br />
             aparelho para iniciar.
@@ -67,11 +66,11 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
         
         <button 
           onClick={handleStart}
-          className="relative text-white font-baruta font-bold text-base sm:text-lg md:text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-8 sm:px-12 pt-3 pb-3 sm:pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+          className="relative text-white font-baruta font-bold text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-14 pt-3 pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
           style={{ 
             backgroundColor: '#ff9241',
             boxShadow: '2px 3px 0px #b24e1f',
-            width: '50%'
+            width: '48%'
           }}
         >
           <div className="flex items-center gap-1">
