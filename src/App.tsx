@@ -412,14 +412,17 @@ export default function App() {
   };
 
   // Telas que mostram background e logotipo
-  const staticScreens = ['START', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'SUCCESS'];
-  const showBackground = staticScreens.includes(currentStep);
+  const staticScreensWithLogo = ['START', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'SUCCESS'];
+  const staticScreensWithBgOnly = ['HOW_IT_WORKS'];
+  
+  const showBackground = staticScreensWithLogo.includes(currentStep) || staticScreensWithBgOnly.includes(currentStep);
+  const showLogo = staticScreensWithLogo.includes(currentStep);
   const logoPosition = currentStep === 'START' ? 'center' : 'top';
 
   return (
     <ErrorBoundary>
     <UnsupportedDeviceScreen />
-    <AppLayout showBackground={showBackground} logoPosition={logoPosition}>
+    <AppLayout showBackground={showBackground} showLogo={showLogo} logoPosition={logoPosition}>
     <div className="flex-1 flex flex-col">
       {/* Main Content Layer */}
       <div className="relative z-10 w-full h-full flex flex-col">
