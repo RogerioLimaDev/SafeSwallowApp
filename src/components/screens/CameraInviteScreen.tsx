@@ -58,7 +58,7 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
             }}
           />
           
-          <div className="relative z-10 w-[90%] flex justify-center bg-red-500">
+          <div className="relative z-10 w-[90%] flex justify-center bg-red-500 py-4">
             <div className="text-center sm:text-left w-full">
               <p className="font-nunito font-semibold text-[4vw] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
                 Pronto para começar?<br />
