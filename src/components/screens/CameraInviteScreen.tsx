@@ -36,13 +36,13 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex items-end justify-center pb-[2rem] sm:pb-8"
+      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex items-center justify-center"
     >
       {/* Container com personagem e balão */}
-      <div className="relative w-full max-w-[600px] px-4">
-        {/* Balão de fala */}
+      <div className="relative w-full max-w-[600px] px-4 flex flex-col">
+        {/* Balão de fala - acima do personagem */}
         <div 
-          className="relative rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8 translate-y-[-40px]"
+          className="relative rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8"
           style={{ 
             backgroundColor: PURPLE_COLOR,
             width: 'min(480px, 85vw)',
@@ -85,8 +85,8 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
           </button>
         </div>
 
-        {/* Personagem - canto inferior esquerdo */}
-        <div className="absolute left-0 bottom-0">
+        {/* Personagem - abaixo do balão */}
+        <div className="flex justify-start mt-[-1rem]">
           <img 
             src="/images/responsivo/TelaCamera/PersonagemTelaCamera.png" 
             alt="Personagem"
