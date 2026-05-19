@@ -54,8 +54,9 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
       exit={{ opacity: 0 }}
       className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col px-4"
     >
-      {/* Grid centralizado verticalmente entre logo e personagem */}
-      <div className="flex-1 flex flex-col justify-center pb-[8rem] pt-6">
+      {/* Grid centralizado entre logo (topo) e personagem (baixo) */}
+      <div className="absolute w-full" style={{ top: '4rem', bottom: '4rem' }}>
+        <div className="flex flex-col justify-between h-full">
 
         {/* Middle: Grid of Boxes */}
         <div className="relative w-full max-w-5xl flex items-center justify-center px-4">
@@ -75,6 +76,7 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
             {/* Remaining 7 Cells: Pill Boxes */}
             {boxes}
           </div>
+        </div>
         </div>
       </div>
 
