@@ -36,61 +36,64 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-center p-8"
+      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex items-end justify-center pb-[2rem] sm:pb-8"
     >
-      {/* Speech Bubble */}
-      <div 
-        className="relative rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8 translate-y-[-40px]"
-        style={{ 
-          backgroundColor: PURPLE_COLOR,
-          width: 'min(480px, 85vw)',
-          height: 'min(432px, 76.5vw)'
-        }}
-      >
-        {/* Bubble Tail - Sharp triangle pointing towards character */}
+      {/* Container com personagem e balão */}
+      <div className="relative w-full max-w-[600px] px-4">
+        {/* Balão de fala */}
         <div 
-          className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-20 h-20" 
+          className="relative rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8 translate-y-[-40px]"
           style={{ 
             backgroundColor: PURPLE_COLOR,
-            clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
-          }}
-        />
-        
-        <div className="relative z-10 w-full flex justify-center">
-          <div className="text-center sm:text-left">
-            <p className="font-nunito font-semibold text-[4vw] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
-              Pronto para começar?<br />
-              Ative a câmera do seu<br />
-              aparelho para iniciar.
-            </p>
-          </div>
-        </div>
-        
-        <button 
-          onClick={handleStart}
-          className="relative text-white font-baruta font-bold text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-14 pt-3 pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
-          style={{ 
-            backgroundColor: '#ff9241',
-            boxShadow: '2px 3px 0px #b24e1f',
-            width: '48%'
+            width: 'min(480px, 85vw)',
+            height: 'min(432px, 76.5vw)'
           }}
         >
-          <div className="flex items-center gap-1">
-            <span>LIGAR</span>
-            <span className="text-2xl">📸</span>
+          {/* Bubble Tail - Sharp triangle pointing towards character */}
+          <div 
+            className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-20 h-20" 
+            style={{ 
+              backgroundColor: PURPLE_COLOR,
+              clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
+            }}
+          />
+          
+          <div className="relative z-10 w-full flex justify-center">
+            <div className="text-center sm:text-left">
+              <p className="font-nunito font-semibold text-[4vw] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
+                Pronto para começar?<br />
+                Ative a câmera do seu<br />
+                aparelho para iniciar.
+              </p>
+            </div>
           </div>
-          <span>CÂMERA!</span>
-        </button>
-      </div>
+          
+          <button 
+            onClick={handleStart}
+            className="relative text-white font-baruta font-bold text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-14 pt-3 pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+            style={{ 
+              backgroundColor: '#ff9241',
+              boxShadow: '2px 3px 0px #b24e1f',
+              width: '48%'
+            }}
+          >
+            <div className="flex items-center gap-1">
+              <span>LIGAR</span>
+              <span className="text-2xl">📸</span>
+            </div>
+            <span>CÂMERA!</span>
+          </button>
+        </div>
 
-      {/* Personagem - canto inferior esquerdo */}
-      <div className="absolute left-0 px-4 sm:px-8" style={{ bottom: '2.5rem' }}>
-        <img 
-          src="/images/responsivo/TelaCamera/PersonagemTelaCamera.png" 
-          alt="Personagem"
-          className="h-auto w-auto object-contain"
-          style={{ width: 'auto', maxWidth: 'min(40vw, 200px)', maxHeight: '20vh' }}
-        />
+        {/* Personagem - canto inferior esquerdo */}
+        <div className="absolute left-0 bottom-0">
+          <img 
+            src="/images/responsivo/TelaCamera/PersonagemTelaCamera.png" 
+            alt="Personagem"
+            className="h-auto w-auto object-contain"
+            style={{ width: 'auto', maxWidth: 'min(40vw, 200px)', maxHeight: '20vh' }}
+          />
+        </div>
       </div>
     </motion.div>
   );
