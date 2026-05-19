@@ -412,7 +412,7 @@ export default function App() {
   };
 
   // Telas que mostram background e logotipo
-  const staticScreens = ['START', 'HOW_IT_WORKS', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'SUCCESS'];
+  const staticScreens = ['START', 'CANDY_BOX_SELECT', 'CAMERA_INVITE', 'SUCCESS'];
   const showBackground = staticScreens.includes(currentStep);
   const logoPosition = currentStep === 'START' ? 'center' : 'top';
 
