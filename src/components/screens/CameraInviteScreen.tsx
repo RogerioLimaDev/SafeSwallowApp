@@ -57,8 +57,8 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
         />
         
         <div className="relative z-10 w-full flex justify-center">
-          <div className="text-left pl-0">
-            <p className="font-nunito font-semibold text-[20px] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
+          <div className="text-center sm:text-left">
+            <p className="font-nunito font-semibold text-[4vw] sm:text-[26px] md:text-[28px] lg:text-[32px] text-white leading-tight">
               Pronto para começar?<br />
               Ative a câmera do seu<br />
               aparelho para iniciar.
