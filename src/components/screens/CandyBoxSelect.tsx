@@ -52,30 +52,30 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col items-center justify-between px-4 py-8 pb-[max(4rem,env(safe-area-inset-bottom,4rem))]"
+      className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col px-4"
     >
-      {/* Grid centralizado automaticamente entre logo e personagem */}
-      <div className="flex-1 flex flex-col justify-center">
+      {/* Grid centralizado verticalmente entre logo e personagem */}
+      <div className="flex-1 flex flex-col justify-center pb-[8rem] pt-6">
 
-      {/* Middle: Grid of Boxes - further reduced vertical size to bring rows closer */}
-      <div className="relative w-full max-w-5xl flex-grow flex items-center justify-center px-4">
-        <div className="grid grid-cols-4 grid-rows-2 gap-0 w-full h-full max-h-[40vh]">
-          {/* First Cell: Instruction Text */}
-          <div 
-            className="flex items-center justify-center h-full"
-            style={{ padding: BOX_PADDING }}
-          >
-            <div className="font-baruta text-base sm:text-lg text-white leading-[0.85] text-left">
-              CLIQUE<br />
-              <span className="whitespace-nowrap">NA CAIXA</span><br />
-              PARA JOGAR
+        {/* Middle: Grid of Boxes */}
+        <div className="relative w-full max-w-5xl flex items-center justify-center px-4">
+          <div className="grid grid-cols-4 grid-rows-2 gap-0 w-full max-h-[40vh]">
+            {/* First Cell: Instruction Text */}
+            <div 
+              className="flex items-center justify-center"
+              style={{ padding: BOX_PADDING }}
+            >
+              <div className="font-baruta text-base sm:text-lg text-white leading-[0.85] text-left">
+                CLIQUE<br />
+                <span className="whitespace-nowrap">NA CAIXA</span><br />
+                PARA JOGAR
+              </div>
             </div>
-          </div>
 
-          {/* Remaining 7 Cells: Pill Boxes */}
-          {boxes}
+            {/* Remaining 7 Cells: Pill Boxes */}
+            {boxes}
+          </div>
         </div>
-      </div>
       </div>
 
       {/* Personagem - centralizado abaixo do grid */}
