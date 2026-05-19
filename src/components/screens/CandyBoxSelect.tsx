@@ -55,11 +55,11 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
       className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex flex-col px-4"
     >
       {/* Grid centralizado entre logo (topo) e personagem (baixo) */}
-      <div className="absolute w-full" style={{ top: '4rem', bottom: '4rem' }}>
+      <div className="absolute inset-0" style={{ top: '4rem', bottom: '4rem' }}>
         <div className="flex flex-col justify-between h-full">
 
-        {/* Middle: Grid of Boxes */}
-        <div className="relative w-full max-w-5xl flex items-center justify-center px-4">
+        {/* Middle: Grid of Boxes - centralizado horizontalmente */}
+        <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center px-4">
           <div className="grid grid-cols-4 grid-rows-2 gap-0 w-full max-h-[40vh]">
             {/* First Cell: Instruction Text */}
             <div 
