@@ -302,9 +302,9 @@ export default function App() {
               }
             }, 2000);
           } else {
-            // Gemini detected drinking - show feedback then complete
+            // Gemini detected drinking - show success message in overlay
             console.log("Gemini confirmed drinking - completing phase!");
-            showNotification("Bebeu direitinho!\nPronto para próxima etapa!", "success");
+            setGeminiMessage("PERFEITO! BEBEU TUDO!");
             playCelebration();
             setTimeout(() => {
               handleSuccess();
