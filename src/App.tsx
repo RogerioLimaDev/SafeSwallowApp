@@ -238,6 +238,31 @@ export default function App() {
     setIsCameraActive(false);
   }, []);
 
+  // Handle head tilt start - triggers Gemini verification when user starts tilting head
+  const handleHeadTiltStart = useCallback(async () => {
+    console.log("Head tilt started - triggering Gemini verification...");
+    try {
+      const videoElement = document.querySelector('video');
+      const videoRefObj = { current: videoElement };
+      const imageData = captureFrame(videoRefObj as any);
+      
+      if (imageData) {
+        const isDrinking = await verifyWaterWithGemini(imageData);
+        console.log("Gemini verification result:", isDrinking);
+        
+        if (!isDrinking) {
+          // User is not drinking - show error and reset
+          showNotification("Não detectei o copo! Tente novamente.", "error");
+          setHeadTiltTimer(0);
+        }
+        // If isDrinking is true, continue and let the timer complete
+      }
+    } catch (error) {
+      console.error("Gemini verification error:", error);
+      // On error, we continue anyway (fallback to posture-only)
+    }
+  }, [setHeadTiltTimer]);
+
   // --- Hook Integration ---
   const {
     videoRef,
@@ -256,6 +281,7 @@ export default function App() {
     isCelebrating,
     onStepAdvance: handleStepAdvance,
     onSuccess: handleSuccess,
+    onHeadTiltStart: handleHeadTiltStart,
     onError: (error) => {
       showNotification(`Erro na câmera: ${error}`, "error");
       setIsCameraActive(false);

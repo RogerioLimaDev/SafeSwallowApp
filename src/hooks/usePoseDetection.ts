@@ -10,6 +10,7 @@ interface UsePoseDetectionProps {
   isCelebrating: boolean;
   onStepAdvance: (nextStep: MissionStep) => void;
   onSuccess: () => void;
+  onHeadTiltStart?: () => void;
   onError?: (error: string) => void;
 }
 
@@ -19,6 +20,7 @@ export const usePoseDetection = ({
   isCelebrating,
   onStepAdvance,
   onSuccess,
+  onHeadTiltStart,
   onError
 }: UsePoseDetectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -26,10 +28,17 @@ export const usePoseDetection = ({
   const [isCameraLoading, setIsCameraLoading] = useState(false);
   const isCameraLoadingRef = useRef(false);
   const onErrorRef = useRef(onError);
+  const onHeadTiltStartRef = useRef(onHeadTiltStart);
+  const headTiltStartedRef = useRef(false);
 
   useEffect(() => {
     onErrorRef.current = onError;
   }, [onError]);
+
+  useEffect(() => {
+    onHeadTiltStartRef.current = onHeadTiltStart;
+  }, [onHeadTiltStart]);
+
   const [metrics, setMetrics] = useState<PostureMetrics>({
     shoulderAngle: 0,
     spineAngle: 0,
@@ -129,6 +138,12 @@ export const usePoseDetection = ({
           if (currentHeadAngle > 18) {
             setHeadTiltTimer(prev => {
               const next = prev + 1;
+              
+              // Trigger Gemini verification when head tilt starts (prev goes from 0 to 1)
+              if (prev === 0 && onHeadTiltStartRef.current) {
+                onHeadTiltStartRef.current();
+              }
+              
               if (next >= 150) {
                 onSuccessRef.current();
               }
@@ -136,6 +151,7 @@ export const usePoseDetection = ({
             });
           } else {
             setHeadTiltTimer(0);
+            headTiltStartedRef.current = false;
           }
         }
 
