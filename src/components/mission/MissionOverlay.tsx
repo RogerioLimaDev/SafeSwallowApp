@@ -119,7 +119,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
       instruction: 'Coloque a água na boca, levante a cabeça e engula o comprimido.',
       color: levelColor,
       icon: <CheckCircle2 className="w-6 h-6" />,
-      progress: (headTiltTimer / 45) * 100,
+      progress: (headTiltTimer / 150) * 100,
       status: metrics.headAngle > 18 ? 'ISSO! MANTENHA!' : 'MAIS ALTO! (>18°)'
     }
   }[currentStep as keyof typeof stepConfig] || {
