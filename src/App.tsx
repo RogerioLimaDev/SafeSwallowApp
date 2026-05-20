@@ -275,19 +275,31 @@ export default function App() {
 
   // Effect to trigger Gemini verification when head tilt starts (timer goes from 0 to 1)
   useEffect(() => {
+    // Use a ref to track if we're still in SWALLOW when the async operation completes
+    const stillInSwallow = currentStep === 'SWALLOW';
+    
     if (currentStep === 'SWALLOW' && headTiltTimer === 1 && !geminiVerified) {
       console.log("Head tilt started - triggering Gemini verification...");
       setGeminiVerified(true);
       
       verifyWaterWithGeminiWithReset()
         .then(isDrinking => {
+          // Check if we're still in SWALLOW step before updating state
+          if (currentStep !== 'SWALLOW') {
+            console.log("No longer in SWALLOW step, skipping result handling");
+            return;
+          }
+          
           console.log("Gemini verification result:", isDrinking);
           if (!isDrinking) {
             setGeminiMessage("Não detectei o copo! Tente novamente.");
             setTimeout(() => {
-              setHeadTiltTimer(0);
-              setGeminiVerified(false);
-              setGeminiMessage(null);
+              // Check again before resetting
+              if (currentStep === 'SWALLOW') {
+                setHeadTiltTimer(0);
+                setGeminiVerified(false);
+                setGeminiMessage(null);
+              }
             }, 2000);
           } else {
             // Gemini detected drinking - complete the phase immediately
