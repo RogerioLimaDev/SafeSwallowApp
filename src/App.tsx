@@ -129,6 +129,7 @@ export default function App() {
 
   // State to track if Gemini verification has been triggered for current swallow attempt
   const [geminiVerified, setGeminiVerified] = useState(false);
+  const [geminiMessage, setGeminiMessage] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem('safe_swallow_stats', JSON.stringify(levelStats));
@@ -282,15 +283,19 @@ export default function App() {
         .then(isDrinking => {
           console.log("Gemini verification result:", isDrinking);
           if (!isDrinking) {
-            showNotification("Não detectei o copo! Tente novamente.", "error");
-            setHeadTiltTimer(0);
-            setGeminiVerified(false);
+            setGeminiMessage("COPO NÃO DETECTADO");
+            setTimeout(() => {
+              setHeadTiltTimer(0);
+              setGeminiVerified(false);
+              setGeminiMessage(null);
+            }, 2000);
+          } else {
+            setGeminiMessage("BEBENDO!");
+            setTimeout(() => setGeminiMessage(null), 1000);
           }
-          // If isDrinking is true, continue and let the timer complete
         })
         .catch(error => {
           console.error("Gemini verification error:", error);
-          // On error, we continue anyway (fallback to posture-only)
         });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -300,6 +305,7 @@ export default function App() {
   useEffect(() => {
     if (currentStep === 'SWALLOW') {
       setGeminiVerified(false);
+      setGeminiMessage(null);
     }
   }, [currentStep]);
 
@@ -565,6 +571,7 @@ export default function App() {
               isVerifyingTongue={isVerifyingTongue}
               isCelebrating={isCelebrating}
               countdown={countdown}
+              geminiMessage={geminiMessage}
               onVerifyWater={handleVerifyWater}
               onVerifyTongue={handleVerifyTongue}
               onSuccess={handleSuccess}
