@@ -51,7 +51,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
         {/* Grid com balão (linha 1) e personagem+botão (linha 2) */}
         <div className="grid grid-rows-[auto_1fr] h-full">
           {/* Balão de fala - linha 1 */}
-          <div className="justify-self-center mt-4 sm:mt-8">
+          <div className="justify-self-center mt-8 sm:mt-16">
             {/* Container relativo para balão + flecha */}
             <div className="relative">
               <motion.div 
