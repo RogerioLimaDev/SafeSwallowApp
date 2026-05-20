@@ -262,7 +262,8 @@ export const CharacterRenderer: React.FC<{
   if (config.type === 'sprite' && config.spriteConfig) {
     const { frameCount, fps, frameWidth, frameHeight, totalFrames } = config.spriteConfig;
     const displayFrames = totalFrames || frameCount;
-    const spriteWidth = displayFrames * frameWidth;
+    const spriteWidth = frameCount * frameWidth; // Animation stops at last valid frame
+    const imageWidth = displayFrames * frameWidth; // Background-size uses full image
     const duration = frameCount / fps;
 
     return (
@@ -285,9 +286,9 @@ export const CharacterRenderer: React.FC<{
             width: 100%;
             height: 100%;
             background-image: url(${config.path});
-            background-size: ${spriteWidth}px ${frameHeight}px;
+            background-size: ${imageWidth}px ${frameHeight}px;
             background-repeat: no-repeat;
-            animation: spriteAnim-${frameCount} ${duration}s steps(${frameCount}, end) infinite;
+            animation: spriteAnim-${frameCount} ${duration}s steps(${frameCount}) infinite;
           }
         `}</style>
         <div className={`sprite-anim-${frameCount}`} />
