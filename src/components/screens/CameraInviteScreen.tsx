@@ -86,7 +86,7 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
         </div>
 
         {/* Personagem - na frente, abaixo do balão */}
-        <div className="absolute bottom-0 left-0 z-10" style={{ marginTop: '-1.5rem' }}>
+        <div className="absolute bottom-0 left-4 sm:left-8 z-10" style={{ marginTop: '-1.5rem' }}>
           <img 
             src="/images/responsivo/TelaCamera/PersonagemTelaCamera.png" 
             alt="Personagem"
