@@ -74,7 +74,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -99,7 +99,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -124,7 +124,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -149,7 +149,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -174,7 +174,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -199,7 +199,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
       spriteConfig: {
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
-        frameCount: 40,
+        frameCount: 39,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
