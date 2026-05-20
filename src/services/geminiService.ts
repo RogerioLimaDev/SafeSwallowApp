@@ -51,11 +51,13 @@ export const verifyWaterWithGemini = async (imageData: string) => {
           role: "user",
           parts: [
             {
-              text: `Look at this image from a swallowing training app.
+              text: `Analyze this image from a swallowing training app.
               
-              Is there a cup, glass, bottle, or any drinking container visible in this image?
+              Is there a PERSON HOLDING or ABOUT TO DRINK from a cup, glass, bottle, or water container?
               
-              That's it - just answer YES if you see any cup/container, NO if you don't.
+              Look for: a hand holding a cup, a cup near someone's face/mouth, or a drinking motion.
+              Answer YES only if you clearly see a person with a cup in their hand or near their mouth.
+              Answer NO if there's no cup, or if you see a cup but no person holding it.
               
               Reply ONLY 'YES' or 'NO'.`
             },
