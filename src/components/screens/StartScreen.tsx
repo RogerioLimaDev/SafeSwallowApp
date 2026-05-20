@@ -10,7 +10,7 @@ interface StartScreenProps {
 
 const CORRECT_PASSWORD = import.meta.env.VITE_PASSWORD || 'InovaHC26';
 
-export const StartScreen: React.FC<StartScreenProps> = ({ onStart, playSound }) => {
+export const StartScreen: React.FC<StartScreenProps> = ({ onStart, playSound, cameraWasAllowed }) => {
   const [password, setPassword] = useState('');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [error, setError] = useState(false);
