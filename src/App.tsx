@@ -302,9 +302,13 @@ export default function App() {
               }
             }, 2000);
           } else {
-            // Gemini detected drinking - complete the phase immediately
+            // Gemini detected drinking - show feedback then complete
             console.log("Gemini confirmed drinking - completing phase!");
-            handleSuccess();
+            showNotification("Bebeu direitinho!\nPronto para próxima etapa!", "success");
+            playCelebration();
+            setTimeout(() => {
+              handleSuccess();
+            }, 2000);
           }
         })
         .catch(error => {
