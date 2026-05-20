@@ -52,17 +52,29 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
         <div className="grid grid-rows-[auto_1fr] h-full">
           {/* Balão de fala - linha 1 */}
           <div className="justify-self-center mt-4 sm:mt-8">
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-center"
-              style={{ 
-                backgroundColor: BLUE_COLOR,
-                width: 'min(480px, 85vw)',
-                maxWidth: '480px'
-              }}
-            >
-              {/* Bubble Tail - Sharp triangle pointing towards character */}
+            {/* Container relativo para balão + flecha */}
+            <div className="relative">
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-center"
+                style={{ 
+                  backgroundColor: BLUE_COLOR,
+                  width: 'min(480px, 85vw)',
+                  maxWidth: '480px'
+                }}
+              >
+                <div className="relative z-10 w-[90%]">
+                  <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4 text-center">
+                    {title}
+                  </h3>
+                  <p className="font-nunito font-semibold text-[18px] sm:text-[24px] text-white leading-tight text-center">
+                    {message}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Bubble Tail - dentro do container relativo */}
               <div 
                 className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-12 sm:h-16" 
                 style={{ 
@@ -70,16 +82,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
                   clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
                 }}
               />
-              
-              <div className="relative z-10 w-[90%]">
-                <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4 text-center">
-                  {title}
-                </h3>
-                <p className="font-nunito font-semibold text-[18px] sm:text-[24px] text-white leading-tight text-center">
-                  {message}
-                </p>
-              </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Container com personagem e botão lado a lado - linha 2 */}
