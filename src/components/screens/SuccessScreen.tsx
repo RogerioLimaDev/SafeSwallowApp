@@ -57,18 +57,18 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-center"
+                className="rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 flex items-center justify-center"
                 style={{ 
                   backgroundColor: BLUE_COLOR,
                   width: 'min(480px, 85vw)',
                   maxWidth: '480px'
                 }}
               >
-                <div className="relative z-10 w-[90%]">
-                  <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4 text-center">
+                <div className="relative z-10 w-[90%]" style={{ maxWidth: '400px' }}>
+                  <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4">
                     {title}
                   </h3>
-                  <p className="font-nunito font-semibold text-[18px] sm:text-[24px] text-white leading-tight text-center">
+                  <p className="font-nunito font-semibold text-[18px] sm:text-[24px] text-white leading-tight">
                     {message}
                   </p>
                 </div>
