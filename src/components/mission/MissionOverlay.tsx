@@ -359,7 +359,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
             transition={{ duration: 0.3 }}
             className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
           >
-            <p className="text-white font-baruta text-2xl sm:text-3xl font-bold text-center uppercase whitespace-pre-line">
+            <p className="text-white font-baruta text-base sm:text-2xl font-bold text-center uppercase whitespace-pre-line">
               {stepConfig.status}
             </p>
           </motion.div>
