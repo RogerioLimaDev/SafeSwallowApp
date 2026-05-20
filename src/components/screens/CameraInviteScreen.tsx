@@ -58,31 +58,36 @@ export const CameraInviteScreen: React.FC<CameraInviteScreenProps> = ({ onNext, 
             }}
           />
           
-          <div className="relative z-10 w-[90%] flex justify-center py-4">
-            <div className="text-center sm:text-left w-full">
-              <p className="font-nunito font-semibold text-[6vw] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white leading-tight">
-                Pronto para começar?<br />
-                Ative a câmera do seu<br />
-                aparelho para iniciar.
-              </p>
+          {/* Container interno para texto e botão - mantém distância relativa */}
+          <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 px-4">
+            {/* Texto */}
+            <div className="w-full flex justify-center">
+              <div className="text-center sm:text-left">
+                <p className="font-nunito font-semibold text-[6vw] sm:text-[32px] md:text-[36px] lg:text-[40px] text-white leading-tight">
+                  Pronto para começar?<br />
+                  Ative a câmera do seu<br />
+                  aparelho para iniciar.
+                </p>
+              </div>
             </div>
+            
+            {/* Botão */}
+            <button 
+              onClick={handleStart}
+              className="relative text-white font-baruta font-bold text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-14 pt-3 pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+              style={{ 
+                backgroundColor: '#ff9241',
+                boxShadow: '2px 3px 0px #b24e1f',
+                width: '48%'
+              }}
+            >
+              <div className="flex items-center gap-1">
+                <span>LIGAR</span>
+                <span className="text-2xl">📸</span>
+              </div>
+              <span>CÂMERA!</span>
+            </button>
           </div>
-          
-          <button 
-            onClick={handleStart}
-            className="relative text-white font-baruta font-bold text-xl leading-[0.8] flex flex-col items-center justify-center !rounded-[16px] px-14 pt-3 pb-4 transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
-            style={{ 
-              backgroundColor: '#ff9241',
-              boxShadow: '2px 3px 0px #b24e1f',
-              width: '48%'
-            }}
-          >
-            <div className="flex items-center gap-1">
-              <span>LIGAR</span>
-              <span className="text-2xl">📸</span>
-            </div>
-            <span>CÂMERA!</span>
-          </button>
         </div>
 
         {/* Personagem - na frente, abaixo do balão */}
