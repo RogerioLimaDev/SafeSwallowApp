@@ -112,6 +112,14 @@ export default function App() {
   const [pillSize, setPillSize] = useState<PillSize | null>(null);
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [isCameraActive, setIsCameraActive] = useState(false);
+  
+  // Track if camera permission was already granted in a previous session
+  const [cameraWasAllowed, setCameraWasAllowed] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('camera_permission_granted') === 'true';
+    }
+    return false;
+  });
   const [showHelp, setShowHelp] = useState(false);
   const [notification, setNotification] = useState<NotificationType | null>(null);
   
@@ -504,7 +512,7 @@ export default function App() {
       {/* Main Content Layer */}
       <div className="relative z-10 w-full h-full flex flex-col">
         <AnimatePresence mode="wait">
-          {currentStep === 'START' && <StartScreen onStart={setCurrentStep} playSound={playButtonClick} />}
+          {currentStep === 'START' && <StartScreen onStart={setCurrentStep} playSound={playButtonClick} cameraWasAllowed={cameraWasAllowed} />}
           {currentStep === 'HOW_IT_WORKS' && <HowItWorksScreen onNext={(step) => { playButtonClick(); setCurrentStep(step); }} />}
           {currentStep === 'CANDY_BOX_SELECT' && (
             <CandyBoxSelect 
@@ -512,6 +520,7 @@ export default function App() {
               onNext={(step) => { playButtonClick(); setCurrentStep(step); }} 
               unlockedLevels={unlockedLevels}
               onSelectLevel={setCurrentLevel}
+              cameraWasAllowed={cameraWasAllowed}
             />
           )}
           {currentStep === 'CAMERA_INVITE' && (
@@ -519,6 +528,9 @@ export default function App() {
               currentLevel={currentLevel}
               onNext={() => {
                 playButtonClick();
+                // Save to localStorage that camera was allowed
+                localStorage.setItem('camera_permission_granted', 'true');
+                setCameraWasAllowed(true);
                 setIsCameraActive(true);
                 setCurrentStep('POSTURE');
               }} 

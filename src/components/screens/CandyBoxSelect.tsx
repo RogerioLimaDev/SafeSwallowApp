@@ -7,9 +7,10 @@ interface CandyBoxSelectProps {
   onNext: (step: MissionStep) => void;
   unlockedLevels: number;
   onSelectLevel: (level: number) => void;
+  cameraWasAllowed?: boolean;
 }
 
-export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onNext, unlockedLevels, onSelectLevel }) => {
+export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onNext, unlockedLevels, onSelectLevel, cameraWasAllowed }) => {
   const BOX_PADDING = '4px';
 
   // Middle: Grid of Boxes - further reduced vertical size to bring rows closer
@@ -24,7 +25,8 @@ export const CandyBoxSelect: React.FC<CandyBoxSelectProps> = ({ setPillSize, onN
         onClick={() => {
           onSelectLevel(boxNumber);
           setPillSize('SMALL');
-          onNext('CAMERA_INVITE');
+          // Skip camera invite screen if already allowed in previous session
+          onNext(cameraWasAllowed ? 'POSTURE' : 'CAMERA_INVITE');
         }}
         className={`w-full h-full flex items-center justify-center transition-all ${
           isUnlocked 

@@ -5,6 +5,7 @@ import { MissionStep } from '../../types';
 interface StartScreenProps {
   onStart: (step: MissionStep) => void;
   playSound?: () => void;
+  cameraWasAllowed?: boolean;
 }
 
 const CORRECT_PASSWORD = import.meta.env.VITE_PASSWORD || 'InovaHC26';
@@ -125,7 +126,8 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart, playSound }) 
             onPointerDown={() => {
               playSound?.();
               tryFullscreen();
-              onStart('HOW_IT_WORKS');
+              // If camera was already allowed in a previous session, skip the camera invite screen
+              onStart(cameraWasAllowed ? 'CANDY_BOX_SELECT' : 'HOW_IT_WORKS');
             }}
             className="btn-3d-yellow text-xl !rounded-[14px] !px-6 !py-3"
           >
