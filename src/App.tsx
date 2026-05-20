@@ -312,14 +312,22 @@ export default function App() {
 
   // Helper function to capture and verify water
   const verifyWaterWithGeminiWithReset = async () => {
-    const videoElement = document.querySelector('video');
+    const videoElement = document.querySelector('video') as HTMLVideoElement | null;
+    
+    // Check if video is ready
+    if (!videoElement || !videoElement.readyState || videoElement.readyState < 2) {
+      console.log("Video not ready for capture");
+      return true; // fallback to true if video not ready
+    }
+    
     const videoRefObj = { current: videoElement };
     const imageData = captureFrame(videoRefObj as any);
     
     if (imageData) {
       return await verifyWaterWithGemini(imageData);
     }
-    return true; // fallback to true if no frame
+    console.log("Failed to capture frame");
+    return true; // fallback to true if capture fails
   };
 
   const handleVerifyWater = async (skipAI = false) => {
