@@ -14,6 +14,7 @@ export interface SpriteConfig {
   type: 'sprite';
   path: string;
   frameCount: number;
+  totalFrames?: number; // Total frames in the actual image (for background-size)
   fps: number;
   frameWidth: number;
   frameHeight: number;
@@ -75,6 +76,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -100,6 +102,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -125,6 +128,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -150,6 +154,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -175,6 +180,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -200,6 +206,7 @@ export const getCharacterAsset = (level: number, type: CharacterType): AssetConf
         type: 'sprite',
         path: `/sprites/${spriteFiles[type]}`,
         frameCount: 39,
+        totalFrames: 40,
         fps: 8,
         frameWidth: 134,
         frameHeight: 134,
@@ -253,8 +260,9 @@ export const CharacterRenderer: React.FC<{
 }> = ({ config, className, alt = "Character" }) => {
   // Handle sprite sheet animations (CSS animation - iOS compatible)
   if (config.type === 'sprite' && config.spriteConfig) {
-    const { frameCount, fps, frameWidth, frameHeight } = config.spriteConfig;
-    const spriteWidth = frameCount * frameWidth;
+    const { frameCount, fps, frameWidth, frameHeight, totalFrames } = config.spriteConfig;
+    const displayFrames = totalFrames || frameCount;
+    const spriteWidth = displayFrames * frameWidth;
     const duration = frameCount / fps;
 
     return (
