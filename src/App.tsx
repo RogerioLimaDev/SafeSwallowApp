@@ -127,6 +127,10 @@ export default function App() {
     return saved ? JSON.parse(saved) : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 };
   });
 
+  // Refs for callbacks that need to be updated
+  const setHeadTiltTimerRef = useRef<((value: number) => void) | null>(null);
+  const showNotificationRef = useRef<(message: string, type: string) => void>(() => {});
+
   useEffect(() => {
     localStorage.setItem('safe_swallow_stats', JSON.stringify(levelStats));
   }, [levelStats]);
@@ -252,8 +256,10 @@ export default function App() {
         
         if (!isDrinking) {
           // User is not drinking - show error and reset
-          showNotification("Não detectei o copo! Tente novamente.", "error");
-          setHeadTiltTimer(0);
+          showNotificationRef.current("Não detectei o copo! Tente novamente.", "error");
+          if (setHeadTiltTimerRef.current) {
+            setHeadTiltTimerRef.current(0);
+          }
         }
         // If isDrinking is true, continue and let the timer complete
       }
@@ -261,7 +267,7 @@ export default function App() {
       console.error("Gemini verification error:", error);
       // On error, we continue anyway (fallback to posture-only)
     }
-  }, [setHeadTiltTimer]);
+  }, []);
 
   // --- Hook Integration ---
   const {
@@ -288,6 +294,12 @@ export default function App() {
       setCurrentStep('CAMERA_INVITE');
     }
   });
+
+  // Update refs after hooks are initialized
+  useEffect(() => {
+    setHeadTiltTimerRef.current = setHeadTiltTimer;
+    showNotificationRef.current = showNotification;
+  }, [setHeadTiltTimer, showNotification]);
 
   // --- Helpers ---
   const showNotification = (message: string, type: 'error' | 'info' | 'success' = 'info') => {
