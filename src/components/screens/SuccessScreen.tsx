@@ -46,64 +46,69 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
       animate={{ opacity: 1 }}
       className="absolute inset-0 w-full h-full pointer-events-auto bg-transparent flex items-center justify-center"
     >
-      {/* Container com personagem e balão */}
-      <div className="relative w-full max-w-[600px] h-[500px] sm:h-[600px]">
-        {/* Balão de fala - atrás do personagem, mais acima */}
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="absolute top-0 left-0 right-0 mx-auto rounded-[40px] px-6 py-10 flex flex-col items-center justify-center gap-8 z-0"
-          style={{ 
-            backgroundColor: BLUE_COLOR,
-            width: 'min(480px, 85vw)',
-            height: 'min(360px, 65vw)'
-          }}
-        >
-          {/* Bubble Tail - Sharp triangle pointing towards character */}
-          <div 
-            className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-20 h-20" 
-            style={{ 
-              backgroundColor: BLUE_COLOR,
-              clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
-            }}
-          />
-          
-          <div className="relative z-10 w-[90%]">
-            <h3 className="font-nunito font-semibold text-[26px] sm:text-[32px] text-white leading-tight mb-4">
-              {title}
-            </h3>
-            <p className="font-nunito font-semibold text-[20px] sm:text-[24px] text-white leading-tight">
-              {message}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Container com personagem e botão lado a lado */}
-        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center h-full pb-8 sm:pb-12">
-          {/* Grid container para manter distância relativa */}
-          <div className="grid grid-cols-[auto_auto] items-center gap-x-6 sm:gap-x-12" style={{ minHeight: '24vh' }}>
-            {/* Personagem */}
-            <div className="z-10">
-              <img 
-                src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
-                alt="Personagem"
-                className="h-auto w-auto object-contain"
-                style={{ width: 'auto', maxWidth: 'min(50vw, 240px)', maxHeight: '24vh' }}
-              />
-            </div>
-            
-            {/* Botão - verticalmente centralizado */}
-            <div className="z-20">
-              <button 
-                onClick={onReset}
-                className="text-white font-baruta font-bold text-lg py-3 px-8 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+      {/* Container principal com balão e grid */}
+      <div className="relative w-full max-w-[600px] h-[500px] sm:h-[600px] flex flex-col">
+        {/* Grid com balão (linha 1) e personagem+botão (linha 2) */}
+        <div className="grid grid-rows-[auto_1fr] h-full">
+          {/* Balão de fala - linha 1 */}
+          <div className="justify-self-center mt-4 sm:mt-8">
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-center"
+              style={{ 
+                backgroundColor: BLUE_COLOR,
+                width: 'min(480px, 85vw)',
+                maxWidth: '480px'
+              }}
+            >
+              {/* Bubble Tail - Sharp triangle pointing towards character */}
+              <div 
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-12 sm:h-16" 
                 style={{ 
-                  backgroundColor: '#ffa341',
-                  boxShadow: '2px 3px 0px #dfa525'
+                  backgroundColor: BLUE_COLOR,
+                  clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
                 }}
-              >
-                <span>FINALIZAR</span>
-              </button>
+              />
+              
+              <div className="relative z-10 w-[90%]">
+                <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4 text-center">
+                  {title}
+                </h3>
+                <p className="font-nunito font-semibold text-[18px] sm:text-[24px] text-white leading-tight text-center">
+                  {message}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Container com personagem e botão lado a lado - linha 2 */}
+          <div className="flex items-end justify-center pb-8 sm:pb-12">
+            {/* Grid container para manter distância relativa */}
+            <div className="grid grid-cols-[auto_auto] items-center gap-x-6 sm:gap-x-12">
+              {/* Personagem */}
+              <div className="z-10">
+                <img 
+                  src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
+                  alt="Personagem"
+                  className="h-auto w-auto object-contain"
+                  style={{ width: 'auto', maxWidth: 'min(50vw, 240px)', maxHeight: '24vh' }}
+                />
+              </div>
+              
+              {/* Botão - verticalmente centralizado */}
+              <div className="z-20">
+                <button 
+                  onClick={onReset}
+                  className="text-white font-baruta font-bold text-lg py-3 px-8 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+                  style={{ 
+                    backgroundColor: '#ffa341',
+                    boxShadow: '2px 3px 0px #dfa525'
+                  }}
+                >
+                  <span>FINALIZAR</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
