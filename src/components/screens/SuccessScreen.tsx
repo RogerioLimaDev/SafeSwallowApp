@@ -78,28 +78,31 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
           </div>
         </motion.div>
 
-        {/* Botão */}
-        <div className="absolute right-6 w-full max-w-[180px] z-20" style={{ bottom: 'max(6rem, env(safe-area-inset-bottom, 6rem))' }}>
-          <button 
-            onClick={onReset}
-            className="relative w-full text-white font-baruta font-bold text-lg py-3 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
-            style={{ 
-              backgroundColor: '#ffa341',
-              boxShadow: '2px 3px 0px #dfa525'
-            }}
-          >
-            <span>FINALIZAR</span>
-          </button>
-        </div>
-
-        {/* Personagem - na frente, abaixo do balão */}
-        <div className="absolute bottom-0 left-4 sm:left-8 z-10" style={{ marginTop: '-1.5rem' }}>
-          <img 
-            src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
-            alt="Personagem"
-            className="h-auto w-auto object-contain"
-            style={{ width: 'auto', maxWidth: 'min(50vw, 240px)', maxHeight: '24vh' }}
-          />
+        {/* Container com personagem e botão */}
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end h-full pb-8 sm:pb-12">
+          {/* Personagem */}
+          <div className="z-10">
+            <img 
+              src="/images/responsivo/Telafinal/peronagemTelaFinal.png" 
+              alt="Personagem"
+              className="h-auto w-auto object-contain"
+              style={{ width: 'auto', maxWidth: 'min(50vw, 240px)', maxHeight: '24vh' }}
+            />
+          </div>
+          
+          {/* Botão - posicionado após o personagem */}
+          <div className="w-full max-w-[180px] z-20 mt-2">
+            <button 
+              onClick={onReset}
+              className="relative w-full text-white font-baruta font-bold text-lg py-3 flex items-center justify-center gap-2 !rounded-[16px] transition-all duration-100 active:translate-y-[2px] active:translate-x-[1px] active:shadow-none"
+              style={{ 
+                backgroundColor: '#ffa341',
+                boxShadow: '2px 3px 0px #dfa525'
+              }}
+            >
+              <span>FINALIZAR</span>
+            </button>
+          </div>
         </div>
       </div>
     </motion.div>
