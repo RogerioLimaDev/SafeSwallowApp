@@ -27,7 +27,7 @@ export function AppLayout({ children, showBackground = true, showLogo = true, lo
 
       {/* Logotipo - parte superior */}
       {showLogo && (
-        <div className={`relative z-10 w-full flex justify-center px-4 ${logoPosition === 'center' ? 'pt-[45vh]' : 'pt-10 sm:pt-12'}`}>
+        <div className={`relative z-10 w-full flex justify-center px-4 ${logoPosition === 'center' ? 'pt-[40vh]' : 'pt-10 sm:pt-12'}`}>
           <img 
             src="/images/responsivo/ElementosComuns/logotipo.png" 
             alt="SafeSwallow"
