@@ -283,15 +283,16 @@ export default function App() {
         .then(isDrinking => {
           console.log("Gemini verification result:", isDrinking);
           if (!isDrinking) {
-            setGeminiMessage("COPO NÃO DETECTADO");
+            setGeminiMessage("Não detectei o copo! Tente novamente.");
             setTimeout(() => {
               setHeadTiltTimer(0);
               setGeminiVerified(false);
               setGeminiMessage(null);
             }, 2000);
           } else {
-            setGeminiMessage("BEBENDO!");
-            setTimeout(() => setGeminiMessage(null), 1000);
+            // Gemini detected drinking - complete the phase immediately
+            console.log("Gemini confirmed drinking - completing phase!");
+            handleSuccess();
           }
         })
         .catch(error => {
