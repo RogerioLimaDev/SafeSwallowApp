@@ -279,7 +279,7 @@ export const CharacterRenderer: React.FC<{
             background-image: url(${config.path});
             background-size: ${spriteWidth}px ${frameHeight}px;
             background-repeat: no-repeat;
-            animation: spriteAnim-${frameCount} ${duration}s steps(${frameCount}) infinite;
+            animation: spriteAnim-${frameCount} ${duration}s steps(${frameCount}, end) infinite;
           }
         `}</style>
         <div className={`sprite-anim-${frameCount}`} />
