@@ -51,14 +51,13 @@ export const verifyWaterWithGemini = async (imageData: string) => {
           role: "user",
           parts: [
             {
-              text: `As a health application assistant, verify if the user is truly drinking.
+              text: `Analyze this image for a swallowing training app.
               
-              CRITERIA FOR YES:
-              - Identify the person's mouth and the cup/bottle.
-              - There must be PHYSICAL CONTACT between the cup rim and the lips.
-              - The person should be tilted as if swallowing.
+              Is there a cup, glass, or bottle visible in the image AND is the person bringing it toward or already at their mouth area?
               
-              Is the cup touching the person's mouth as they drink?
+              Be lenient - if you can see a cup near the mouth or the person is in a drinking position, answer YES.
+              Only answer NO if there's clearly no cup or the cup is far from the face.
+              
               Reply ONLY 'YES' or 'NO'.`
             },
             { inlineData: { mimeType: "image/jpeg", data: imageData } }
