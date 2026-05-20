@@ -127,6 +127,9 @@ export default function App() {
     return saved ? JSON.parse(saved) : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 };
   });
 
+  // State to track if Gemini verification has been triggered for current swallow attempt
+  const [geminiVerified, setGeminiVerified] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('safe_swallow_stats', JSON.stringify(levelStats));
   }, [levelStats]);
@@ -267,6 +270,49 @@ export default function App() {
   const showNotification = (message: string, type: 'error' | 'info' | 'success' = 'info') => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 4000);
+  };
+
+  // Effect to trigger Gemini verification when head tilt starts (timer goes from 0 to 1)
+  useEffect(() => {
+    if (currentStep === 'SWALLOW' && headTiltTimer === 1 && !geminiVerified) {
+      console.log("Head tilt started - triggering Gemini verification...");
+      setGeminiVerified(true);
+      
+      verifyWaterWithGeminiWithReset()
+        .then(isDrinking => {
+          console.log("Gemini verification result:", isDrinking);
+          if (!isDrinking) {
+            showNotification("Não detectei o copo! Tente novamente.", "error");
+            setHeadTiltTimer(0);
+            setGeminiVerified(false);
+          }
+          // If isDrinking is true, continue and let the timer complete
+        })
+        .catch(error => {
+          console.error("Gemini verification error:", error);
+          // On error, we continue anyway (fallback to posture-only)
+        });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headTiltTimer, currentStep, geminiVerified]);
+
+  // Reset geminiVerified when entering SWALLOW step
+  useEffect(() => {
+    if (currentStep === 'SWALLOW') {
+      setGeminiVerified(false);
+    }
+  }, [currentStep]);
+
+  // Helper function to capture and verify water
+  const verifyWaterWithGeminiWithReset = async () => {
+    const videoElement = document.querySelector('video');
+    const videoRefObj = { current: videoElement };
+    const imageData = captureFrame(videoRefObj as any);
+    
+    if (imageData) {
+      return await verifyWaterWithGemini(imageData);
+    }
+    return true; // fallback to true if no frame
   };
 
   const handleVerifyWater = async (skipAI = false) => {
