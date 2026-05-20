@@ -30,7 +30,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
   const isGraduation = currentLevel === 7 && allLevelsCompletedThreeTimes;
 
   let title = "Muito bem!";
-  let message = "Você já conseguiu uma vez\nAgora, complete o desafio\nde engolir esse tamanho\nmais 2 vezes seguidas e\ndepois jogue a próxima\nfase!";
+  let message = "Você já conseguiu uma vez.\nAgora, complete o desafio\nde engolir esse tamanho\nmais 2 vezes seguidas e\ndepois jogue a próxima\nfase!";
 
   if (isGraduation) {
     title = "Parabéns! Você completou o desafio!";
@@ -64,7 +64,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
                   maxWidth: '480px'
                 }}
               >
-                <div className="relative z-10 w-[90%]" style={{ maxWidth: '400px' }}>
+                <div className="relative z-10 w-auto mx-auto text-left">
                   <h3 className="font-nunito font-semibold text-[24px] sm:text-[32px] text-white leading-tight mb-2 sm:mb-4">
                     {title}
                   </h3>
