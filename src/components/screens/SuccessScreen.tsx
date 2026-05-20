@@ -51,9 +51,10 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
         {/* Grid com balão (linha 1) e personagem+botão (linha 2) */}
         <div className="grid grid-rows-[auto_1fr] h-full">
           {/* Balão de fala - linha 1 */}
-          <div className="justify-self-center mt-8 sm:mt-16">
-            {/* Container relativo para balão + flecha */}
-            <div className="relative">
+          <div className="justify-self-center">
+            {/* Grid interno: linha 1 = balão, linha 2 = flecha */}
+            <div className="grid grid-rows-[auto_1fr] gap-0 mb-8 sm:mb-16">
+              {/* Balão */}
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -74,9 +75,9 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onReset, currentLe
                 </div>
               </motion.div>
 
-              {/* Bubble Tail - dentro do container relativo */}
+              {/* Flecha - linha 2 */}
               <div 
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-12 sm:h-16" 
+                className="justify-self-center w-16 sm:w-20 h-12 sm:h-16" 
                 style={{ 
                   backgroundColor: BLUE_COLOR,
                   clipPath: 'polygon(40% 0, 90% 0, 20% 100%)' 
