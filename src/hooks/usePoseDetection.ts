@@ -111,17 +111,16 @@ export const usePoseDetection = ({
 
       if (nose && leftShoulder && rightShoulder) {
         const midShoulderY = (leftShoulder.y + rightShoulder.y) / 2;
+        
+        // Calculate head tilt based on vertical distance from nose to shoulder line
+        // When head is tilted up (drinking), nose.y becomes smaller (higher in frame)
+        // So we calculate how much higher the nose is relative to mid-shoulder level
+        const headLift = midShoulderY - nose.y;
+        
+        // Convert to approximate angle (normalized by typical shoulder width)
+        // A head lift of ~0.15 in normalized coords is roughly 20-25 degrees
         const shoulderWidth = Math.abs(leftShoulder.x - rightShoulder.x);
-        const headDiff = midShoulderY - nose.y;
-        const normalizedTilt = headDiff / shoulderWidth;
-        
-        // Adjust sensitivity: 0.45 was too high for some cameras/distances.
-        // We'll use a more generous baseline and scale.
-        const rawHeadAngle = Math.max(0, Math.min(90, (normalizedTilt - 0.3) * 180));
-        
-        const currentHeadAngle = baselineHeadAngleRef.current !== null 
-          ? Math.max(0, Math.round(rawHeadAngle - (baselineHeadAngleRef.current * 0.5)))
-          : Math.round(rawHeadAngle);
+        const currentHeadAngle = Math.round((headLift / shoulderWidth) * 90);
 
         setMetrics(prev => ({ 
           ...prev, 
