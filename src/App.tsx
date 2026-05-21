@@ -439,7 +439,7 @@ export default function App() {
     
     // Go to candy box selection instead of start screen
     setCurrentStep('CANDY_BOX_SELECT');
-    setIsCameraActive(true); // Keep camera open
+    setIsCameraActive(false); // Close camera when going to box selection
     setIsCelebrating(false);
     setMetrics({
       shoulderAngle: 0,
