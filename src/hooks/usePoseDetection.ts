@@ -136,7 +136,7 @@ export const usePoseDetection = ({
             : false;
           
           // Success condition: either head tilt OR hand near mouth (in parallel)
-          if (currentHeadAngle > 18 || handNearMouth) {
+          if (currentHeadAngle > 12 || handNearMouth) {
             setHeadTiltTimer(prev => {
               const next = prev + 1;
               if (next >= 90) {

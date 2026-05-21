@@ -124,7 +124,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
       color: levelColor,
       icon: <CheckCircle2 className="w-6 h-6" />,
       progress: (headTiltTimer / 90) * 100,
-      status: successMessage || (metrics.headAngle > 18 ? 'ISSO! MANTENHA!' : 'MAIS ALTO! (>18°)')
+      status: successMessage || (metrics.headAngle > 12 ? 'ISSO! MANTENHA!' : 'MAIS ALTO! (>12°)')
     }
   }[currentStep as keyof typeof stepConfig] || {
     title: '',
