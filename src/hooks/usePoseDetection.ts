@@ -134,8 +134,8 @@ export const usePoseDetection = ({
             (Math.abs(rightWrist.x - nose.x) < 0.15 && Math.abs(rightWrist.y - nose.y) < 0.15)
             : false;
           
-          // Success condition: either head tilt OR hand near mouth (in parallel)
-          if (currentHeadAngle > 12 || handNearMouth) {
+          // Success condition: BOTH head tilt AND hand near mouth must be true
+          if (currentHeadAngle > 12 && handNearMouth) {
             setHeadTiltTimer(prev => {
               const next = prev + 1;
               if (next >= 90) {
