@@ -281,57 +281,10 @@ export default function App() {
     setTimeout(() => setNotification(null), 4000);
   };
 
-  // Effect to trigger Gemini verification when head tilt starts (timer goes from 0 to 1)
+  // Reset states when entering SWALLOW step
   useEffect(() => {
-    // Use a ref to track if we're still in SWALLOW when the async operation completes
-    const stillInSwallow = currentStep === 'SWALLOW';
-    
-    if (currentStep === 'SWALLOW' && headTiltTimer === 1 && !geminiVerified) {
-      console.log("Head tilt started - triggering Gemini verification...");
-      setGeminiVerified(true);
-      
-      verifyWaterWithGeminiWithReset()
-        .then(isDrinking => {
-          // Check if we're still in SWALLOW step before updating state
-          if (currentStep !== 'SWALLOW') {
-            console.log("No longer in SWALLOW step, skipping result handling");
-            return;
-          }
-          
-          console.log("Gemini verification result:", isDrinking);
-          if (!isDrinking) {
-            setGeminiMessage("Não detectei o copo! Tente novamente.");
-            setTimeout(() => {
-              // Check again before resetting
-              if (currentStep === 'SWALLOW') {
-                setHeadTiltTimer(0);
-                setGeminiVerified(false);
-                setGeminiMessage(null);
-              }
-            }, 2000);
-          } else {
-            // Gemini detected drinking - show success message in overlay
-            console.log("Gemini confirmed drinking - completing phase!");
-            setGeminiMessage("PERFEITO! BEBEU TUDO!");
-            playCelebration();
-            setTimeout(() => {
-              handleSuccess();
-            }, 2000);
-          }
-        })
-        .catch(error => {
-          console.error("Gemini verification error:", error);
-        });
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headTiltTimer, currentStep, geminiVerified]);
-
-  // Reset geminiVerified when entering SWALLOW step
-  useEffect(() => {
-    if (currentStep === 'SWALLOW') {
-      setGeminiVerified(false);
+    if (currentStep === 'SWALLOW')
       setGeminiMessage(null);
-    }
   }, [currentStep]);
 
   // Helper function to capture and verify water

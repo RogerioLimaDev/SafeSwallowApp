@@ -105,6 +105,9 @@ export const usePoseDetection = ({
       const rightShoulder = results.poseLandmarks[12];
       const leftHip = results.poseLandmarks[23];
       const rightHip = results.poseLandmarks[24];
+      // Hand landmarks - wrist left (16), wrist right (21)
+      const leftWrist = results.poseLandmarks[16];
+      const rightWrist = results.poseLandmarks[21];
 
       if (nose && leftShoulder && rightShoulder) {
         const midShoulderY = (leftShoulder.y + rightShoulder.y) / 2;
@@ -126,7 +129,14 @@ export const usePoseDetection = ({
         }));
 
         if (currentStepRef.current === 'SWALLOW') {
-          if (currentHeadAngle > 18) {
+          // Check if hand is near mouth (wrist close to nose)
+          const handNearMouth = (leftWrist && rightWrist) ? 
+            (Math.abs(leftWrist.x - nose.x) < 0.15 && Math.abs(leftWrist.y - nose.y) < 0.15) ||
+            (Math.abs(rightWrist.x - nose.x) < 0.15 && Math.abs(rightWrist.y - nose.y) < 0.15)
+            : false;
+          
+          // Success condition: either head tilt OR hand near mouth (in parallel)
+          if (currentHeadAngle > 18 || handNearMouth) {
             setHeadTiltTimer(prev => {
               const next = prev + 1;
               if (next >= 150) {
