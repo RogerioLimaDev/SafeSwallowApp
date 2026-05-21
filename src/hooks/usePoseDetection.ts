@@ -139,7 +139,7 @@ export const usePoseDetection = ({
           if (currentHeadAngle > 18 || handNearMouth) {
             setHeadTiltTimer(prev => {
               const next = prev + 1;
-              if (next >= 150) {
+              if (next >= 90) {
                 onSuccessRef.current();
               }
               return next;

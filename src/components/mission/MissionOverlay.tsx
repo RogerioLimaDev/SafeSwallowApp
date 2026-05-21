@@ -16,6 +16,7 @@ interface MissionOverlayProps {
   isCelebrating: boolean;
   countdown: number | null;
   geminiMessage?: string | null;
+  successMessage?: string | null;
   onVerifyWater: (skipAI?: boolean) => void;
   onVerifyTongue: (skipAI?: boolean) => void;
   onSuccess: () => void;
@@ -37,6 +38,7 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
     isCelebrating,
     countdown,
     geminiMessage = null,
+    successMessage = null,
     onVerifyWater,
     onVerifyTongue,
     onSuccess,
@@ -121,8 +123,8 @@ export const MissionOverlay: React.FC<MissionOverlayProps> = ({
       instruction: 'Coloque a água na boca, levante a cabeça e engula o comprimido.',
       color: levelColor,
       icon: <CheckCircle2 className="w-6 h-6" />,
-      progress: (headTiltTimer / 150) * 100,
-      status: geminiMessage || (metrics.headAngle > 18 ? 'ISSO! MANTENHA!' : 'MAIS ALTO! (>18°)')
+      progress: (headTiltTimer / 90) * 100,
+      status: successMessage || (metrics.headAngle > 18 ? 'ISSO! MANTENHA!' : 'MAIS ALTO! (>18°)')
     }
   }[currentStep as keyof typeof stepConfig] || {
     title: '',
