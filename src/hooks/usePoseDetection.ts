@@ -185,7 +185,6 @@ export const usePoseDetection = ({
             setPostureTimer(t => {
               const next = t + 1;
               if (next >= 60) {
-                setBaselineHeadAngle(rawHeadAngle);
                 onStepAdvanceRef.current('WATER');
                 return 0;
               }
@@ -198,7 +197,7 @@ export const usePoseDetection = ({
           if (currentStepRef.current === 'POSTURE' || currentStepRef.current === 'SWALLOW') {
             drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {
               color: currentStepRef.current === 'SWALLOW' 
-                ? (currentHeadAngle > 18 ? '#4CAF50' : '#FFB84D')
+                ? (currentHeadAngle > 12 ? '#4CAF50' : '#FFB84D')
                 : (isStraight ? '#4CAF50' : '#FFB84D'),
               lineWidth: 8
             });
