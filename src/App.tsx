@@ -437,7 +437,9 @@ export default function App() {
       });
     }
     
-    setCurrentStep('START');
+    // Go to candy box selection instead of start screen
+    setCurrentStep('CANDY_BOX_SELECT');
+    setIsCameraActive(true); // Keep camera open
     setIsCelebrating(false);
     setMetrics({
       shoulderAngle: 0,
@@ -452,7 +454,7 @@ export default function App() {
     setPillSize(null);
     setSelectedBox(null);
     setWaterProgress(0);
-    setIsCameraActive(false);
+    // Keep camera active for next round
   };
 
   // Telas que mostram background e logotipo
