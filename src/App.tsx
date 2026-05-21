@@ -521,6 +521,7 @@ export default function App() {
               unlockedLevels={unlockedLevels}
               onSelectLevel={setCurrentLevel}
               cameraWasAllowed={cameraWasAllowed}
+              onActivateCamera={() => setIsCameraActive(true)}
             />
           )}
           {currentStep === 'CAMERA_INVITE' && (
